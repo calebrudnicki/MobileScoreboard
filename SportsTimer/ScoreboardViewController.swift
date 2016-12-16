@@ -17,9 +17,8 @@ class ScoreboardViewController: UIViewController {
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var player1TitleLabel: UILabel!
     @IBOutlet weak var player2TitleLabel: UILabel!
-    @IBOutlet weak var player1ScoreLabel: UILabel!
-    @IBOutlet weak var player2ScoreLabel: UILabel!
-    @IBOutlet weak var switchButton: UISwitch!
+    @IBOutlet weak var player1ScoreButton: UIButton!
+    @IBOutlet weak var player2ScoreButton: UIButton!
     @IBOutlet weak var tutorialStack: UIStackView!
     
 //MARK: Variables
@@ -68,8 +67,8 @@ class ScoreboardViewController: UIViewController {
         timerLabel.textColor = UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1)
         player1TitleLabel.textColor = UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1)
         player2TitleLabel.textColor = UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1)
-        player1ScoreLabel.textColor = UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1)
-        player2ScoreLabel.textColor = UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1)
+        player1ScoreButton.setTitleColor(UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1), forState: .Normal)
+        player2ScoreButton.setTitleColor(UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1), forState: .Normal)
         self.layoutWithTutorial()
     }
     
@@ -81,8 +80,8 @@ class ScoreboardViewController: UIViewController {
         timerLabel.textColor = UIColor(red: 22/255, green: 160/255, blue: 133/255, alpha: 1)
         player1TitleLabel.textColor = UIColor(red: 22/255, green: 160/255, blue: 133/255, alpha: 1)
         player2TitleLabel.textColor = UIColor(red: 22/255, green: 160/255, blue: 133/255, alpha: 1)
-        player1ScoreLabel.textColor = UIColor(red: 22/255, green: 160/255, blue: 133/255, alpha: 1)
-        player2ScoreLabel.textColor = UIColor(red: 22/255, green: 160/255, blue: 133/255, alpha: 1)
+        player1ScoreButton.setTitleColor(UIColor(red: 22/255, green: 160/255, blue: 133/255, alpha: 1), forState: .Normal)
+        player2ScoreButton.setTitleColor(UIColor(red: 22/255, green: 160/255, blue: 133/255, alpha: 1), forState: .Normal)
         self.layoutWithoutTutorial()
     }
     
@@ -92,8 +91,8 @@ class ScoreboardViewController: UIViewController {
         timerLabel.alpha = 0.25
         player1TitleLabel.alpha = 0.25
         player2TitleLabel.alpha = 0.25
-        player1ScoreLabel.alpha = 0.25
-        player2ScoreLabel.alpha = 0.25
+        player1ScoreButton.alpha = 0.25
+        player2ScoreButton.alpha = 0.25
     }
     
     //This function changes the layout of the labels when the tutorial is off
@@ -102,8 +101,8 @@ class ScoreboardViewController: UIViewController {
         timerLabel.alpha = 1
         player1TitleLabel.alpha = 1
         player2TitleLabel.alpha = 1
-        player1ScoreLabel.alpha = 1
-        player2ScoreLabel.alpha = 1
+        player1ScoreButton.alpha = 1
+        player2ScoreButton.alpha = 1
     }
     
     
@@ -141,7 +140,7 @@ class ScoreboardViewController: UIViewController {
     
     //This funtions creates the swipe gestures and then adds them to the view
     func addSwipe() {
-        let directions: [UISwipeGestureRecognizerDirection] = [.Right, .Left, .Down, .Up]
+        let directions: [UISwipeGestureRecognizerDirection] = [.Down, .Up]
         for direction in directions {
             let gesture = UISwipeGestureRecognizer(target: self, action: #selector(ScoreboardViewController.handleSwipe(_:)))
             gesture.direction = direction
@@ -151,19 +150,27 @@ class ScoreboardViewController: UIViewController {
     
     //This functions handles each swipe and its functionality within the app
     func handleSwipe(sender: UISwipeGestureRecognizer) {
-        if sender.direction.rawValue == 1 && canScoreFromPhone == true && timerIsOn == true {
-            player1Score = player1Score + 1
-            player1ScoreLabel.text = String(player1Score)
-        } else if sender.direction.rawValue == 2 && canScoreFromPhone == true  && timerIsOn == true {
-            player2Score = player2Score + 1
-            player2ScoreLabel.text = String(player2Score)
-        } else if sender.direction.rawValue == 8 && canScoreFromPhone == true && timerIsOn == false {
+        if sender.direction.rawValue == 8 && canScoreFromPhone == true && timerIsOn == false {
             self.beginClock()
             self.layoutWithoutTutorial()
         } else if sender.direction.rawValue == 4 && canScoreFromPhone == true && timerIsOn == true {
             self.restartGame()
             self.layoutWithTutorial()
         }
+    }
+    
+//MARK: Actions
+    
+    //This function adds one to player 1 when the button is tapped
+    @IBAction func player1ButtonTapped(sender: AnyObject) {
+        player1Score = player1Score + 1
+        player1ScoreButton.setTitle(String(player1Score), forState: .Normal)
+    }
+    
+    //This function adds one to player 2 when the button is tapped
+    @IBAction func player2ButtonTapped(sender: AnyObject) {
+        player2Score = player2Score + 1
+        player2ScoreButton.setTitle(String(player2Score), forState: .Normal)
     }
     
     
@@ -179,14 +186,14 @@ class ScoreboardViewController: UIViewController {
         timerLabel.text = "10:00"
         player1Score = 0
         player2Score = 0
-        player1ScoreLabel.text = "0"
-        player2ScoreLabel.text = "0"
+        player1ScoreButton.setTitle("0", forState: .Normal)
+        player2ScoreButton.setTitle("0", forState: .Normal)
     }
     
     //This functions updates the score labels to match the watch's data
     func displayLabels(dataDict: [String : AnyObject]) {
-        player1ScoreLabel.text = String(dataDict["Score1"]!)
-        player2ScoreLabel.text = String(dataDict["Score2"]!)
+        player1ScoreButton.setTitle(String(dataDict["Score1"]!), forState: .Normal)
+        player2ScoreButton.setTitle(String(dataDict["Score2"]!), forState: .Normal)
         player1Score = Int(String(dataDict["Score1"]!))
         player2Score = Int(String(dataDict["Score2"]!))
     }
@@ -246,14 +253,14 @@ class ScoreboardViewController: UIViewController {
     func timesUp(winner: String) {
         AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
         if winner == "Player1" {
-            player1ScoreLabel.textColor = UIColor.greenColor()
-            player2ScoreLabel.textColor = UIColor.redColor()
+            player1ScoreButton.setTitleColor(UIColor.greenColor(), forState: .Normal)
+            player2ScoreButton.setTitleColor(UIColor.redColor(), forState: .Normal)
         } else if winner == "Player2" {
-            player2ScoreLabel.textColor = UIColor.greenColor()
-            player1ScoreLabel.textColor = UIColor.redColor()
+            player2ScoreButton.setTitleColor(UIColor.greenColor(), forState: .Normal)
+            player1ScoreButton.setTitleColor(UIColor.redColor(), forState: .Normal)
         } else if winner == "Tie" {
-            player1ScoreLabel.textColor = UIColor.blueColor()
-            player2ScoreLabel.textColor = UIColor.blueColor()
+            player1ScoreButton.setTitleColor(UIColor.blueColor(), forState: .Normal)
+            player2ScoreButton.setTitleColor(UIColor.blueColor(), forState: .Normal)
         }
     }
     
@@ -263,6 +270,46 @@ class ScoreboardViewController: UIViewController {
         let minutePlace = Int(floor(secs / 60) % 60)
         let secondPlace = Int(floor(secs) % 60)
         return String(format: "%02d:%02d", minutePlace, secondPlace)
+    }
+    
+    //MARK: Speech Functions
+    
+    //This function sends a voice notification to the user about the status of the game
+    func speakGameStatus(occasion: String) {
+        if occasion == "HalfWayPoint" {
+            if player1Score == player2Score {
+                let statusNotice = AVSpeechUtterance(string: "At the halfway point of the game, both sides are tied at \(player1Score!)")
+                self.speechSynthesizer.speakUtterance(statusNotice)
+            } else if player1Score > player2Score {
+                let statusNotice = AVSpeechUtterance(string: "Half of the game has passed. Player 1 is winning \(player1Score!) to \(player2Score!)")
+                self.speechSynthesizer.speakUtterance(statusNotice)
+            } else {
+                let statusNotice = AVSpeechUtterance(string: "Half of the game has passed. Player 2 is winning \(player2Score!) to \(player1Score!)")
+                self.speechSynthesizer.speakUtterance(statusNotice)
+            }
+        } else if occasion == "OneMinuteRemaining" {
+            if player1Score == player2Score {
+                let statusNotice = AVSpeechUtterance(string: "One minute remaining. Both sides are tied at \(player1Score!) a peice")
+                self.speechSynthesizer.speakUtterance(statusNotice)
+            } else if player1Score > player2Score {
+                let statusNotice = AVSpeechUtterance(string: "One minute remaining. Player 2 is down by \(player1Score! - player2Score!) goals")
+                self.speechSynthesizer.speakUtterance(statusNotice)
+            } else {
+                let statusNotice = AVSpeechUtterance(string: "One minute remaining. Player 1 is down by \(player2Score! - player1Score!) goals")
+                self.speechSynthesizer.speakUtterance(statusNotice)
+            }
+        } else if occasion == "TimesUp" {
+            if player1Score == player2Score {
+                let statusNotice = AVSpeechUtterance(string: "Game over. Both sides tied the game with \(player1Score) points")
+                self.speechSynthesizer.speakUtterance(statusNotice)
+            } else if player1Score > player2Score {
+                let statusNotice = AVSpeechUtterance(string: "Game over. Player 1 wins \(player1Score!) to \(player2Score!)")
+                self.speechSynthesizer.speakUtterance(statusNotice)
+            } else {
+                let statusNotice = AVSpeechUtterance(string: "Game over. Player 2 wins \(player1Score!) to \(player2Score!)")
+                self.speechSynthesizer.speakUtterance(statusNotice)
+            }
+        }
     }
     
 }
