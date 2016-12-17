@@ -25,6 +25,7 @@ class ScoreboardInterfaceController: WKInterfaceController, WCSessionDelegate {
     var backingTimer: NSTimer?
     var score1 = 0
     var score2 = 0
+    var gameIsPaused = false
     
     
 //MARK: Boilerplate Functions
@@ -59,7 +60,6 @@ class ScoreboardInterfaceController: WKInterfaceController, WCSessionDelegate {
         super.init ()
         self.setTitle("End Game")
     }
-
 
 //MARK: Starting a New Game
     
@@ -113,16 +113,37 @@ class ScoreboardInterfaceController: WKInterfaceController, WCSessionDelegate {
     
     //This function adds a goal to Player 1's score and sends that info to the phone
     @IBAction func goalButton1() {
-        score1 = score1 + 1
-        player1Score.setTitle(String(score1))
-        WatchSession.sharedInstance.tellPhoneScoreData(score1, score2: score2)
+        if gameIsPaused == false {
+            score1 += 1
+            player1Score.setTitle(String(score1))
+            WatchSession.sharedInstance.tellPhoneScoreData(score1, score2: score2)
+        }
     }
     
     //This functions adds a goal to Player 2's score and sends that info to the phone
     @IBAction func goalButton2() {
-        score2 = score2 + 1
-        player2Score.setTitle(String(score2))
-        WatchSession.sharedInstance.tellPhoneScoreData(score1, score2: score2)
+        if gameIsPaused == false {
+            score2 += 1
+            player2Score.setTitle(String(score2))
+            WatchSession.sharedInstance.tellPhoneScoreData(score1, score2: score2)
+        }
+    }
+    
+    //This function starts the timer when the play button is tapped
+    @IBAction func playButtonTapped() {
+        if gameIsPaused == true {
+            gameIsPaused = false
+            countdown -= 2
+            self.newGame()
+        }
+    }
+    
+    //This function pauses the timer when the pause button is tapped
+    @IBAction func pauseButtonTapped() {
+        if gameIsPaused == false {
+            gameIsPaused = true
+            timer.stop()
+        }
     }
     
 }
