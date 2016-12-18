@@ -64,12 +64,23 @@ class HomeInterfaceController: WKInterfaceController {
     
     //This function segues to the ScoreboardInterfaceController when the start run button is tapped
     @IBAction func startGameButtonTapped() {
-        print(overallTime)
         WatchSession.sharedInstance.tellPhoneToBeTheScoreboard()
-        self.presentControllerWithName("Scoreboard Interface Controller", context: nil)
+        self.pushControllerWithName("Scoreboard Interface Controller", context: overallTime)
     }
 
+    //This functions changes the variable of overallTime to the current item in the picker
     @IBAction func pickerChanged(value: Int) {
         self.overallTime = timesArray[value].title!
     }
+    
+    
+//MARK: Segues
+    
+    override func contextForSegueWithIdentifier(segueIdentifier: String) -> AnyObject? {
+        if segueIdentifier == " Scoreboard Interface Controller" {
+            return self.overallTime
+        }
+        return nil
+    }
+    
 }

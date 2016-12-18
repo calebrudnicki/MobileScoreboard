@@ -21,7 +21,7 @@ class ScoreboardInterfaceController: WKInterfaceController, WCSessionDelegate {
     
 //MARK: Variables
     
-    var countdown: NSTimeInterval = 600
+    var countdown: NSTimeInterval = 300
     var backingTimer: NSTimer?
     var score1 = 0
     var score2 = 0
@@ -33,6 +33,9 @@ class ScoreboardInterfaceController: WKInterfaceController, WCSessionDelegate {
     //This functions calls sets the labels to their preset values and sets the class as an observer of the checkWatchTimer notification
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
+        if let val: String = context as? String {
+            self.convertClockFormatToSeconds(val)
+        }
         self.newGame()
         player1Score.setTitle(String(score1))
         player2Score.setTitle(String(score2))
@@ -106,6 +109,29 @@ class ScoreboardInterfaceController: WKInterfaceController, WCSessionDelegate {
         }
         player1Score.setEnabled(false)
         player2Score.setEnabled(false)
+    }
+    
+    //This function converts a clock format to an amount of seconds
+    func convertClockFormatToSeconds(clock: String) {
+        if clock == "5:00" {
+            countdown = 300
+        } else if clock == "15:00" {
+            countdown = 800
+        } else if clock == "20:00" {
+            countdown = 1200
+        } else if clock == "25:00" {
+            countdown = 1500
+        } else if clock == "30:00" {
+            countdown = 1800
+        } else if clock == "40:00" {
+            countdown = 2400
+        } else if clock == "50:00" {
+            countdown = 3000
+        } else if clock == "60:00" {
+            countdown = 3800
+        } else {
+            countdown = 600
+        }
     }
     
     

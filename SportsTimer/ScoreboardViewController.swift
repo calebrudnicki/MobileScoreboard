@@ -25,10 +25,10 @@ class ScoreboardViewController: UIViewController {
     
     let speechSynthesizer = AVSpeechSynthesizer()
     var timer: NSTimer!
-    var totalTime: Int! = 600
+    var startingGameTime: Int! = 300
+    var currentTime: Int! = 300
     var player1Score: Int! = 0
     var player2Score: Int! = 0
-    var updatedWatchTimer: Int!
     var timerIsOn: Bool = false
     var canScoreFromPhone = true
     
@@ -112,6 +112,7 @@ class ScoreboardViewController: UIViewController {
         dispatch_after(time, dispatch_get_main_queue()) {
             UIView.performSystemAnimation(.Delete, onViews: [self.tutorialStack], options: .BeginFromCurrentState, animations: {
                 self.tutorialStack.alpha = 0
+                self.layoutWithoutTutorial()
                 }, completion: nil)
         }
     }
@@ -121,32 +122,27 @@ class ScoreboardViewController: UIViewController {
     
     //This function that gets called everytime a tellPhoneToBeTheController notification is posted calls activatePhone()
     func receivedTellPhoneToBeTheControllerNotification(notification: NSNotification) {
-        print("HERE1")
         self.activatePhone()
     }
     
     //This function that gets called everytime a tellPhoneToBeTheScoreboard notification is posted calls deactivatePhone()
     func receivedTellPhoneToBeTheScoreboardNotification(notification: NSNotification) {
-        print("HERE2")
         self.deactivatePhone()
     }
     
     //This function that gets called everytime a tellPhoneToStartGame notification is posted calls startTimer()
     func receivedTellPhoneToStartGameNotification(notification: NSNotification) {
-        print("HERE3")
         let dataDict = notification.object as? [String : AnyObject]
         self.startTimer(dataDict!)
     }
     
     //This function that gets called everytime the tellPhoneToStopGame notification is posted calls restartGame()
     func receivedTellPhoneToStopGameNotification(notification: NSNotification) {
-        print("HERE4")
         self.restartGame()
     }
     
     //This function that gets called everytime a tellPhoneScoreData notification is posted calls displayLabels()
     func receivedTellPhoneScoreDataNotification(notification: NSNotification) {
-        print("HERE5")
         let dataDict = notification.object as? [String : AnyObject]
         self.displayLabels(dataDict!)
     }
@@ -198,8 +194,9 @@ class ScoreboardViewController: UIViewController {
         if timer != nil {
            timer.invalidate()
         }
-        totalTime = 600
-        timerLabel.text = "10:00"
+        startingGameTime = 300
+        currentTime = 300
+        timerLabel.text = "5:00"
         player1Score = 0
         player2Score = 0
         player1ScoreButton.setTitle("0", forState: .Normal)
@@ -217,18 +214,18 @@ class ScoreboardViewController: UIViewController {
     
     //This functions runs once per second until the totalTime variable reaches 0 before it calls timesUp() with the winning player as a parameter
     func eachSecond(timer: NSTimer) {
-        if totalTime == 300 && player1Score > player2Score {
+        if startingGameTime / 2 == currentTime && player1Score > player2Score {
             speakGameStatus("HalfWayPoint")
         }
-        if totalTime == 60 {
+        if currentTime == 60 {
             speakGameStatus("OneMinuteRemaining")
         }
-        if totalTime >= 0 {
-            timerLabel.text = self.convertSeconds(totalTime)
+        if currentTime >= 0 {
+            timerLabel.text = self.convertSeconds(currentTime)
         } else {
             timer.invalidate()
         }
-        if totalTime == 0 {
+        if currentTime == 0 {
             if self.player1Score > self.player2Score {
                 self.timesUp("Player1")
             } else if self.player2Score > self.player1Score {
@@ -238,7 +235,7 @@ class ScoreboardViewController: UIViewController {
             }
             speakGameStatus("TimesUp")
         }
-        totalTime = totalTime - 1
+        currentTime = currentTime - 1
     }
     
     
@@ -249,7 +246,7 @@ class ScoreboardViewController: UIViewController {
         UIApplication.sharedApplication().idleTimerDisabled = true
         dispatch_async(dispatch_get_main_queue()) {
             if self.timerIsOn == false {
-                self.totalTime = Int(String(dataDict["Time"]!))!
+                self.currentTime = Int(String(dataDict["Time"]!))!
                 self.beginClock()
             }
         }
@@ -281,10 +278,10 @@ class ScoreboardViewController: UIViewController {
         let secs: Double! = Double(seconds)
         let minutePlace = Int(floor(secs / 60) % 60)
         let secondPlace = Int(floor(secs) % 60)
-        return String(format: "%02d:%02d", minutePlace, secondPlace)
+        return String(format: "%2d:%02d", minutePlace, secondPlace)
     }
     
-    //MARK: Speech Functions
+//MARK: Speech Functions
     
     //This function sends a voice notification to the user about the status of the game
     func speakGameStatus(occasion: String) {
