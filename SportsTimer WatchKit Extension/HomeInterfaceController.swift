@@ -44,8 +44,9 @@ class HomeInterfaceController: WKInterfaceController {
         time8.title = "50:00"
         let time9 = WKPickerItem()
         time9.title = "60:00"
-        timesArray = [time1, time2, time3, time4, time4, time6, time7, time8, time9]
+        timesArray = [time1, time2, time3, time4, time5, time6, time7, time8, time9]
         picker.setItems(timesArray)
+        picker.setSelectedItemIndex(1)
     }
     
     //This function makes a shared instance of watch session

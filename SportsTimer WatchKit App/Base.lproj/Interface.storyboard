@@ -4,13 +4,18 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="10032"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="SF-UI-Display-Semibold.otf">
+            <string>SFUIDisplay-Semibold</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
         <!--Scoreboard Interface Controller-->
         <scene sceneID="aou-V4-d1y">
             <objects>
                 <controller identifier="Scoreboard Interface Controller" id="AgC-eL-Hgc" customClass="ScoreboardInterfaceController" customModule="SportsTimer_WatchKit_Extension">
                     <items>
-                        <timer width="1" height="60.5" alignment="left" textAlignment="center" previewedSeconds="600" id="sGL-Lu-aeW">
+                        <timer width="1" height="60.5" alignment="center" textAlignment="center" previewedSeconds="600" id="sGL-Lu-aeW">
                             <fontDescription key="font" type="system" pointSize="55"/>
                             <calendarUnit key="units" minute="YES" second="YES"/>
                         </timer>
@@ -67,14 +72,23 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="553" y="326"/>
+            <point key="canvasLocation" x="553" y="323"/>
         </scene>
         <!--Home Interface Controller-->
         <scene sceneID="HoX-F1-L6b">
             <objects>
                 <controller identifier="Home Interface Controller" id="3KW-jg-8WF" customClass="HomeInterfaceController" customModule="SportsTimer_WatchKit_Extension">
                     <items>
-                        <button width="1" height="31" alignment="center" verticalAlignment="bottom" title="Start" id="Zlo-kE-kx0">
+                        <label width="1" alignment="center" text="Mobile Scoreboard" textAlignment="center" id="u9r-Kh-XZ8">
+                            <color key="textColor" red="0.25697538260000002" green="0.78364455700000002" blue="0.66173297170000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <fontDescription key="font" name="SFUIDisplay-Semibold" family="SF UI Display" pointSize="19"/>
+                        </label>
+                        <picker height="82" alignment="left" indicatorMode="shownWhileFocused" id="Vtb-Cn-c0Q">
+                            <connections>
+                                <action selector="pickerChanged:" destination="3KW-jg-8WF" id="D1M-wV-38k"/>
+                            </connections>
+                        </picker>
+                        <button width="1" height="38" alignment="center" verticalAlignment="bottom" title="Start" id="Zlo-kE-kx0">
                             <color key="titleColor" red="0.25697538260000002" green="0.78364455700000002" blue="0.66173297170000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="font" type="system" pointSize="30"/>
@@ -82,22 +96,14 @@
                                 <action selector="startGameButtonTapped" destination="3KW-jg-8WF" id="wrk-Lp-9hi"/>
                             </connections>
                         </button>
-                        <label width="1" alignment="center" text="Mobile Scoreboard" textAlignment="center" id="u9r-Kh-XZ8">
-                            <color key="textColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="calibratedRGB"/>
-                        </label>
-                        <picker height="92" alignment="left" indicatorMode="shownWhileFocused" id="Vtb-Cn-c0Q">
-                            <connections>
-                                <action selector="pickerChanged:" destination="3KW-jg-8WF" id="D1M-wV-38k"/>
-                            </connections>
-                        </picker>
                     </items>
-                    <color key="backgroundColor" red="0.25697538260000002" green="0.78364455700000002" blue="0.66173297170000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                     <connections>
                         <outlet property="picker" destination="Vtb-Cn-c0Q" id="AY6-Zg-MYE"/>
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="235" y="324"/>
+            <point key="canvasLocation" x="235" y="323"/>
         </scene>
         <!--Glance Interface Controller-->
         <scene sceneID="BOz-TT-tkC">
