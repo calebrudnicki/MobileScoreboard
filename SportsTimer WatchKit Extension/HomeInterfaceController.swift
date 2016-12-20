@@ -24,6 +24,7 @@ class HomeInterfaceController: WKInterfaceController {
     
 //MARK: Boilerplate Functions
     
+    //This functions assigns all the following times to be part of the picker
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         let time1 = WKPickerItem()
@@ -77,8 +78,9 @@ class HomeInterfaceController: WKInterfaceController {
     
 //MARK: Segues
     
+    //This function sends the selected time from the picker to the ScoreboardInterfaceController
     override func contextForSegueWithIdentifier(segueIdentifier: String) -> AnyObject? {
-        if segueIdentifier == " Scoreboard Interface Controller" {
+        if segueIdentifier == "Scoreboard Interface Controller" {
             return self.overallTime
         }
         return nil

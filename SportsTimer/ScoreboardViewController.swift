@@ -25,8 +25,8 @@ class ScoreboardViewController: UIViewController {
     
     let speechSynthesizer = AVSpeechSynthesizer()
     var timer: NSTimer!
-    var startingGameTime: Int! = 300
-    var currentTime: Int! = 300
+    var startingGameTime: Int! = 600
+    var currentTime: Int! = 600
     var player1Score: Int! = 0
     var player2Score: Int! = 0
     var timerIsOn: Bool = false
@@ -45,7 +45,7 @@ class ScoreboardViewController: UIViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToStopGameNotification(_:)), name:"tellPhoneToStopGame", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneScoreDataNotification(_:)), name:"tellPhoneScoreData", object: nil)
         self.addSwipe()
-        self.eliminateTutorial(5)
+        self.eliminateTutorial(10)
     }
     
     override func didReceiveMemoryWarning() {
@@ -194,9 +194,9 @@ class ScoreboardViewController: UIViewController {
         if timer != nil {
            timer.invalidate()
         }
-        startingGameTime = 300
-        currentTime = 300
-        timerLabel.text = "5:00"
+        startingGameTime = 600
+        currentTime = 600
+        timerLabel.text = "10:00"
         player1Score = 0
         player2Score = 0
         player1ScoreButton.setTitle("0", forState: .Normal)
