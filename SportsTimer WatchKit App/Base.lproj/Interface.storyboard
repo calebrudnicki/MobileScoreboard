@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="10117" systemVersion="16B2555" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3KW-jg-8WF">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="10117" systemVersion="16C67" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3KW-jg-8WF">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="10032"/>
@@ -15,39 +15,44 @@
             <objects>
                 <controller identifier="Scoreboard Interface Controller" id="AgC-eL-Hgc" customClass="ScoreboardInterfaceController" customModule="SportsTimer_WatchKit_Extension">
                     <items>
-                        <timer width="1" height="60.5" alignment="center" textAlignment="center" previewedSeconds="600" id="sGL-Lu-aeW">
-                            <fontDescription key="font" type="system" pointSize="55"/>
-                            <calendarUnit key="units" minute="YES" second="YES"/>
-                        </timer>
-                        <separator alignment="left" id="TSF-1R-qY4"/>
-                        <group width="1" alignment="left" spacing="5" id="IO1-14-nL3">
+                        <group width="1" height="1" alignment="center" verticalAlignment="center" contentMode="scaleAspectFill" layout="vertical" id="UEy-p7-wzB">
                             <items>
-                                <label alignment="right" text="Player 2" id="Bf5-i6-tPh">
-                                    <fontDescription key="font" type="system" weight="ultraLight" pointSize="18"/>
-                                </label>
-                                <label alignment="left" text="Player 1" id="hzh-yl-PR1">
-                                    <fontDescription key="font" type="system" weight="ultraLight" pointSize="18"/>
-                                    <variation key="device=watch42mm" textAlignment="natural"/>
-                                </label>
+                                <timer width="1" height="0.45000000000000001" alignment="center" textAlignment="center" previewedSeconds="600" id="sGL-Lu-aeW">
+                                    <fontDescription key="font" type="system" pointSize="55"/>
+                                    <calendarUnit key="units" minute="YES" second="YES"/>
+                                </timer>
+                                <separator width="1" alignment="left" id="TSF-1R-qY4"/>
+                                <group width="1" alignment="left" spacing="5" id="IO1-14-nL3">
+                                    <items>
+                                        <label alignment="left" verticalAlignment="center" text="Player 1" id="hzh-yl-PR1">
+                                            <fontDescription key="font" type="system" weight="ultraLight" pointSize="18"/>
+                                            <variation key="device=watch42mm" textAlignment="natural"/>
+                                        </label>
+                                        <label alignment="right" verticalAlignment="center" text="Player 2" id="Bf5-i6-tPh">
+                                            <fontDescription key="font" type="system" weight="ultraLight" pointSize="18"/>
+                                        </label>
+                                    </items>
+                                    <edgeInsets key="margins" left="4" right="4" top="0.0" bottom="0.0"/>
+                                </group>
+                                <group width="1" alignment="center" id="hl7-yr-5yp">
+                                    <items>
+                                        <button width="0.45000000000000001" height="50" alignment="left" verticalAlignment="center" title="0" id="tqc-Bv-34b">
+                                            <fontDescription key="font" type="system" pointSize="30"/>
+                                            <connections>
+                                                <action selector="goalButton1" destination="AgC-eL-Hgc" id="bzc-Js-xdX"/>
+                                            </connections>
+                                        </button>
+                                        <button width="0.45000000000000001" height="1" alignment="right" verticalAlignment="center" title="0" id="8Nz-vZ-9Lx">
+                                            <fontDescription key="font" type="system" pointSize="30"/>
+                                            <connections>
+                                                <action selector="goalButton2" destination="AgC-eL-Hgc" id="RM7-7j-Fxb"/>
+                                            </connections>
+                                        </button>
+                                    </items>
+                                    <edgeInsets key="margins" left="3" right="3" top="0.0" bottom="0.0"/>
+                                </group>
                             </items>
-                            <edgeInsets key="margins" left="4" right="4" top="0.0" bottom="0.0"/>
-                        </group>
-                        <group width="1" height="55.5" alignment="left" id="hl7-yr-5yp">
-                            <items>
-                                <button width="67" height="51.5" alignment="left" title="0" id="tqc-Bv-34b">
-                                    <fontDescription key="font" type="system" pointSize="30"/>
-                                    <connections>
-                                        <action selector="goalButton1" destination="AgC-eL-Hgc" id="bzc-Js-xdX"/>
-                                    </connections>
-                                </button>
-                                <button width="59" height="51.5" alignment="right" title="0" id="8Nz-vZ-9Lx">
-                                    <fontDescription key="font" type="system" pointSize="30"/>
-                                    <connections>
-                                        <action selector="goalButton2" destination="AgC-eL-Hgc" id="RM7-7j-Fxb"/>
-                                    </connections>
-                                </button>
-                            </items>
-                            <edgeInsets key="margins" left="3" right="3" top="0.0" bottom="0.0"/>
+                            <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
                         </group>
                     </items>
                     <menu key="menu" id="HXm-R5-sfQ">
@@ -79,25 +84,30 @@
             <objects>
                 <controller identifier="Home Interface Controller" id="3KW-jg-8WF" customClass="HomeInterfaceController" customModule="SportsTimer_WatchKit_Extension">
                     <items>
-                        <label width="1" alignment="center" text="Mobile Scoreboard" textAlignment="center" id="u9r-Kh-XZ8">
-                            <color key="textColor" red="0.25697538260000002" green="0.78364455700000002" blue="0.66173297170000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <fontDescription key="font" name="SFUIDisplay-Semibold" family="SF UI Display" pointSize="19"/>
-                        </label>
-                        <picker height="82" alignment="left" indicatorMode="shownWhileFocused" id="Vtb-Cn-c0Q">
-                            <connections>
-                                <action selector="pickerChanged:" destination="3KW-jg-8WF" id="D1M-wV-38k"/>
-                            </connections>
-                        </picker>
-                        <button width="1" height="38" alignment="center" verticalAlignment="bottom" title="Start" id="Zlo-kE-kx0">
-                            <color key="titleColor" red="0.25697538260000002" green="0.78364455700000002" blue="0.66173297170000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="calibratedRGB"/>
-                            <fontDescription key="font" type="system" pointSize="30"/>
-                            <connections>
-                                <action selector="startGameButtonTapped" destination="3KW-jg-8WF" id="wrk-Lp-9hi"/>
-                            </connections>
-                        </button>
+                        <group width="1" height="1" alignment="center" verticalAlignment="center" contentMode="scaleAspectFill" layout="vertical" id="Bnz-b5-mkC">
+                            <items>
+                                <label width="1" alignment="center" verticalAlignment="center" text="Mobile Scoreboard" textAlignment="center" id="u9r-Kh-XZ8">
+                                    <color key="textColor" red="0.25697538260000002" green="0.78364455700000002" blue="0.66173297170000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <fontDescription key="font" name="SFUIDisplay-Semibold" family="SF UI Display" pointSize="19"/>
+                                </label>
+                                <picker height="82" alignment="center" verticalAlignment="center" indicatorMode="shownWhileFocused" id="Vtb-Cn-c0Q">
+                                    <connections>
+                                        <action selector="pickerChanged:" destination="3KW-jg-8WF" id="D1M-wV-38k"/>
+                                    </connections>
+                                </picker>
+                                <button width="1" height="38" alignment="center" verticalAlignment="center" title="Start" id="Zlo-kE-kx0">
+                                    <color key="titleColor" red="0.25697538260000002" green="0.78364455700000002" blue="0.66173297170000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="font" type="system" pointSize="30"/>
+                                    <connections>
+                                        <action selector="startGameButtonTapped" destination="3KW-jg-8WF" id="wrk-Lp-9hi"/>
+                                    </connections>
+                                </button>
+                            </items>
+                            <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
+                        </group>
                     </items>
-                    <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <outlet property="picker" destination="Vtb-Cn-c0Q" id="AY6-Zg-MYE"/>
                     </connections>
