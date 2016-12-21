@@ -19,6 +19,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jzG-Fl-8EE">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="wbB-n6-d9v">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <color key="backgroundColor" red="0.25697538260000002" green="0.78364455700000002" blue="0.66173297170000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="pC3-52-CuB">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
@@ -99,20 +108,20 @@
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe up to stop" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y0l-kM-ds2">
-                                                <rect key="frame" x="171" y="0.0" width="259" height="200"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="34"/>
+                                                <rect key="frame" x="187" y="0.0" width="226" height="200"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="34"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noun_550243_cc" translatesAutoresizingMaskIntoConstraints="NO" id="Bui-e4-hwH">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UpDownArrow" translatesAutoresizingMaskIntoConstraints="NO" id="Bui-e4-hwH">
                                                 <rect key="frame" x="200" y="200" width="200" height="200"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="Bui-e4-hwH" secondAttribute="height" multiplier="1:1" id="kY1-pX-BkY"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Swipe down to start" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6l9-mI-m2X">
-                                                <rect key="frame" x="138" y="400" width="325" height="200"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="34"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe down to start" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6l9-mI-m2X">
+                                                <rect key="frame" x="165" y="400" width="271" height="200"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="34"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -129,10 +138,14 @@
                             <constraint firstItem="pC3-52-CuB" firstAttribute="leading" secondItem="XMY-gn-H0f" secondAttribute="leading" constant="100" id="8GV-U9-sHX"/>
                             <constraint firstItem="ZYg-QM-hV8" firstAttribute="width" secondItem="XMY-gn-H0f" secondAttribute="width" id="AYs-VD-5Mi"/>
                             <constraint firstItem="pC3-52-CuB" firstAttribute="width" secondItem="XMY-gn-H0f" secondAttribute="width" id="I7k-72-XbJ"/>
+                            <constraint firstItem="jzG-Fl-8EE" firstAttribute="centerX" secondItem="XMY-gn-H0f" secondAttribute="centerX" id="IKg-1e-nv5"/>
+                            <constraint firstItem="jzG-Fl-8EE" firstAttribute="width" secondItem="XMY-gn-H0f" secondAttribute="width" id="ITL-5P-zZ1"/>
                             <constraint firstItem="ZYg-QM-hV8" firstAttribute="centerY" secondItem="XMY-gn-H0f" secondAttribute="centerY" id="Nlu-pr-1Yt"/>
                             <constraint firstItem="pC3-52-CuB" firstAttribute="centerY" secondItem="XMY-gn-H0f" secondAttribute="centerY" id="O7E-hm-0Oc"/>
                             <constraint firstAttribute="trailing" secondItem="pC3-52-CuB" secondAttribute="trailing" constant="100" id="OqG-Zn-sel"/>
                             <constraint firstItem="pC3-52-CuB" firstAttribute="centerX" secondItem="XMY-gn-H0f" secondAttribute="centerX" id="PJN-zL-sQg"/>
+                            <constraint firstItem="jzG-Fl-8EE" firstAttribute="height" secondItem="XMY-gn-H0f" secondAttribute="height" id="Vjo-2K-1Sh"/>
+                            <constraint firstItem="jzG-Fl-8EE" firstAttribute="centerY" secondItem="XMY-gn-H0f" secondAttribute="centerY" id="Wfk-cj-iRp"/>
                             <constraint firstItem="ZYg-QM-hV8" firstAttribute="height" secondItem="XMY-gn-H0f" secondAttribute="height" id="Yir-y0-BAL"/>
                             <constraint firstItem="pC3-52-CuB" firstAttribute="top" secondItem="ahI-7z-BEV" secondAttribute="bottom" constant="100" id="bkd-DP-WU4"/>
                             <constraint firstItem="pC3-52-CuB" firstAttribute="height" secondItem="XMY-gn-H0f" secondAttribute="height" id="dUJ-td-4vb"/>
@@ -148,6 +161,7 @@
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
+                        <outlet property="blurEffect" destination="jzG-Fl-8EE" id="YXE-NS-CKe"/>
                         <outlet property="player1ScoreButton" destination="0us-qn-Q0Z" id="CxX-R3-AAT"/>
                         <outlet property="player1TitleLabel" destination="OL8-ZT-5dJ" id="L2C-0a-Yd6"/>
                         <outlet property="player2ScoreButton" destination="6dp-LB-k7J" id="cTF-Kf-rd2"/>
@@ -162,6 +176,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="noun_550243_cc" width="90" height="90"/>
+        <image name="UpDownArrow" width="688" height="955"/>
     </resources>
 </document>

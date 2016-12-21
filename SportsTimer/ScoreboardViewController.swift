@@ -20,6 +20,7 @@ class ScoreboardViewController: UIViewController {
     @IBOutlet weak var player1ScoreButton: UIButton!
     @IBOutlet weak var player2ScoreButton: UIButton!
     @IBOutlet weak var tutorialStack: UIStackView!
+    @IBOutlet weak var blurEffect: UIVisualEffectView!
     
 //MARK: Variables
     
@@ -45,7 +46,7 @@ class ScoreboardViewController: UIViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToStopGameNotification(_:)), name:"tellPhoneToStopGame", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneScoreDataNotification(_:)), name:"tellPhoneScoreData", object: nil)
         self.addSwipe()
-        self.eliminateTutorial(10)
+        self.eliminateTutorial(5)
     }
     
     override func didReceiveMemoryWarning() {
@@ -89,6 +90,7 @@ class ScoreboardViewController: UIViewController {
     //This function changes the layout of the labels when the tutorial is on
     func layoutWithTutorial() {
         tutorialStack.hidden = false
+        blurEffect.hidden = false
         timerLabel.alpha = 0.25
         player1TitleLabel.alpha = 0.25
         player2TitleLabel.alpha = 0.25
@@ -99,6 +101,7 @@ class ScoreboardViewController: UIViewController {
     //This function changes the layout of the labels when the tutorial is off
     func layoutWithoutTutorial() {
         tutorialStack.hidden = true
+        blurEffect.hidden = true
         timerLabel.alpha = 1
         player1TitleLabel.alpha = 1
         player2TitleLabel.alpha = 1
@@ -167,7 +170,7 @@ class ScoreboardViewController: UIViewController {
             self.layoutWithoutTutorial()
         } else if sender.direction.rawValue == 4 && canScoreFromPhone == true && timerIsOn == true {
             self.restartGame()
-            self.layoutWithTutorial()
+            self.layoutWithoutTutorial()
         }
     }
     
