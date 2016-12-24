@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="1Jk-Jm-xvm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="1Jk-Jm-xvm">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -29,22 +29,22 @@
                                 <blurEffect style="light"/>
                             </visualEffectView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="pC3-52-CuB">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="20" width="600" height="540"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.25" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="hf8-bn-hDm">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.25" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10:00" textAlignment="center" lineBreakMode="tailTruncation" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="hf8-bn-hDm">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="270"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="200"/>
                                         <color key="textColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="TR2-8B-rz3">
-                                        <rect key="frame" x="30" y="300" width="540" height="300"/>
+                                        <rect key="frame" x="30" y="270" width="540" height="270"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="nZD-tD-fdZ">
-                                                <rect key="frame" x="0.0" y="81" width="245" height="139"/>
+                                                <rect key="frame" x="0.0" y="66" width="245" height="139"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.25" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Player 1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OL8-ZT-5dJ">
-                                                        <rect key="frame" x="0.0" y="0.0" width="245" height="58"/>
+                                                        <rect key="frame" x="0.0" y="1" width="245" height="58"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="50"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -65,10 +65,10 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="pdw-jn-w6q">
-                                                <rect key="frame" x="295" y="81" width="245" height="139"/>
+                                                <rect key="frame" x="295" y="66" width="245" height="139"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.25" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="255" verticalCompressionResistancePriority="751" misplaced="YES" text="Player 2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ar-o9-RtG">
-                                                        <rect key="frame" x="0.0" y="0.0" width="245" height="58"/>
+                                                        <rect key="frame" x="0.0" y="1" width="245" height="58"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="50"/>
                                                         <color key="textColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -101,6 +101,34 @@
                                     </mask>
                                 </variation>
                             </stackView>
+                            <toolbar hidden="YES" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xre-ML-GeB">
+                                <rect key="frame" x="0.0" y="540" width="600" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="heM-df-qj9"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="0LQ-I2-nuG"/>
+                                    <barButtonItem systemItem="play" id="ugg-ls-3ec">
+                                        <color key="tintColor" red="0.25697538260000002" green="0.78364455700000002" blue="0.66173297170000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <action selector="playButtonTapped:" destination="1Jk-Jm-xvm" id="W8D-e1-Cnp"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="yBP-33-7FE"/>
+                                    <barButtonItem systemItem="pause" id="6Pd-n6-lg3">
+                                        <color key="tintColor" red="0.25697538260000002" green="0.78364455700000002" blue="0.66173297170000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <action selector="pauseButtonTapped:" destination="1Jk-Jm-xvm" id="bzN-XP-M9w"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="ggE-9k-ntT"/>
+                                </items>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="heM-df-qj9"/>
+                                    </mask>
+                                </variation>
+                            </toolbar>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ZYg-QM-hV8">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
@@ -136,8 +164,10 @@
                         <color key="backgroundColor" red="0.086274512112140656" green="0.62745100259780884" blue="0.5215686559677124" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="pC3-52-CuB" firstAttribute="leading" secondItem="XMY-gn-H0f" secondAttribute="leading" constant="100" id="8GV-U9-sHX"/>
+                            <constraint firstItem="Xre-ML-GeB" firstAttribute="centerX" secondItem="XMY-gn-H0f" secondAttribute="centerX" id="9a6-Ev-eLw"/>
                             <constraint firstItem="ZYg-QM-hV8" firstAttribute="width" secondItem="XMY-gn-H0f" secondAttribute="width" id="AYs-VD-5Mi"/>
                             <constraint firstItem="pC3-52-CuB" firstAttribute="width" secondItem="XMY-gn-H0f" secondAttribute="width" id="I7k-72-XbJ"/>
+                            <constraint firstItem="Xre-ML-GeB" firstAttribute="height" secondItem="XMY-gn-H0f" secondAttribute="height" multiplier="0.1" id="IHc-V4-llI"/>
                             <constraint firstItem="jzG-Fl-8EE" firstAttribute="centerX" secondItem="XMY-gn-H0f" secondAttribute="centerX" id="IKg-1e-nv5"/>
                             <constraint firstItem="jzG-Fl-8EE" firstAttribute="width" secondItem="XMY-gn-H0f" secondAttribute="width" id="ITL-5P-zZ1"/>
                             <constraint firstItem="ZYg-QM-hV8" firstAttribute="centerY" secondItem="XMY-gn-H0f" secondAttribute="centerY" id="Nlu-pr-1Yt"/>
@@ -148,12 +178,16 @@
                             <constraint firstItem="jzG-Fl-8EE" firstAttribute="centerY" secondItem="XMY-gn-H0f" secondAttribute="centerY" id="Wfk-cj-iRp"/>
                             <constraint firstItem="ZYg-QM-hV8" firstAttribute="height" secondItem="XMY-gn-H0f" secondAttribute="height" id="Yir-y0-BAL"/>
                             <constraint firstItem="pC3-52-CuB" firstAttribute="top" secondItem="ahI-7z-BEV" secondAttribute="bottom" constant="100" id="bkd-DP-WU4"/>
-                            <constraint firstItem="pC3-52-CuB" firstAttribute="height" secondItem="XMY-gn-H0f" secondAttribute="height" id="dUJ-td-4vb"/>
+                            <constraint firstItem="Xre-ML-GeB" firstAttribute="width" secondItem="XMY-gn-H0f" secondAttribute="width" id="buo-yF-ZiC"/>
+                            <constraint firstItem="pC3-52-CuB" firstAttribute="height" secondItem="XMY-gn-H0f" secondAttribute="height" multiplier="0.9" id="dUJ-td-4vb"/>
+                            <constraint firstItem="IJg-fn-8bx" firstAttribute="top" secondItem="Xre-ML-GeB" secondAttribute="bottom" id="mod-LK-7hb"/>
                             <constraint firstItem="ZYg-QM-hV8" firstAttribute="centerX" secondItem="XMY-gn-H0f" secondAttribute="centerX" id="rlJ-CS-WWY"/>
+                            <constraint firstItem="pC3-52-CuB" firstAttribute="top" secondItem="ahI-7z-BEV" secondAttribute="bottom" id="zRr-ST-Kfq"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="8GV-U9-sHX"/>
+                                <exclude reference="O7E-hm-0Oc"/>
                                 <exclude reference="OqG-Zn-sel"/>
                                 <exclude reference="bkd-DP-WU4"/>
                             </mask>
@@ -162,6 +196,9 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="blurEffect" destination="jzG-Fl-8EE" id="YXE-NS-CKe"/>
+                        <outlet property="bottomToolbar" destination="Xre-ML-GeB" id="IKn-AT-hRy"/>
+                        <outlet property="pauseButton" destination="6Pd-n6-lg3" id="I4R-Qm-bFg"/>
+                        <outlet property="playButton" destination="ugg-ls-3ec" id="rta-yk-CeX"/>
                         <outlet property="player1ScoreButton" destination="0us-qn-Q0Z" id="CxX-R3-AAT"/>
                         <outlet property="player1TitleLabel" destination="OL8-ZT-5dJ" id="L2C-0a-Yd6"/>
                         <outlet property="player2ScoreButton" destination="6dp-LB-k7J" id="cTF-Kf-rd2"/>

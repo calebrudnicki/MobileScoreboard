@@ -47,6 +47,15 @@ class WatchSession: NSObject, WCSessionDelegate {
         }
     }
     
+    //This functions sends a message to PhoneSession with the current time picked out of the watch's pickerview
+    func tellPhoneTimeFromPicker(pickedTime: String) {
+        let payloadDictFromWatch = ["ChosenTime": pickedTime]
+        let actionDictFromWatch = ["Action": "tellPhoneTimeFromPicker", "Payload": payloadDictFromWatch]
+        session.sendMessage(actionDictFromWatch as! [String : AnyObject], replyHandler: nil) { (error: NSError) in
+            print(error)
+        }
+    }
+    
     //This function sends a message to PhoneSession with a dictionary containing a tellPhoneToStartGame value
     func tellPhoneToStartGame(time: NSTimeInterval) {
         let payloadDictFromWatch = ["Time": time]

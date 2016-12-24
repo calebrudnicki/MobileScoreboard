@@ -113,7 +113,11 @@ class ScoreboardInterfaceController: WKInterfaceController, WCSessionDelegate {
     
     //This function converts a clock format to an amount of seconds
     func convertClockFormatToSeconds(clock: String) {
-        if clock == "5:00" {
+        if clock == "1:00" {
+            countdown = 60
+        } else if clock == "2:30" {
+            countdown = 150
+        } else if clock == "5:00" {
             countdown = 300
         } else if clock == "15:00" {
             countdown = 900

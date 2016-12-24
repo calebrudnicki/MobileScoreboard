@@ -28,26 +28,30 @@ class HomeInterfaceController: WKInterfaceController {
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         let time1 = WKPickerItem()
-        time1.title = "5:00"
+        time1.title = "1:00"
         let time2 = WKPickerItem()
-        time2.title = "10:00"
+        time2.title = "2:30"
         let time3 = WKPickerItem()
-        time3.title = "15:00"
+        time3.title = "5:00"
         let time4 = WKPickerItem()
-        time4.title = "20:00"
+        time4.title = "10:00"
         let time5 = WKPickerItem()
-        time5.title = "25:00"
+        time5.title = "15:00"
         let time6 = WKPickerItem()
-        time6.title = "30:00"
+        time6.title = "20:00"
         let time7 = WKPickerItem()
-        time7.title = "40:00"
+        time7.title = "25:00"
         let time8 = WKPickerItem()
-        time8.title = "50:00"
+        time8.title = "30:00"
         let time9 = WKPickerItem()
-        time9.title = "60:00"
-        timesArray = [time1, time2, time3, time4, time5, time6, time7, time8, time9]
+        time9.title = "40:00"
+        let time10 = WKPickerItem()
+        time10.title = "50:00"
+        let time11 = WKPickerItem()
+        time11.title = "60:00"
+        timesArray = [time1, time2, time3, time4, time5, time6, time7, time8, time9, time10, time11]
         picker.setItems(timesArray)
-        picker.setSelectedItemIndex(1)
+        picker.setSelectedItemIndex(3)
     }
     
     //This function makes a shared instance of watch session
@@ -73,6 +77,7 @@ class HomeInterfaceController: WKInterfaceController {
     //This functions changes the variable of overallTime to the current item in the picker
     @IBAction func pickerChanged(value: Int) {
         self.overallTime = timesArray[value].title!
+        WatchSession.sharedInstance.tellPhoneTimeFromPicker(overallTime)
     }
     
     
