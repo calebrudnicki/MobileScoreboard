@@ -30,28 +30,32 @@ class HomeInterfaceController: WKInterfaceController {
         let time1 = WKPickerItem()
         time1.title = "1:00"
         let time2 = WKPickerItem()
-        time2.title = "2:30"
+        time2.title = "2:00"
         let time3 = WKPickerItem()
-        time3.title = "5:00"
+        time3.title = "3:00"
         let time4 = WKPickerItem()
-        time4.title = "10:00"
+        time4.title = "4:00"
         let time5 = WKPickerItem()
-        time5.title = "15:00"
+        time5.title = "5:00"
         let time6 = WKPickerItem()
-        time6.title = "20:00"
+        time6.title = "10:00"
         let time7 = WKPickerItem()
-        time7.title = "25:00"
+        time7.title = "15:00"
         let time8 = WKPickerItem()
-        time8.title = "30:00"
+        time8.title = "20:00"
         let time9 = WKPickerItem()
-        time9.title = "40:00"
+        time9.title = "25:00"
         let time10 = WKPickerItem()
-        time10.title = "50:00"
+        time10.title = "30:00"
         let time11 = WKPickerItem()
-        time11.title = "60:00"
-        timesArray = [time1, time2, time3, time4, time5, time6, time7, time8, time9, time10, time11]
+        time11.title = "40:00"
+        let time12 = WKPickerItem()
+        time12.title = "50:00"
+        let time13 = WKPickerItem()
+        time13.title = "60:00"
+        timesArray = [time1, time2, time3, time4, time5, time6, time7, time8, time9, time10, time11, time12, time13]
         picker.setItems(timesArray)
-        picker.setSelectedItemIndex(3)
+        picker.setSelectedItemIndex(5)
     }
     
     //This function makes a shared instance of watch session
