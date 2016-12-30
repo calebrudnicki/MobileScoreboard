@@ -61,8 +61,7 @@ class HomeInterfaceController: WKInterfaceController {
     //This function makes a shared instance of watch session
     override func willActivate() {
         super.willActivate()
-        WatchSession.sharedInstance.startSession()
-        WatchSession.sharedInstance.tellPhoneToBeTheController()
+//        WatchSession.sharedInstance.tellPhoneToBeTheScoreboard()
     }
     
     override func didDeactivate() {

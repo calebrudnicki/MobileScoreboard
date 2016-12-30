@@ -21,6 +21,7 @@ class ScoreboardViewController: UIViewController {
     @IBOutlet weak var player2ScoreButton: UIButton!
     @IBOutlet weak var playButton: UIBarButtonItem!
     @IBOutlet weak var pauseButton: UIBarButtonItem!
+    @IBOutlet weak var timeSlider: UISlider!
     @IBOutlet weak var tutorialStack: UIStackView!
     @IBOutlet weak var bottomToolbar: UIToolbar!
     @IBOutlet weak var blurEffect: UIVisualEffectView!
@@ -63,7 +64,7 @@ class ScoreboardViewController: UIViewController {
     override func viewDidDisappear(animated: Bool) {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
-    
+
 
 //MARK: Layout Functions
     
@@ -77,6 +78,7 @@ class ScoreboardViewController: UIViewController {
         player2TitleLabel.textColor = UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1)
         player1ScoreButton.setTitleColor(UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1), forState: .Normal)
         player2ScoreButton.setTitleColor(UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1), forState: .Normal)
+        timeSlider.hidden = false
         self.layoutWithoutTutorial()
     }
     
@@ -91,6 +93,7 @@ class ScoreboardViewController: UIViewController {
         player2TitleLabel.textColor = UIColor(red: 22/255, green: 160/255, blue: 133/255, alpha: 1)
         player1ScoreButton.setTitleColor(UIColor(red: 22/255, green: 160/255, blue: 133/255, alpha: 1), forState: .Normal)
         player2ScoreButton.setTitleColor(UIColor(red: 22/255, green: 160/255, blue: 133/255, alpha: 1), forState: .Normal)
+        timeSlider.hidden = true
         self.layoutWithoutTutorial()
     }
     
@@ -259,16 +262,21 @@ class ScoreboardViewController: UIViewController {
         }
     }
     
+    @IBAction func timeSliderChanged(sender: AnyObject) {
+        startingGameTime = Int(timeSlider.value)
+        timerLabel.text = convertSeconds(Int(timeSlider.value))
+    }
     
 //MARK: Label Functions
     
     //This function restarts a game by resetting labels and variables while also invalidating the timer
     func restartGame() {
         timerIsOn = false
+        self.timeSlider.hidden = false
         if timer != nil {
            timer.invalidate()
         }
-        startingGameTime = 600
+        startingGameTimeString = convertSeconds(600)
         currentTime = 600
         timerLabel.text = startingGameTimeString
         player1Score = 0
@@ -331,6 +339,7 @@ class ScoreboardViewController: UIViewController {
     func beginClock() {
         self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ScoreboardViewController.eachSecond(_:)), userInfo: nil, repeats: true)
         self.timerIsOn = true
+        self.timeSlider.hidden = true
     }
     
     //This functions gets called when the time is up and determines which player is the winner
