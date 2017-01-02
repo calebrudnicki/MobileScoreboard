@@ -176,4 +176,22 @@ class ScoreboardInterfaceController: WKInterfaceController, WCSessionDelegate {
         }
     }
     
+    //This function subtracts a goal from player 1 when tapped
+    @IBAction func trashPlayer1GoalButtonTapped() {
+        if score1 > 0 {
+            score1 -= 1
+            player1Score.setTitle(String(score1))
+            WatchSession.sharedInstance.tellPhoneScoreData(score1, score2: score2)
+        }
+    }
+    
+    //This function subtracts a goal from player 2 when tapped
+    @IBAction func trashPlayer2GoalButtonTapped() {
+        if score2 > 0 {
+            score2 -= 1
+            player2Score.setTitle(String(score2))
+            WatchSession.sharedInstance.tellPhoneScoreData(score1, score2: score2)
+        }
+    }
+    
 }
