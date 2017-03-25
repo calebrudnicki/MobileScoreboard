@@ -11,6 +11,12 @@ import Foundation
 import WatchConnectivity
 
 class ScoreboardInterfaceController: WKInterfaceController, WCSessionDelegate {
+    /** Called when the session has completed activation. If session state is WCSessionActivationStateNotActivated there will be an error with more details. */
+    @available(watchOS 2.2, *)
+    public func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        print("Session started")
+    }
+
     
 //MARK: Outlets
     
@@ -21,8 +27,8 @@ class ScoreboardInterfaceController: WKInterfaceController, WCSessionDelegate {
     
 //MARK: Variables
     
-    var countdown: NSTimeInterval = 600
-    var backingTimer: NSTimer?
+    var countdown: TimeInterval = 600
+    var backingTimer: Timer?
     var score1 = 0
     var score2 = 0
     var gameIsPaused = false
@@ -31,8 +37,8 @@ class ScoreboardInterfaceController: WKInterfaceController, WCSessionDelegate {
 //MARK: Boilerplate Functions
     
     //This function sets the amount of time based on what the user picked in the HomeInterfaceController, calls newGame(), and resets each players score to 0
-    override func awakeWithContext(context: AnyObject?) {
-        super.awakeWithContext(context)
+    override func awake(withContext context: Any?) {
+        super.awake(withContext: context)
         if let val: String = context as? String {
             self.convertClockFormatToSeconds(val)
         }
@@ -68,12 +74,12 @@ class ScoreboardInterfaceController: WKInterfaceController, WCSessionDelegate {
     
     //This function that is called when the start game button is chosen
     func newGame() {
-        let date = NSDate(timeIntervalSinceNow: countdown)
+        let date = Date(timeIntervalSinceNow: countdown)
         timer.setDate(date)
         timer.start()
         WatchSession.sharedInstance.tellPhoneToStartGame(countdown)
         //This is a one second timer that calls the secondTimerFired() function everytime it ends, then it repeats
-        backingTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ScoreboardInterfaceController.secondTimerFired), userInfo: nil, repeats: true)
+        backingTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ScoreboardInterfaceController.secondTimerFired), userInfo: nil, repeats: true)
     }
     
     
@@ -90,29 +96,29 @@ class ScoreboardInterfaceController: WKInterfaceController, WCSessionDelegate {
     //This function that runs when the countdown variable is less than 0 first disables the backingTimer, then it notifies the user that the game is over while also displaying the result of the game and disabling the buttons
     func timesUp() {
         backingTimer?.invalidate()
-        WKInterfaceDevice().playHaptic(.Failure)
+        WKInterfaceDevice().play(.failure)
         if score1 > score2 {
             player1Score.setTitle("W")
-            player1Score.setBackgroundColor(UIColor.greenColor())
+            player1Score.setBackgroundColor(UIColor.green)
             player2Score.setTitle("L")
-            player2Score.setBackgroundColor(UIColor.redColor())
+            player2Score.setBackgroundColor(UIColor.red)
         } else if score2 > score1 {
             player2Score.setTitle("W")
-            player2Score.setBackgroundColor(UIColor.greenColor())
+            player2Score.setBackgroundColor(UIColor.green)
             player1Score.setTitle("L")
-            player1Score.setBackgroundColor(UIColor.redColor())
+            player1Score.setBackgroundColor(UIColor.red)
         } else {
             player1Score.setTitle("T")
-            player1Score.setBackgroundColor(UIColor.blueColor())
+            player1Score.setBackgroundColor(UIColor.blue)
             player2Score.setTitle("T")
-            player2Score.setBackgroundColor(UIColor.blueColor())
+            player2Score.setBackgroundColor(UIColor.blue)
         }
         player1Score.setEnabled(false)
         player2Score.setEnabled(false)
     }
     
     //This function converts a clock format to an amount of seconds
-    func convertClockFormatToSeconds(clock: String) {
+    func convertClockFormatToSeconds(_ clock: String) {
         if clock == "1:00" {
             countdown = 60
         } else if clock == "2:30" {

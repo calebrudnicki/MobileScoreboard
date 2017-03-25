@@ -333,6 +333,7 @@
 					822191DC1D1C2AA500309328 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 92DETN2MKQ;
+						LastSwiftMigration = 0820;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 0;
@@ -348,10 +349,12 @@
 					822191EE1D1C2AA600309328 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 92DETN2MKQ;
+						LastSwiftMigration = 0820;
 					};
 					822191FD1D1C2AA600309328 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 92DETN2MKQ;
+						LastSwiftMigration = 0820;
 					};
 				};
 			};
@@ -584,6 +587,7 @@
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 2.2;
 			};
@@ -600,6 +604,7 @@
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 2.2;
 			};
@@ -618,6 +623,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 2.2;
 			};
@@ -636,6 +642,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 2.2;
 			};
@@ -653,6 +660,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.calebrudnicki.SportsTimer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -668,6 +676,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.calebrudnicki.SportsTimer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

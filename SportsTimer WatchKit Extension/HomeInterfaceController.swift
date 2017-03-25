@@ -25,8 +25,8 @@ class HomeInterfaceController: WKInterfaceController {
 //MARK: Boilerplate Functions
     
     //This functions assigns all the following times to be part of the picker
-    override func awakeWithContext(context: AnyObject?) {
-        super.awakeWithContext(context)
+    override func awake(withContext context: Any?) {
+        super.awake(withContext: context)
         let time1 = WKPickerItem()
         time1.title = "1:00"
         let time2 = WKPickerItem()
@@ -61,7 +61,6 @@ class HomeInterfaceController: WKInterfaceController {
     //This function makes a shared instance of watch session
     override func willActivate() {
         super.willActivate()
-//        WatchSession.sharedInstance.tellPhoneToBeTheScoreboard()
     }
     
     override func didDeactivate() {
@@ -74,11 +73,11 @@ class HomeInterfaceController: WKInterfaceController {
     //This function segues to the ScoreboardInterfaceController when the start run button is tapped
     @IBAction func startGameButtonTapped() {
         WatchSession.sharedInstance.tellPhoneToBeTheScoreboard()
-        self.pushControllerWithName("Scoreboard Interface Controller", context: overallTime)
+        self.pushController(withName: "Scoreboard Interface Controller", context: overallTime)
     }
 
     //This functions changes the variable of overallTime to the current item in the picker
-    @IBAction func pickerChanged(value: Int) {
+    @IBAction func pickerChanged(_ value: Int) {
         self.overallTime = timesArray[value].title!
         WatchSession.sharedInstance.tellPhoneTimeFromPicker(overallTime)
     }
@@ -87,7 +86,7 @@ class HomeInterfaceController: WKInterfaceController {
 //MARK: Segues
     
     //This function sends the selected time from the picker to the ScoreboardInterfaceController
-    override func contextForSegueWithIdentifier(segueIdentifier: String) -> AnyObject? {
+    override func contextForSegue(withIdentifier segueIdentifier: String) -> Any? {
         if segueIdentifier == "Scoreboard Interface Controller" {
             return self.overallTime
         }
