@@ -38,6 +38,7 @@ class ScoreboardViewController: UIViewController {
     var player2Score: Int! = 0
     var timerIsOn: Bool! = false
     var canScoreFromPhone: Bool! = true
+    var gameIsInOvertime: Bool! = false
     
     
 //MARK: Boilerplate Functions
@@ -120,6 +121,8 @@ class ScoreboardViewController: UIViewController {
         player2TitleLabel.alpha = 1
         player1ScoreButton.alpha = 1
         player2ScoreButton.alpha = 1
+        player1ScoreButton.setTitleColor(.white, for: .normal)
+        player2ScoreButton.setTitleColor(.white, for: .normal)
     }
     
     //This function eliminates the tutorial from the screen
@@ -218,7 +221,6 @@ class ScoreboardViewController: UIViewController {
             self.restartGame()
             self.changePlayPauseButtons("DisablePauseButton")
             self.layoutWithoutTutorial()
-            
         }
     }
     
@@ -271,8 +273,9 @@ class ScoreboardViewController: UIViewController {
     
     //This function restarts a game by resetting labels and variables while also invalidating the timer
     func restartGame() {
+        gameIsInOvertime = false
         timerIsOn = false
-        self.timeSlider.isHidden = false
+        timeSlider.isHidden = false
         if timer != nil {
            timer.invalidate()
         }
@@ -286,6 +289,17 @@ class ScoreboardViewController: UIViewController {
         UIApplication.shared.isIdleTimerDisabled = false
     }
     
+    //This function runs when the user wants to play a five minute overtime period
+    func startOvertime() {
+        gameIsInOvertime = true
+        startingGameTimeString = convertSeconds(300)
+        currentTime = 300
+        timerLabel.text = startingGameTimeString
+        UIApplication.shared.isIdleTimerDisabled = false
+        self.beginClock()
+        self.changePlayPauseButtons("DisablePlayButton")
+    }
+    
     //This functions updates the score labels to match the watch's data
     func displayLabels(_ dataDict: [String : AnyObject]) {
         player1ScoreButton.setTitle(String(describing: dataDict["Score1"]!), for: UIControlState())
@@ -296,7 +310,7 @@ class ScoreboardViewController: UIViewController {
     
     //This functions runs once per second until the totalTime variable reaches 0 before it calls timesUp() with the winning player as a parameter
     func eachSecond(_ timer: Timer) {
-        if startingGameTime / 2 == currentTime {
+        if startingGameTime / 2 == currentTime && gameIsInOvertime == false {
             speakGameStatus("HalfwayPoint")
         }
         if currentTime == 60 {
@@ -342,8 +356,9 @@ class ScoreboardViewController: UIViewController {
         self.timeSlider.isHidden = true
     }
     
-    //This functions gets called when the time is up and determines which player is the winner
+    //This function gets called when the time is up and determines which player is the winner
     func timesUp(_ winner: String) {
+        self.changePlayPauseButtons("DisablePauseButton")
         AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
         if winner == "Player1" {
             player1ScoreButton.setTitleColor(UIColor.green, for: UIControlState())
@@ -354,7 +369,21 @@ class ScoreboardViewController: UIViewController {
         } else if winner == "Tie" {
             player1ScoreButton.setTitleColor(UIColor.blue, for: UIControlState())
             player2ScoreButton.setTitleColor(UIColor.blue, for: UIControlState())
+            self.alertUserAboutOvertime()
         }
+    }
+    
+    //This function allows the user to play an optional five minute overtime if the game ends in a tie
+    func alertUserAboutOvertime() {
+        let alertController = UIAlertController(title: nil, message: "Would you like to play a five minute overtime?", preferredStyle: .actionSheet)
+        let playOvertime = UIAlertAction(title: "Let's play overtime", style: .default) { (action) in
+            //self.beginClock()
+            self.startOvertime()
+        }
+        let cancelAction = UIAlertAction(title: "End in Tie", style: .cancel, handler: nil)
+        alertController.addAction(playOvertime)
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true, completion: nil)
     }
     
     //This function converts seconds into the string format minutes:seconds
