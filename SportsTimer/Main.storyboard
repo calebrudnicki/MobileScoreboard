@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="1Jk-Jm-xvm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="1Jk-Jm-xvm">
     <device id="retina4_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
@@ -33,7 +33,7 @@
                                 <blurEffect style="light"/>
                             </visualEffectView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="pC3-52-CuB">
-                                <rect key="frame" x="0.0" y="20" width="667" height="337.5"/>
+                                <rect key="frame" x="0.0" y="20" width="667" height="338"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.25" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10:00" textAlignment="center" lineBreakMode="tailTruncation" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="hf8-bn-hDm">
                                         <rect key="frame" x="0.0" y="0.0" width="667" height="169"/>
@@ -42,19 +42,19 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="TR2-8B-rz3">
-                                        <rect key="frame" x="33.5" y="169" width="600" height="168.5"/>
+                                        <rect key="frame" x="34" y="169" width="600" height="169"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="nZD-tD-fdZ">
-                                                <rect key="frame" x="0.0" y="15.5" width="275" height="138.5"/>
+                                                <rect key="frame" x="0.0" y="15" width="275" height="139"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.25" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player 1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OL8-ZT-5dJ">
-                                                        <rect key="frame" x="0.0" y="0.0" width="275" height="57.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="275" height="58"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="50"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" alpha="0.25" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0us-qn-Q0Z" userLabel="Player1 Score Button">
-                                                        <rect key="frame" x="0.0" y="67.5" width="275" height="71"/>
+                                                        <rect key="frame" x="0.0" y="68" width="275" height="71"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="50"/>
                                                         <state key="normal" title="0">
                                                             <color key="titleColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -69,16 +69,16 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="pdw-jn-w6q">
-                                                <rect key="frame" x="325" y="15.5" width="275" height="138.5"/>
+                                                <rect key="frame" x="325" y="15" width="275" height="139"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.25" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="255" verticalCompressionResistancePriority="751" text="Player 2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ar-o9-RtG">
-                                                        <rect key="frame" x="0.0" y="0.0" width="275" height="57.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="275" height="58"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="50"/>
                                                         <color key="textColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" alpha="0.25" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6dp-LB-k7J" userLabel="Player2 Score Button">
-                                                        <rect key="frame" x="0.0" y="67.5" width="275" height="71"/>
+                                                        <rect key="frame" x="0.0" y="68" width="275" height="71"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="50"/>
                                                         <state key="normal" title="0">
                                                             <color key="titleColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -112,8 +112,8 @@
                                 </constraints>
                                 <items>
                                     <barButtonItem style="plain" id="OGS-2Y-qbr">
-                                        <slider key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="600" minValue="60" maxValue="3600" id="753-oD-R24">
-                                            <rect key="frame" x="18" y="14.5" width="118" height="31"/>
+                                        <slider key="customView" hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="600" minValue="60" maxValue="3600" id="753-oD-R24">
+                                            <rect key="frame" x="18" y="15" width="118" height="31"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="tintColor" red="0.22322182357311249" green="0.74810665845870972" blue="0.59697610139846802" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <connections>
@@ -150,7 +150,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe up to stop" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y0l-kM-ds2">
-                                                <rect key="frame" x="220.5" y="0.0" width="226" height="125"/>
+                                                <rect key="frame" x="221" y="0.0" width="226" height="125"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="34"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>

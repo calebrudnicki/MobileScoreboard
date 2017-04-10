@@ -43,7 +43,7 @@ class ScoreboardViewController: UIViewController {
     
 //MARK: Boilerplate Functions
     
-    //This function creates an instance of a shared session, establishes this class as an observer of the tellPhoneToBeTheScoreboard, tellPhoneToBeTheController, tellPhonePickedTime, tellPhoneToStartGame, tellPhoneToStopGame, tellPhoneScoreData, and tellPhoneTheTime notifications, and calls addSwipe() and layoutWithTutorial()
+    //This function creates an instance of a shared session, checks for low power mode, establishes this class as an observer of the tellPhoneToBeTheScoreboard, tellPhoneToBeTheController, tellPhonePickedTime, tellPhoneToStartGame, tellPhoneToStopGame, tellPhoneScoreData, and tellPhoneTheTime notifications, and calls addSwipe() and layoutWithTutorial()
     override func viewDidLoad() {
         super.viewDidLoad()
         PhoneSession.sharedInstance.startSession()
@@ -79,7 +79,7 @@ class ScoreboardViewController: UIViewController {
         player2TitleLabel.textColor = UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1)
         player1ScoreButton.setTitleColor(UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1), for: UIControlState())
         player2ScoreButton.setTitleColor(UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1), for: UIControlState())
-        timeSlider.isHidden = false
+        timeSlider.isHidden = true //should be false
         self.layoutWithoutTutorial()
     }
     
@@ -121,8 +121,8 @@ class ScoreboardViewController: UIViewController {
         player2TitleLabel.alpha = 1
         player1ScoreButton.alpha = 1
         player2ScoreButton.alpha = 1
-        player1ScoreButton.setTitleColor(.white, for: .normal)
-        player2ScoreButton.setTitleColor(.white, for: .normal)
+        //player1ScoreButton.setTitleColor(.white, for: .normal)
+        //player2ScoreButton.setTitleColor(.white, for: .normal)
     }
     
     //This function eliminates the tutorial from the screen
@@ -184,6 +184,7 @@ class ScoreboardViewController: UIViewController {
     //This function that gets called everytime a tellPhoneToStartGame notification is posted calls startTimer()
     func receivedTellPhoneToStartGameNotification(_ notification: Notification) {
         let dataDict = notification.object as? [String : AnyObject]
+        
         self.startTimer(dataDict!)
     }
     
@@ -264,6 +265,7 @@ class ScoreboardViewController: UIViewController {
         }
     }
     
+    //This function changes the time of the game based on the slider
     @IBAction func timeSliderChanged(_ sender: AnyObject) {
         startingGameTime = Int(timeSlider.value)
         timerLabel.text = convertSeconds(Int(timeSlider.value))
@@ -275,7 +277,7 @@ class ScoreboardViewController: UIViewController {
     func restartGame() {
         gameIsInOvertime = false
         timerIsOn = false
-        timeSlider.isHidden = false
+        timeSlider.isHidden = true //should be false
         if timer != nil {
            timer.invalidate()
         }
