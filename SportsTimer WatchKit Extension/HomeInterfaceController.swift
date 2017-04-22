@@ -58,9 +58,10 @@ class HomeInterfaceController: WKInterfaceController {
         picker.setSelectedItemIndex(5)
     }
     
-    //This function makes a shared instance of watch session
+    //This function makes a shared instance of watch session and stops any game if one is taking place
     override func willActivate() {
         super.willActivate()
+        WatchSession.sharedInstance.tellPhoneToStopGame()
     }
     
     override func didDeactivate() {

@@ -12,7 +12,6 @@
 		822191EB1D1C2AA500309328 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 822191E91D1C2AA500309328 /* LaunchScreen.storyboard */; };
 		822191F01D1C2AA600309328 /* SportsTimer WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 822191EF1D1C2AA600309328 /* SportsTimer WatchKit App.app */; };
 		822191F61D1C2AA600309328 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 822191F41D1C2AA600309328 /* Interface.storyboard */; };
-		822191F81D1C2AA600309328 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 822191F71D1C2AA600309328 /* Assets.xcassets */; };
 		822191FF1D1C2AA600309328 /* SportsTimer WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 822191FE1D1C2AA600309328 /* SportsTimer WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		822192061D1C2AA600309328 /* ScoreboardInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822192051D1C2AA600309328 /* ScoreboardInterfaceController.swift */; };
 		822192081D1C2AA600309328 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822192071D1C2AA600309328 /* ExtensionDelegate.swift */; };
@@ -49,6 +48,8 @@
 		8235D4621D5A168800E6CC88 /* System San Francisco Display Ultralight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8235D4491D5A14A300E6CC88 /* System San Francisco Display Ultralight.ttf */; };
 		824435331D2D6FA200383452 /* ScoreboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824435321D2D6FA200383452 /* ScoreboardViewController.swift */; };
 		8284C9831D2EE70600A08EEF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8284C9821D2EE70600A08EEF /* Main.storyboard */; };
+		82A3D67B1EAAAE3A009D7EBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 822191F71D1C2AA600309328 /* Assets.xcassets */; };
+		82A3D67C1EAAAEE3009D7EBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 822191F71D1C2AA600309328 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -393,7 +394,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				822191F81D1C2AA600309328 /* Assets.xcassets in Resources */,
+				82A3D67C1EAAAEE3009D7EBE /* Assets.xcassets in Resources */,
 				822191F61D1C2AA600309328 /* Interface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -427,6 +428,7 @@
 				8235D4601D5A168800E6CC88 /* System San Francisco Display Regular.ttf in Resources */,
 				8235D4611D5A168800E6CC88 /* System San Francisco Display Thin.ttf in Resources */,
 				8235D4621D5A168800E6CC88 /* System San Francisco Display Ultralight.ttf in Resources */,
+				82A3D67B1EAAAE3A009D7EBE /* Assets.xcassets in Resources */,
 				8221920E1D1C2AA600309328 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

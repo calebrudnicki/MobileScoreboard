@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="10117" systemVersion="16C67" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3KW-jg-8WF">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3KW-jg-8WF">
+    <device id="watch42" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="10032"/>
+        <deployment identifier="watchOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="11508"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="SF-UI-Display-Semibold.otf">
+        <array key="SF-UI-Display-Semibold.otf">
             <string>SFUIDisplay-Semibold</string>
-        </mutableArray>
+        </array>
     </customFonts>
     <scenes>
         <!--Scoreboard Interface Controller-->
@@ -17,9 +21,11 @@
                     <items>
                         <group width="1" height="1" alignment="center" verticalAlignment="center" contentMode="scaleAspectFill" layout="vertical" id="UEy-p7-wzB">
                             <items>
-                                <timer width="1" height="0.45000000000000001" alignment="center" textAlignment="center" previewedSeconds="600" id="sGL-Lu-aeW">
+                                <timer width="1" height="100" alignment="center" textAlignment="center" previewedSeconds="600" id="sGL-Lu-aeW">
                                     <fontDescription key="font" type="system" pointSize="55"/>
                                     <calendarUnit key="units" minute="YES" second="YES"/>
+                                    <variation key="device=watch38mm" height="65"/>
+                                    <variation key="device=watch42mm" height="78"/>
                                 </timer>
                                 <separator width="1" alignment="left" id="TSF-1R-qY4"/>
                                 <group width="1" alignment="left" spacing="5" id="IO1-14-nL3">
@@ -38,6 +44,8 @@
                                     <items>
                                         <button width="0.45000000000000001" height="50" alignment="left" verticalAlignment="center" title="0" id="tqc-Bv-34b">
                                             <fontDescription key="font" type="system" pointSize="30"/>
+                                            <variation key="device=watch38mm" height="45"/>
+                                            <variation key="device=watch42mm" height="57"/>
                                             <connections>
                                                 <action selector="goalButton1" destination="AgC-eL-Hgc" id="bzc-Js-xdX"/>
                                             </connections>
@@ -79,7 +87,7 @@
                             </menuItem>
                         </items>
                     </menu>
-                    <color key="backgroundColor" red="0.086274512112140656" green="0.62745100259780884" blue="0.5215686559677124" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.086274512112140656" green="0.62745100259780884" blue="0.5215686559677124" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <connections>
                         <outlet property="player1Score" destination="tqc-Bv-34b" id="8RD-te-8hK"/>
                         <outlet property="player2Score" destination="8Nz-vZ-9Lx" id="vlJ-LL-Yro"/>
@@ -87,7 +95,7 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="553" y="323"/>
+            <point key="canvasLocation" x="552" y="323"/>
         </scene>
         <!--Home Interface Controller-->
         <scene sceneID="HoX-F1-L6b">
@@ -97,18 +105,20 @@
                         <group width="1" height="1" alignment="center" verticalAlignment="center" contentMode="scaleAspectFill" layout="vertical" id="Bnz-b5-mkC">
                             <items>
                                 <label width="1" alignment="center" verticalAlignment="center" text="Mobile Scoreboard" textAlignment="center" id="u9r-Kh-XZ8">
-                                    <color key="textColor" red="0.25697538260000002" green="0.78364455700000002" blue="0.66173297170000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="textColor" red="0.22322182357311249" green="0.74810665845870972" blue="0.59697610139846802" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="font" name="SFUIDisplay-Semibold" family="SF UI Display" pointSize="19"/>
                                 </label>
                                 <picker height="82" alignment="center" verticalAlignment="center" indicatorMode="shownWhileFocused" id="Vtb-Cn-c0Q">
+                                    <variation key="device=watch42mm" height="96"/>
                                     <connections>
                                         <action selector="pickerChanged:" destination="3KW-jg-8WF" id="D1M-wV-38k"/>
                                     </connections>
                                 </picker>
                                 <button width="1" height="38" alignment="center" verticalAlignment="center" title="Start" id="Zlo-kE-kx0">
-                                    <color key="titleColor" red="0.25697538260000002" green="0.78364455700000002" blue="0.66173297170000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.22322182357311249" green="0.74810665845870972" blue="0.59697610139846802" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="font" type="system" pointSize="30"/>
+                                    <variation key="device=watch42mm" height="45"/>
                                     <connections>
                                         <action selector="startGameButtonTapped" destination="3KW-jg-8WF" id="wrk-Lp-9hi"/>
                                     </connections>
@@ -117,13 +127,13 @@
                             <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
                         </group>
                     </items>
-                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <connections>
                         <outlet property="picker" destination="Vtb-Cn-c0Q" id="AY6-Zg-MYE"/>
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="235" y="323"/>
+            <point key="canvasLocation" x="234.51282051282053" y="323"/>
         </scene>
         <!--Glance Interface Controller-->
         <scene sceneID="BOz-TT-tkC">
