@@ -50,7 +50,6 @@
 		8284C9831D2EE70600A08EEF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8284C9821D2EE70600A08EEF /* Main.storyboard */; };
 		82A3D67B1EAAAE3A009D7EBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 822191F71D1C2AA600309328 /* Assets.xcassets */; };
 		82A3D67C1EAAAEE3009D7EBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 822191F71D1C2AA600309328 /* Assets.xcassets */; };
-		82A3D67D1EAB9C2D009D7EBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 822191F71D1C2AA600309328 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -387,7 +386,6 @@
 			files = (
 				8284C9831D2EE70600A08EEF /* Main.storyboard in Resources */,
 				822191EB1D1C2AA500309328 /* LaunchScreen.storyboard in Resources */,
-				82A3D67D1EAB9C2D009D7EBE /* Assets.xcassets in Resources */,
 				822191E81D1C2AA500309328 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
