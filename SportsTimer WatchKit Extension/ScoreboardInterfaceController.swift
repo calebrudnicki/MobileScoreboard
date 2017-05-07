@@ -47,10 +47,15 @@ class ScoreboardInterfaceController: WKInterfaceController, WCSessionDelegate {
         player2Score.setTitle(String(score2))
     }
     
-    //This function creates a new game and a shared instance of a session
+    //This function creates a shared instance of a session
     override func willActivate() {
         super.willActivate()
-        WatchSession.sharedInstance.startSession()
+        if (WCSession.default().isReachable) {
+            WatchSession.sharedInstance.startSession()
+        } else {
+            //WatchSession.sharedInstance.startSession()
+            print("not reachable")
+        }
     }
     
     //This function invalidates the backing timer when the end game button is tapped

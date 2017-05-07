@@ -9,6 +9,7 @@
 import UIKit
 import AudioToolbox
 import AVFoundation
+import CoreData
 
 class ScoreboardViewController: UIViewController {
     
@@ -32,13 +33,14 @@ class ScoreboardViewController: UIViewController {
     let speechSynthesizer = AVSpeechSynthesizer()
     var timer: Timer!
     var startingGameTimeString: String = ""
-    var startingGameTime: Int! = 600
-    var currentTime: Int! = 600
+    var startingGameTime: Int! = 10
+    var currentTime: Int! = 10
     var player1Score: Int! = 0
     var player2Score: Int! = 0
     var timerIsOn: Bool! = false
     var canScoreFromPhone: Bool! = true
     var gameIsInOvertime: Bool! = false
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     
 //MARK: Boilerplate Functions
@@ -121,8 +123,8 @@ class ScoreboardViewController: UIViewController {
         player2TitleLabel.alpha = 1
         player1ScoreButton.alpha = 1
         player2ScoreButton.alpha = 1
-        //player1ScoreButton.setTitleColor(.white, for: .normal)
-        //player2ScoreButton.setTitleColor(.white, for: .normal)
+        player1ScoreButton.setTitleColor(UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1), for: UIControlState())
+        player2ScoreButton.setTitleColor(UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1), for: UIControlState())
     }
     
     //This function eliminates the tutorial from the screen
@@ -225,6 +227,24 @@ class ScoreboardViewController: UIViewController {
         }
     }
     
+    
+//MARK: CoreData Functions
+    
+    //This function adds a movie to CoreData as one of the users favorite movies and send them a notification
+//    @available(iOS 10.0, *)
+//    func addNewTeams(_ indexPath: NSIndexPath) {
+//        let context = appDelegate.persistentContainer.viewContext
+//        let newTeams = NSEntityDescription.insertNewObject(forEntityName: "Teams", into: context)
+//        newTeams.setValue("Caleb", forKey: "team1")
+//        newTeams.setValue("Jared", forKey: "team2")
+//        do {
+//            try context.save()
+//            print("Saved teams to CoreData")
+//        } catch let error as NSError {
+//            fatalError("Failed to add teams: \(error)")
+//        }
+//    }
+    
 //MARK: Actions
     
     //This function adds one to player 1 when the button is tapped
@@ -288,6 +308,8 @@ class ScoreboardViewController: UIViewController {
         player2Score = 0
         player1ScoreButton.setTitle("0", for: UIControlState())
         player2ScoreButton.setTitle("0", for: UIControlState())
+        self.player1ScoreButton.isEnabled = true
+        self.player2ScoreButton.isEnabled = true
         UIApplication.shared.isIdleTimerDisabled = false
     }
     
@@ -347,6 +369,8 @@ class ScoreboardViewController: UIViewController {
                 self.currentTime = Int(String(describing: dataDict["Time"]!))!
                 self.startingGameTime = Int(String(describing: dataDict["Time"]!))!
                 self.beginClock()
+                self.player1ScoreButton.isEnabled = true
+                self.player2ScoreButton.isEnabled = true
             }
         }
     }
@@ -360,6 +384,8 @@ class ScoreboardViewController: UIViewController {
     
     //This function gets called when the time is up and determines which player is the winner
     func timesUp(_ winner: String) {
+        self.player1ScoreButton.isEnabled = false
+        self.player2ScoreButton.isEnabled = false
         self.changePlayPauseButtons("DisablePauseButton")
         AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
         if winner == "Player1" {
