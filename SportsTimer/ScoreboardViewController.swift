@@ -20,13 +20,7 @@ class ScoreboardViewController: UIViewController {
     @IBOutlet weak var player2TitleLabel: UILabel!
     @IBOutlet weak var player1ScoreButton: UIButton!
     @IBOutlet weak var player2ScoreButton: UIButton!
-    @IBOutlet weak var playButton: UIBarButtonItem!
-    @IBOutlet weak var pauseButton: UIBarButtonItem!
-    @IBOutlet weak var timeSlider: UISlider!
-    @IBOutlet weak var tutorialStack: UIStackView!
-    @IBOutlet weak var bottomToolbar: UIToolbar!
-    @IBOutlet weak var blurEffect: UIVisualEffectView!
-   
+    @IBOutlet weak var playPauseButton: UIButton!
     
 //MARK: Variables
     
@@ -48,15 +42,13 @@ class ScoreboardViewController: UIViewController {
     //This function creates an instance of a shared session, checks for low power mode, establishes this class as an observer of the tellPhoneToBeTheScoreboard, tellPhoneToBeTheController, tellPhonePickedTime, tellPhoneToStartGame, tellPhoneToStopGame, tellPhoneScoreData, and tellPhoneTheTime notifications, and calls addSwipe() and layoutWithTutorial()
     override func viewDidLoad() {
         super.viewDidLoad()
-        PhoneSession.sharedInstance.startSession()
-        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToBeTheControllerNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneToBeTheController"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToBeTheScoreboardNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneToBeTheScoreboard"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhonePickedTimeNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneTimeFromPicker"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToStartGameNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneToStartGame"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToStopGameNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneToStopGame"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneScoreDataNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneScoreData"), object: nil)
-        self.addSwipe()
-        self.layoutWithTutorial()
+//        PhoneSession.sharedInstance.startSession()
+//        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToBeTheControllerNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneToBeTheController"), object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToBeTheScoreboardNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneToBeTheScoreboard"), object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhonePickedTimeNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneTimeFromPicker"), object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToStartGameNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneToStartGame"), object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToStopGameNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneToStopGame"), object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneScoreDataNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneScoreData"), object: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -81,89 +73,38 @@ class ScoreboardViewController: UIViewController {
         player2TitleLabel.textColor = UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1)
         player1ScoreButton.setTitleColor(UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1), for: UIControlState())
         player2ScoreButton.setTitleColor(UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1), for: UIControlState())
-        timeSlider.isHidden = true //should be false
-        self.layoutWithoutTutorial()
     }
     
     //This function formats the screen to show that it is inactive
     func deactivatePhone() {
         canScoreFromPhone = false
         self.restartGame()
-        self.changePlayPauseButtons("DisablePlayAndPauseButtons")
         view.backgroundColor = UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1)
         timerLabel.textColor = UIColor(red: 22/255, green: 160/255, blue: 133/255, alpha: 1)
         player1TitleLabel.textColor = UIColor(red: 22/255, green: 160/255, blue: 133/255, alpha: 1)
         player2TitleLabel.textColor = UIColor(red: 22/255, green: 160/255, blue: 133/255, alpha: 1)
         player1ScoreButton.setTitleColor(UIColor(red: 22/255, green: 160/255, blue: 133/255, alpha: 1), for: UIControlState())
         player2ScoreButton.setTitleColor(UIColor(red: 22/255, green: 160/255, blue: 133/255, alpha: 1), for: UIControlState())
-        timeSlider.isHidden = true
-        self.layoutWithoutTutorial()
     }
     
-    //This function changes the layout of the labels when the tutorial is on
-    func layoutWithTutorial() {
-        bottomToolbar.isHidden = true
-        blurEffect.isHidden = false
-        timerLabel.alpha = 0.25
-        player1TitleLabel.alpha = 0.25
-        player2TitleLabel.alpha = 0.25
-        player1ScoreButton.alpha = 0.25
-        player2ScoreButton.alpha = 0.25
-        self.changePlayPauseButtons("DisablePauseButton")
-        self.eliminateTutorial(5)
-    }
-    
-    //This function changes the layout of the labels when the tutorial is off
-    func layoutWithoutTutorial() {
-        tutorialStack.isHidden = true
-        bottomToolbar.isHidden = false
-        blurEffect.isHidden = true
-        timerLabel.alpha = 1
-        player1TitleLabel.alpha = 1
-        player2TitleLabel.alpha = 1
-        player1ScoreButton.alpha = 1
-        player2ScoreButton.alpha = 1
-        player1ScoreButton.setTitleColor(UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1), for: UIControlState())
-        player2ScoreButton.setTitleColor(UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1), for: UIControlState())
-    }
+
     
     //This function eliminates the tutorial from the screen
-    func eliminateTutorial(_ delay: Int) {
-        let time = DispatchTime.now() + 5.0
-        DispatchQueue.main.asyncAfter(deadline: time) {
-            UIView.perform(.delete, on: [self.tutorialStack], options: .beginFromCurrentState, animations: {
-                self.tutorialStack.alpha = 0
-                self.layoutWithoutTutorial()
-                }, completion: nil)
-        }
-    }
+//    func eliminateTutorial(_ delay: Int) {
+//        let time = DispatchTime.now() + 5.0
+//        DispatchQueue.main.asyncAfter(deadline: time) {
+//            UIView.perform(.delete, on: [self.tutorialStack], options: .beginFromCurrentState, animations: {
+//                self.tutorialStack.alpha = 0
+//                self.layoutWithoutTutorial()
+//                }, completion: nil)
+//        }
+//    }
     
     //This function updates the timer label as the time is changed on the watch's picker view
     func changeTimerLabel(_ dataDict: [String : AnyObject]) {
         startingGameTimeString = (dataDict["ChosenTime"]! as? String)!
         timerLabel.text = startingGameTimeString
     }
-    
-    //This function either disables and changes the color of either the play or pause button while enabeling and changing the color of the other depending on the command
-    func changePlayPauseButtons(_ command: String) {
-        if command == "DisablePlayButton" {
-            playButton.isEnabled = false
-            playButton.tintColor = UIColor.black
-            pauseButton.isEnabled = true
-            pauseButton.tintColor = UIColor.red
-        } else if command == "DisablePauseButton" {
-            pauseButton.isEnabled = false
-            pauseButton.tintColor = UIColor.black
-            playButton.isEnabled = true
-            playButton.tintColor = UIColor.init(red: 22/255, green: 160/255, blue: 133/255, alpha: 1)
-        } else {
-            playButton.isEnabled = false
-            playButton.tintColor = UIColor.black
-            pauseButton.isEnabled = false
-            pauseButton.tintColor = UIColor.black
-        }
-    }
-    
     
 //MARK: Watch Communication Functions
     
@@ -201,51 +142,22 @@ class ScoreboardViewController: UIViewController {
         self.displayLabels(dataDict!)
     }
     
-
-//MARK: Swipe Functions
-    
-    //This funtions creates the swipe gestures and then adds them to the view
-    func addSwipe() {
-        let directions: [UISwipeGestureRecognizerDirection] = [.down, .up]
-        for direction in directions {
-            let gesture = UISwipeGestureRecognizer(target: self, action: #selector(ScoreboardViewController.handleSwipe(_:)))
-            gesture.direction = direction
-            self.view.addGestureRecognizer(gesture)
-        }
-    }
-    
-    //This functions handles each swipe and its functionality within the app
-    func handleSwipe(_ sender: UISwipeGestureRecognizer) {
-        if sender.direction.rawValue == 8 && canScoreFromPhone == true && timerIsOn == false {
-            self.beginClock()
-            self.changePlayPauseButtons("DisablePlayButton")
-            self.layoutWithoutTutorial()
-        } else if sender.direction.rawValue == 4 && canScoreFromPhone == true && timerIsOn == true {
-            self.restartGame()
-            self.changePlayPauseButtons("DisablePauseButton")
-            self.layoutWithoutTutorial()
-        }
-    }
-    
-    
-//MARK: CoreData Functions
-    
-    //This function adds a movie to CoreData as one of the users favorite movies and send them a notification
-//    @available(iOS 10.0, *)
-//    func addNewTeams(_ indexPath: NSIndexPath) {
-//        let context = appDelegate.persistentContainer.viewContext
-//        let newTeams = NSEntityDescription.insertNewObject(forEntityName: "Teams", into: context)
-//        newTeams.setValue("Caleb", forKey: "team1")
-//        newTeams.setValue("Jared", forKey: "team2")
-//        do {
-//            try context.save()
-//            print("Saved teams to CoreData")
-//        } catch let error as NSError {
-//            fatalError("Failed to add teams: \(error)")
-//        }
-//    }
-    
 //MARK: Actions
+    
+    
+    @IBAction func playPauseButtonTapped(_ sender: Any) {
+        if timerIsOn == false {
+            self.beginClock()
+            playPauseButton.setTitleColor(UIColor.red, for: .normal)
+        } else {
+            if timer != nil {
+                timer.invalidate()
+            }
+            timerLabel.text = self.convertSeconds(currentTime)
+            timerIsOn = false
+            playPauseButton.setTitleColor(UIColor.green, for: .normal)
+        }
+    }
     
     //This function adds one to player 1 when the button is tapped
     @IBAction func player1ButtonTapped(_ sender: AnyObject) {
@@ -267,7 +179,6 @@ class ScoreboardViewController: UIViewController {
     @IBAction func playButtonTapped(_ sender: AnyObject) {
         if timerIsOn == false && canScoreFromPhone == true {
             self.beginClock()
-            self.changePlayPauseButtons("DisablePlayButton")
             timerIsOn = true
         }
     }
@@ -280,16 +191,10 @@ class ScoreboardViewController: UIViewController {
                 timer.invalidate()
             }
             timerLabel.text = self.convertSeconds(currentTime)
-            self.changePlayPauseButtons("DisablePauseButton")
             timerIsOn = false
         }
     }
     
-    //This function changes the time of the game based on the slider
-    @IBAction func timeSliderChanged(_ sender: AnyObject) {
-        startingGameTime = Int(timeSlider.value)
-        timerLabel.text = convertSeconds(Int(timeSlider.value))
-    }
     
 //MARK: Label Functions
     
@@ -297,7 +202,6 @@ class ScoreboardViewController: UIViewController {
     func restartGame() {
         gameIsInOvertime = false
         timerIsOn = false
-        timeSlider.isHidden = true //should be false
         if timer != nil {
            timer.invalidate()
         }
@@ -321,7 +225,6 @@ class ScoreboardViewController: UIViewController {
         timerLabel.text = startingGameTimeString
         UIApplication.shared.isIdleTimerDisabled = false
         self.beginClock()
-        self.changePlayPauseButtons("DisablePlayButton")
     }
     
     //This functions updates the score labels to match the watch's data
@@ -379,14 +282,12 @@ class ScoreboardViewController: UIViewController {
     func beginClock() {
         self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ScoreboardViewController.eachSecond(_:)), userInfo: nil, repeats: true)
         self.timerIsOn = true
-        self.timeSlider.isHidden = true
     }
     
     //This function gets called when the time is up and determines which player is the winner
     func timesUp(_ winner: String) {
         self.player1ScoreButton.isEnabled = false
         self.player2ScoreButton.isEnabled = false
-        self.changePlayPauseButtons("DisablePauseButton")
         AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
         if winner == "Player1" {
             player1ScoreButton.setTitleColor(UIColor.green, for: UIControlState())

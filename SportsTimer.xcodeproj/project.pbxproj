@@ -19,14 +19,12 @@
 		8221920E1D1C2AA600309328 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8221920D1D1C2AA600309328 /* Assets.xcassets */; };
 		822B6E0A1D57A86A002566AA /* WatchSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822B6E091D57A86A002566AA /* WatchSession.swift */; };
 		822B6E0C1D57AA0A002566AA /* PhoneSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822B6E0B1D57AA0A002566AA /* PhoneSession.swift */; };
-		823490A01EBECA2300F118E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 822191F71D1C2AA600309328 /* Assets.xcassets */; };
 		823490A21EBECDEA00F118E4 /* ScoreboardInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822192051D1C2AA600309328 /* ScoreboardInterfaceController.swift */; };
 		8235D42F1D5933BC00E6CC88 /* HomeInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8235D42E1D5933BC00E6CC88 /* HomeInterfaceController.swift */; };
 		824435331D2D6FA200383452 /* ScoreboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824435321D2D6FA200383452 /* ScoreboardViewController.swift */; };
+		825140EA1EC2097C005E6F2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 822191F71D1C2AA600309328 /* Assets.xcassets */; };
 		8284C9831D2EE70600A08EEF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8284C9821D2EE70600A08EEF /* Main.storyboard */; };
-		829460C11EBF5F6D00F16641 /* SportsTimer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 829460BF1EBF5F6D00F16641 /* SportsTimer.xcdatamodeld */; };
 		82A3D67B1EAAAE3A009D7EBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 822191F71D1C2AA600309328 /* Assets.xcassets */; };
-		82A3D67C1EAAAEE3009D7EBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 822191F71D1C2AA600309328 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,7 +93,6 @@
 		8235D4651D5BC2A900E6CC88 /* SportsTimer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SportsTimer.entitlements; sourceTree = "<group>"; };
 		824435321D2D6FA200383452 /* ScoreboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreboardViewController.swift; sourceTree = "<group>"; };
 		8284C9821D2EE70600A08EEF /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		829460C01EBF5F6D00F16641 /* SportsTimer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SportsTimer.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,7 +145,6 @@
 				822191E71D1C2AA500309328 /* Assets.xcassets */,
 				822191E91D1C2AA500309328 /* LaunchScreen.storyboard */,
 				822191EC1D1C2AA500309328 /* Info.plist */,
-				829460BF1EBF5F6D00F16641 /* SportsTimer.xcdatamodeld */,
 			);
 			path = SportsTimer;
 			sourceTree = "<group>";
@@ -315,7 +311,6 @@
 			files = (
 				8284C9831D2EE70600A08EEF /* Main.storyboard in Resources */,
 				822191EB1D1C2AA500309328 /* LaunchScreen.storyboard in Resources */,
-				823490A01EBECA2300F118E4 /* Assets.xcassets in Resources */,
 				822191E81D1C2AA500309328 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -324,7 +319,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				82A3D67C1EAAAEE3009D7EBE /* Assets.xcassets in Resources */,
+				825140EA1EC2097C005E6F2D /* Assets.xcassets in Resources */,
 				822191F61D1C2AA600309328 /* Interface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -345,7 +340,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				829460C11EBF5F6D00F16641 /* SportsTimer.xcdatamodeld in Sources */,
 				822191E11D1C2AA500309328 /* AppDelegate.swift in Sources */,
 				824435331D2D6FA200383452 /* ScoreboardViewController.swift in Sources */,
 				822B6E0C1D57AA0A002566AA /* PhoneSession.swift in Sources */,
@@ -633,19 +627,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		829460BF1EBF5F6D00F16641 /* SportsTimer.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				829460C01EBF5F6D00F16641 /* SportsTimer.xcdatamodel */,
-			);
-			currentVersion = 829460C01EBF5F6D00F16641 /* SportsTimer.xcdatamodel */;
-			path = SportsTimer.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 822191D51D1C2AA500309328 /* Project object */;
 }

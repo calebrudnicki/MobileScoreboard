@@ -16,6 +16,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+//        //Play with storyboards for user onboarding
+//        self.window = UIWindow(frame: UIScreen.main.bounds)
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        var vc: UIViewController
+//        
+//        if (UserDefaults.standard.value(forKey: "name") as? String) == nil {
+//            //Show onboarding screen and sets the default user defaults
+//            vc = storyboard.instantiateViewController(withIdentifier: "OnboardingViewController")
+//        } else {
+//            //Show the main screen
+//            vc = storyboard.instantiateInitialViewController()!
+//        }
+//        
+//        self.window?.rootViewController = vc
+//        self.window?.makeKeyAndVisible()
+        
         return true
     }
 
