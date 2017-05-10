@@ -145,17 +145,17 @@ class ScoreboardViewController: UIViewController {
 //MARK: Actions
     
     
-    @IBAction func playPauseButtonTapped(_ sender: Any) {
+    @IBAction func playPauseButtonTapped(_ sender: Any) {        
         if timerIsOn == false {
             self.beginClock()
-            playPauseButton.setTitleColor(UIColor.red, for: .normal)
+            updatePlayPauseButton(title: "Pause", color: UIColor.red)
         } else {
             if timer != nil {
                 timer.invalidate()
             }
             timerLabel.text = self.convertSeconds(currentTime)
             timerIsOn = false
-            playPauseButton.setTitleColor(UIColor.green, for: .normal)
+            updatePlayPauseButton(title: "Play", color: UIColor.green)
         }
     }
     
@@ -205,8 +205,8 @@ class ScoreboardViewController: UIViewController {
         if timer != nil {
            timer.invalidate()
         }
-        startingGameTimeString = convertSeconds(600)
-        currentTime = 600
+        startingGameTimeString = convertSeconds(10)
+        currentTime = 10
         timerLabel.text = startingGameTimeString
         player1Score = 0
         player2Score = 0
@@ -288,6 +288,7 @@ class ScoreboardViewController: UIViewController {
     func timesUp(_ winner: String) {
         self.player1ScoreButton.isEnabled = false
         self.player2ScoreButton.isEnabled = false
+        updatePlayPauseButton(title: "Start Game", color: UIColor.green)
         AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
         if winner == "Player1" {
             player1ScoreButton.setTitleColor(UIColor.green, for: UIControlState())
@@ -361,6 +362,11 @@ class ScoreboardViewController: UIViewController {
                 self.speechSynthesizer.speak(statusNotice)
             }
         }
+    }
+    
+    func updatePlayPauseButton(title: String, color: UIColor) {
+        self.playPauseButton.backgroundColor = color
+        self.playPauseButton.setTitle(title, for: .normal)
     }
     
 }
