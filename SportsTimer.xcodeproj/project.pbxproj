@@ -23,6 +23,7 @@
 		8235D42F1D5933BC00E6CC88 /* HomeInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8235D42E1D5933BC00E6CC88 /* HomeInterfaceController.swift */; };
 		824435331D2D6FA200383452 /* ScoreboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824435321D2D6FA200383452 /* ScoreboardViewController.swift */; };
 		825140EA1EC2097C005E6F2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 822191F71D1C2AA600309328 /* Assets.xcassets */; };
+		825140EE1EC3BB06005E6F2D /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825140ED1EC3BB06005E6F2D /* WelcomeViewController.swift */; };
 		8284C9831D2EE70600A08EEF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8284C9821D2EE70600A08EEF /* Main.storyboard */; };
 		82A3D67B1EAAAE3A009D7EBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 822191F71D1C2AA600309328 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -92,6 +93,7 @@
 		8235D42E1D5933BC00E6CC88 /* HomeInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeInterfaceController.swift; sourceTree = "<group>"; };
 		8235D4651D5BC2A900E6CC88 /* SportsTimer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SportsTimer.entitlements; sourceTree = "<group>"; };
 		824435321D2D6FA200383452 /* ScoreboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreboardViewController.swift; sourceTree = "<group>"; };
+		825140ED1EC3BB06005E6F2D /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		8284C9821D2EE70600A08EEF /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -140,6 +142,7 @@
 				8235D4301D5A146400E6CC88 /* Resources */,
 				822191E01D1C2AA500309328 /* AppDelegate.swift */,
 				822B6E0B1D57AA0A002566AA /* PhoneSession.swift */,
+				825140ED1EC3BB06005E6F2D /* WelcomeViewController.swift */,
 				824435321D2D6FA200383452 /* ScoreboardViewController.swift */,
 				8284C9821D2EE70600A08EEF /* Main.storyboard */,
 				822191E71D1C2AA500309328 /* Assets.xcassets */,
@@ -341,6 +344,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				822191E11D1C2AA500309328 /* AppDelegate.swift in Sources */,
+				825140EE1EC3BB06005E6F2D /* WelcomeViewController.swift in Sources */,
 				824435331D2D6FA200383452 /* ScoreboardViewController.swift in Sources */,
 				822B6E0C1D57AA0A002566AA /* PhoneSession.swift in Sources */,
 			);
