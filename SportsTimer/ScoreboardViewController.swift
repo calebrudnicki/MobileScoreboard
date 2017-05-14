@@ -22,6 +22,8 @@ class ScoreboardViewController: UIViewController {
     @IBOutlet weak var player2ScoreButton: UIButton!
     @IBOutlet weak var playPauseButton: UIButton!
     @IBOutlet weak var scoreboardContainer: UIView!
+    @IBOutlet weak var backgroundImage: UIImageView!
+    @IBOutlet weak var settingsIcon: UIButton!
     
 //MARK: Variables
     
@@ -40,17 +42,10 @@ class ScoreboardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         scoreboardContainer.layer.cornerRadius = 10
-        scoreboardContainer.layer.shadowColor = UIColor.darkGray.cgColor
+        scoreboardContainer.layer.shadowColor = UIColor.black.cgColor
         scoreboardContainer.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
         scoreboardContainer.layer.shadowOpacity = 1.0
         scoreboardContainer.layer.shadowRadius = 30
-        if let player1Name = UserDefaults.standard.object(forKey: "player1") as? String {
-            player1TitleLabel.text = player1Name
-        }
-        if let player2Name = UserDefaults.standard.object(forKey: "player2") as? String {
-            player2TitleLabel.text = player2Name
-        }
-        //print(<#T##items: Any...##Any#>)
 //        PhoneSession.sharedInstance.startSession()
 //        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToBeTheControllerNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneToBeTheController"), object: nil)
 //        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToBeTheScoreboardNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneToBeTheScoreboard"), object: nil)
@@ -58,6 +53,47 @@ class ScoreboardViewController: UIViewController {
 //        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToStartGameNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneToStartGame"), object: nil)
 //        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToStopGameNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneToStopGame"), object: nil)
 //        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneScoreDataNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneScoreData"), object: nil)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if let player1Name = UserDefaults.standard.object(forKey: "player1") as? String {
+            player1TitleLabel.text = player1Name
+        }
+        if let player2Name = UserDefaults.standard.object(forKey: "player2") as? String {
+            player2TitleLabel.text = player2Name
+        }
+        if let selectedSport = UserDefaults.standard.object(forKey: "selectedSport") as? String {
+            if selectedSport == "Basketball" {
+                backgroundImage.image = #imageLiteral(resourceName: "BasketballBackground")
+                self.changeScoreboard(boardR: 101, boardG: 0, boardB: 0, elseR: 245, elseG: 245, elseB: 245)
+                settingsIcon.setImage(#imageLiteral(resourceName: "SettingsIconWhite"), for: .normal)
+            } else if selectedSport == "Hockey" {
+                backgroundImage.image = #imageLiteral(resourceName: "HockeyBackground")
+                self.changeScoreboard(boardR: 11, boardG: 34, boardB: 15, elseR: 245, elseG: 245, elseB: 245)
+                settingsIcon.setImage(#imageLiteral(resourceName: "SettingsIconWhite"), for: .normal)
+            } else if selectedSport == "Soccer" {
+                backgroundImage.image = #imageLiteral(resourceName: "SoccerBackground")
+                self.changeScoreboard(boardR: 0, boardG: 9, boardB: 69, elseR: 245, elseG: 245, elseB: 245)
+                settingsIcon.setImage(#imageLiteral(resourceName: "SettingsIconWhite"), for: .normal)
+            } else if selectedSport == "Baseball" {
+                backgroundImage.image = #imageLiteral(resourceName: "BaseballBackground")
+                self.changeScoreboard(boardR: 47, boardG: 48, boardB: 48, elseR: 169, elseG: 124, elseB: 80)
+                settingsIcon.setImage(#imageLiteral(resourceName: "SettingsIconWhite"), for: .normal)
+            } else {
+                backgroundImage.image = #imageLiteral(resourceName: "FootballBackground")
+                self.changeScoreboard(boardR: 183, boardG: 175, boardB: 174, elseR: 10, elseG: 10, elseB: 10)
+                settingsIcon.setImage(#imageLiteral(resourceName: "SettingsIconBlack"), for: .normal)
+            }
+        }
+    }
+    
+    func changeScoreboard(boardR: CGFloat, boardG: CGFloat, boardB: CGFloat, elseR: CGFloat, elseG: CGFloat, elseB: CGFloat) {
+        scoreboardContainer.backgroundColor = UIColor.init(red: boardR/255, green: boardG/255, blue: boardB/255, alpha: 1)
+        timerLabel.textColor = UIColor.init(red: elseR/255, green: elseG/255, blue: elseB/255, alpha: 1)
+        player1TitleLabel.textColor = UIColor.init(red: elseR/255, green: elseG/255, blue: elseB/255, alpha: 1)
+        player1ScoreButton.setTitleColor(UIColor.init(red: elseR/255, green: elseG/255, blue: elseB/255, alpha: 1), for: .normal)
+        player2TitleLabel.textColor = UIColor.init(red: elseR/255, green: elseG/255, blue: elseB/255, alpha: 1)
+        player2ScoreButton.setTitleColor(UIColor.init(red: elseR/255, green: elseG/255, blue: elseB/255, alpha: 1), for: .normal)
     }
     
     override func didReceiveMemoryWarning() {
@@ -160,14 +196,14 @@ class ScoreboardViewController: UIViewController {
         
         if timerIsOn == false {
             self.beginClock()
-            updatePlayPauseButton(title: "Pause", color: UIColor.red)
+            updatePlayPauseButton(title: "Pause", color: UIColor.init(red: 158/255, green: 28/255, blue: 0/255, alpha: 1))
         } else {
             if timer != nil {
                 timer.invalidate()
             }
             timerLabel.text = self.convertSeconds(currentTime)
             timerIsOn = false
-            updatePlayPauseButton(title: "Play", color: UIColor.green)
+            updatePlayPauseButton(title: "Play", color: UIColor.init(red: 14/255, green: 161/255, blue: 87/255, alpha: 1))
         }
     }
     
@@ -302,17 +338,17 @@ class ScoreboardViewController: UIViewController {
     func timesUp(_ winner: String) {
         self.player1ScoreButton.isEnabled = false
         self.player2ScoreButton.isEnabled = false
-        updatePlayPauseButton(title: "Start Game", color: UIColor.green)
+        updatePlayPauseButton(title: "Start New Game", color: UIColor.init(red: 14/255, green: 161/255, blue: 87/255, alpha: 1))
         AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
         if winner == "Player1" {
-            player1ScoreButton.setTitleColor(UIColor.green, for: UIControlState())
-            player2ScoreButton.setTitleColor(UIColor.red, for: UIControlState())
+            player1ScoreButton.setTitleColor(UIColor.init(red: 14/255, green: 161/255, blue: 87/255, alpha: 1), for: UIControlState())
+            player2ScoreButton.setTitleColor(UIColor.init(red: 158/255, green: 28/255, blue: 0/255, alpha: 1), for: UIControlState())
         } else if winner == "Player2" {
-            player2ScoreButton.setTitleColor(UIColor.green, for: UIControlState())
-            player1ScoreButton.setTitleColor(UIColor.red, for: UIControlState())
+            player2ScoreButton.setTitleColor(UIColor.init(red: 14/255, green: 161/255, blue: 87/255, alpha: 1), for: UIControlState())
+            player1ScoreButton.setTitleColor(UIColor.init(red: 158/255, green: 28/255, blue: 0/255, alpha: 1), for: UIControlState())
         } else if winner == "Tie" {
-            player1ScoreButton.setTitleColor(UIColor.blue, for: UIControlState())
-            player2ScoreButton.setTitleColor(UIColor.blue, for: UIControlState())
+            player1ScoreButton.setTitleColor(UIColor.init(red: 48/255, green: 85/255, blue: 165/255, alpha: 1), for: UIControlState())
+            player2ScoreButton.setTitleColor(UIColor.init(red: 48/255, green: 85/255, blue: 165/255, alpha: 1), for: UIControlState())
             //self.alertUserAboutOvertime()
         }
     }
