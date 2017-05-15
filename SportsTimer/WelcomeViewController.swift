@@ -17,6 +17,7 @@ class WelcomeViewController: UIViewController {
     
     let imagesListArray = [#imageLiteral(resourceName: "SoccerBackground"), #imageLiteral(resourceName: "BasketballBackground"), #imageLiteral(resourceName: "BaseballBackground"), #imageLiteral(resourceName: "HockeyBackground"), #imageLiteral(resourceName: "FootballBackground")]
     
+    //This functions animates the background images and pulls info from the UserDefaults
     override func viewDidLoad() {
         super.viewDidLoad()
         self.imageView.animationImages = imagesListArray
@@ -46,10 +47,23 @@ class WelcomeViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    //MARK: Actions
 
+    //This functions handles setting UserDefaults when the Let's Play button is tapped
     @IBAction func letsPlayButtonTapped(_ sender: Any) {
-        UserDefaults.standard.set(player1TextField.text, forKey: "player1")
-        UserDefaults.standard.set(player2TextField.text, forKey: "player2")
+        if player1TextField.text != "" {
+            UserDefaults.standard.set(player1TextField.text, forKey: "player1")
+        } else {
+            UserDefaults.standard.set("Player 1", forKey: "player1")
+        }
+
+        if player2TextField.text != "" {
+            UserDefaults.standard.set(player2TextField.text, forKey: "player2")
+        } else {
+            UserDefaults.standard.set("Player 2", forKey: "player2")
+        }
+
         if sportsSegmentedController.selectedSegmentIndex == 0 {
             UserDefaults.standard.set("Basketball", forKey: "selectedSport")
         } else if sportsSegmentedController.selectedSegmentIndex == 1 {

@@ -55,4 +55,13 @@ class PhoneSession: NSObject, WCSessionDelegate {
         }
     }
     
+    
+//MARK: Data Senders
+    
+//    func tellWatchSelectedSport(_ pickedTime: String) {
+//        let payloadDictFromPhone = ["ChosenTime": pickedTime]
+//        let actionDictFromPhone = ["Action": "tellWatchSelectedSport", "Payload": payloadDictFromPhone] as [String : Any]
+//        session.sendMessage(actionDictFromPhone as [String : AnyObject], replyHandler: nil)
+//    }
+    
 }

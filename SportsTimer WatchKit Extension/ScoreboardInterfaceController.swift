@@ -92,7 +92,7 @@ class ScoreboardInterfaceController: WKInterfaceController, WCSessionDelegate {
     
     //This function subtracts from the countdown variable every second when it is called and then calls the timesUp() function when countdown is less than 0
     func secondTimerFired() {
-        print(countdown)
+        //print(countdown)
         countdown -= 1
         if countdown < 0 {
             self.timesUp()

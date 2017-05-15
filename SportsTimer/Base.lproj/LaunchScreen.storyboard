@@ -23,14 +23,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="LaunchScreenIcon" translatesAutoresizingMaskIntoConstraints="NO" id="OtG-Ju-Ddb">
-                                <rect key="frame" x="75" y="180" width="450" height="240"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchScreenIcon" translatesAutoresizingMaskIntoConstraints="NO" id="OtG-Ju-Ddb">
+                                <rect key="frame" x="83.5" y="54" width="500" height="267"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="OtG-Ju-Ddb" secondAttribute="height" multiplier="15:8" id="Xco-VL-z6d"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="a Caleb Rudnicki production" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tos-l3-dTP">
-                                <rect key="frame" x="477.5" y="583" width="117.5" height="12"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="a Caleb Rudnicki production" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tos-l3-dTP">
+                                <rect key="frame" x="544.5" y="358" width="117.5" height="12"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="10"/>
                                 <color key="textColor" red="0.9879457950592041" green="1" blue="0.99997055530548096" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>

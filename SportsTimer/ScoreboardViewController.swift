@@ -13,7 +13,7 @@ import CoreData
 
 class ScoreboardViewController: UIViewController {
     
-//MARK: Outlets
+    //MARK: Outlets
     
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var player1TitleLabel: UILabel!
@@ -25,7 +25,7 @@ class ScoreboardViewController: UIViewController {
     @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var settingsIcon: UIButton!
     
-//MARK: Variables
+    //MARK: Variables
     
     let speechSynthesizer = AVSpeechSynthesizer()
     var timer: Timer!
@@ -36,8 +36,8 @@ class ScoreboardViewController: UIViewController {
     var player2Score: Int! = 0
     var timerIsOn: Bool! = false
     var canScoreFromPhone: Bool! = true
-    var gameIsInOvertime: Bool! = false
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    var games: [Games] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,12 +49,13 @@ class ScoreboardViewController: UIViewController {
 //        PhoneSession.sharedInstance.startSession()
 //        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToBeTheControllerNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneToBeTheController"), object: nil)
 //        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToBeTheScoreboardNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneToBeTheScoreboard"), object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhonePickedTimeNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneTimeFromPicker"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhonePickedTimeNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneTimeFromPicker"), object: nil)
 //        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToStartGameNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneToStartGame"), object: nil)
 //        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToStopGameNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneToStopGame"), object: nil)
 //        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneScoreDataNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneScoreData"), object: nil)
     }
     
+    //This function updates the scoreboard based on the selected sport when the view appears
     override func viewDidAppear(_ animated: Bool) {
         if let player1Name = UserDefaults.standard.object(forKey: "player1") as? String {
             player1TitleLabel.text = player1Name
@@ -87,71 +88,16 @@ class ScoreboardViewController: UIViewController {
         }
     }
     
-    func changeScoreboard(boardR: CGFloat, boardG: CGFloat, boardB: CGFloat, elseR: CGFloat, elseG: CGFloat, elseB: CGFloat) {
-        scoreboardContainer.backgroundColor = UIColor.init(red: boardR/255, green: boardG/255, blue: boardB/255, alpha: 1)
-        timerLabel.textColor = UIColor.init(red: elseR/255, green: elseG/255, blue: elseB/255, alpha: 1)
-        player1TitleLabel.textColor = UIColor.init(red: elseR/255, green: elseG/255, blue: elseB/255, alpha: 1)
-        player1ScoreButton.setTitleColor(UIColor.init(red: elseR/255, green: elseG/255, blue: elseB/255, alpha: 1), for: .normal)
-        player2TitleLabel.textColor = UIColor.init(red: elseR/255, green: elseG/255, blue: elseB/255, alpha: 1)
-        player2ScoreButton.setTitleColor(UIColor.init(red: elseR/255, green: elseG/255, blue: elseB/255, alpha: 1), for: .normal)
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
     //This function removes itself as an observer when the view disappears
     override func viewDidDisappear(_ animated: Bool) {
-        //NotificationCenter.default.removeObserver(self)
-    }
-
-
-//MARK: Layout Functions
-    
-    //This function formats the screen to show that it is active
-//    func activatePhone() {
-//        canScoreFromPhone = true
-//        self.restartGame()
-//        view.backgroundColor = UIColor(red: 22/255, green: 160/255, blue: 133/255, alpha: 1)
-//        timerLabel.textColor = UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1)
-//        player1TitleLabel.textColor = UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1)
-//        player2TitleLabel.textColor = UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1)
-//        player1ScoreButton.setTitleColor(UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1), for: UIControlState())
-//        player2ScoreButton.setTitleColor(UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1), for: UIControlState())
-//    }
-//    
-//    //This function formats the screen to show that it is inactive
-//    func deactivatePhone() {
-//        canScoreFromPhone = false
-//        self.restartGame()
-//        view.backgroundColor = UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1)
-//        timerLabel.textColor = UIColor(red: 22/255, green: 160/255, blue: 133/255, alpha: 1)
-//        player1TitleLabel.textColor = UIColor(red: 22/255, green: 160/255, blue: 133/255, alpha: 1)
-//        player2TitleLabel.textColor = UIColor(red: 22/255, green: 160/255, blue: 133/255, alpha: 1)
-//        player1ScoreButton.setTitleColor(UIColor(red: 22/255, green: 160/255, blue: 133/255, alpha: 1), for: UIControlState())
-//        player2ScoreButton.setTitleColor(UIColor(red: 22/255, green: 160/255, blue: 133/255, alpha: 1), for: UIControlState())
-//    }
-    
-
-    
-    //This function eliminates the tutorial from the screen
-//    func eliminateTutorial(_ delay: Int) {
-//        let time = DispatchTime.now() + 5.0
-//        DispatchQueue.main.asyncAfter(deadline: time) {
-//            UIView.perform(.delete, on: [self.tutorialStack], options: .beginFromCurrentState, animations: {
-//                self.tutorialStack.alpha = 0
-//                self.layoutWithoutTutorial()
-//                }, completion: nil)
-//        }
-//    }
-    
-    //This function updates the timer label as the time is changed on the watch's picker view
-    func changeTimerLabel(_ dataDict: [String : AnyObject]) {
-        startingGameTimeString = (dataDict["ChosenTime"]! as? String)!
-        timerLabel.text = startingGameTimeString
+        NotificationCenter.default.removeObserver(self)
     }
     
-//MARK: Watch Communication Functions
+    //MARK: Watch Communication Functions
     
     //This function that gets called everytime a tellPhoneToBeTheController notification is posted calls activatePhone()
 //    func receivedTellPhoneToBeTheControllerNotification(_ notification: Notification) {
@@ -160,7 +106,8 @@ class ScoreboardViewController: UIViewController {
 //    
 //    //This function that gets called everytime a tellPhoneToBeTheScoreboard notification is posted calls deactivatePhone()
 //    func receivedTellPhoneToBeTheScoreboardNotification(_ notification: Notification) {
-//        self.deactivatePhone()
+//        print("Scoring from watch now")
+//        changeScoreboard(boardR: 0, boardG: 0, boardB: 0, elseR: 0, elseG: 0, elseB: 0)
 //    }
 //    
 //    //This function that gets called everytime a receivedTellPhonePickedTime notification is posted calls changeTimerLabel()
@@ -168,7 +115,7 @@ class ScoreboardViewController: UIViewController {
 //        let dataDict = notification.object as? [String : AnyObject]
 //        self.changeTimerLabel(dataDict!)
 //    }
-//    
+//
 //    //This function that gets called everytime a tellPhoneToStartGame notification is posted calls startTimer()
 //    func receivedTellPhoneToStartGameNotification(_ notification: Notification) {
 //        let dataDict = notification.object as? [String : AnyObject]
@@ -189,6 +136,7 @@ class ScoreboardViewController: UIViewController {
     
 //MARK: Actions
     
+    //This function 
     @IBAction func playPauseButtonTapped(_ sender: Any) {
         if currentTime == -2 {
             self.restartGame()
@@ -223,32 +171,10 @@ class ScoreboardViewController: UIViewController {
         }
     }
     
-    //This function runs when the play button is tapped
-    @IBAction func playButtonTapped(_ sender: AnyObject) {
-        if timerIsOn == false && canScoreFromPhone == true {
-            self.beginClock()
-            timerIsOn = true
-        }
-    }
-    
-    //This function runs when the pause button is tapped
-    @IBAction func pauseButtonTapped(_ sender: AnyObject) {
-        if timerIsOn == true && canScoreFromPhone == true {
-            
-            if timer != nil {
-                timer.invalidate()
-            }
-            timerLabel.text = self.convertSeconds(currentTime)
-            timerIsOn = false
-        }
-    }
-    
-    
-//MARK: Label Functions
+    //MARK: Label Functions
     
     //This function restarts a game by resetting labels and variables while also invalidating the timer
     func restartGame() {
-        gameIsInOvertime = false
         timerIsOn = false
         if timer != nil {
            timer.invalidate()
@@ -267,16 +193,6 @@ class ScoreboardViewController: UIViewController {
         UIApplication.shared.isIdleTimerDisabled = false
     }
     
-    //This function runs when the user wants to play a five minute overtime period
-//    func startOvertime() {
-//        gameIsInOvertime = true
-//        startingGameTimeString = convertSeconds(300)
-//        currentTime = 300
-//        timerLabel.text = startingGameTimeString
-//        UIApplication.shared.isIdleTimerDisabled = false
-//        self.beginClock()
-//    }
-    
     //This functions updates the score labels to match the watch's data
     func displayLabels(_ dataDict: [String : AnyObject]) {
         player1ScoreButton.setTitle(String(describing: dataDict["Score1"]!), for: UIControlState())
@@ -287,7 +203,7 @@ class ScoreboardViewController: UIViewController {
     
     //This functions runs once per second until the totalTime variable reaches 0 before it calls timesUp() with the winning player as a parameter
     func eachSecond(_ timer: Timer) {
-        if startingGameTime / 2 == currentTime && gameIsInOvertime == false {
+        if startingGameTime / 2 == currentTime {
             speakGameStatus("HalfwayPoint")
         }
         if currentTime == 60 {
@@ -311,8 +227,7 @@ class ScoreboardViewController: UIViewController {
         currentTime = currentTime - 1
     }
     
-    
-//MARK: Timer Functions
+    //MARK: Timer Functions
     
     //This functions sets totalTime to the amount of starting time on the watch and then creates a timer that calls eachSecond()
     func startTimer(_ dataDict: [String : AnyObject]) {
@@ -349,21 +264,23 @@ class ScoreboardViewController: UIViewController {
         } else if winner == "Tie" {
             player1ScoreButton.setTitleColor(UIColor.init(red: 48/255, green: 85/255, blue: 165/255, alpha: 1), for: UIControlState())
             player2ScoreButton.setTitleColor(UIColor.init(red: 48/255, green: 85/255, blue: 165/255, alpha: 1), for: UIControlState())
-            //self.alertUserAboutOvertime()
+        }
+        //This is where all the Core Data stuff currently is
+        if #available(iOS 10.0, *) {
+            self.addGameToCoreData()
+            self.retrieveFromCoreData()
+            for i in 0...games.count - 1 {
+                print(i)
+                print(games[i].player1!)
+                print(games[i].player1Score!)
+                print(games[i].player2!)
+                print(games[i].player2Score!)
+                print(games[i].date!)
+            }
+        } else {
+            print("Can't save to core data")
         }
     }
-    
-    //This function allows the user to play an optional five minute overtime if the game ends in a tie
-//    func alertUserAboutOvertime() {
-//        let alertController = UIAlertController(title: nil, message: "Would you like to play a five minute overtime?", preferredStyle: .actionSheet)
-//        let playOvertime = UIAlertAction(title: "Let's play overtime", style: .default) { (action) in
-//            self.startOvertime()
-//        }
-//        let cancelAction = UIAlertAction(title: "End in Tie", style: .cancel, handler: nil)
-//        alertController.addAction(playOvertime)
-//        alertController.addAction(cancelAction)
-//        self.present(alertController, animated: true, completion: nil)
-//    }
     
     //This function converts seconds into the string format minutes:seconds
     func convertSeconds(_ seconds: Int) -> String {
@@ -373,7 +290,7 @@ class ScoreboardViewController: UIViewController {
         return String(format: "%2d:%02d", minutePlace, secondPlace)
     }
     
-//MARK: Speech Functions
+    //MARK: Speech Functions
     
     //This function sends a voice notification to the user about the status of the game
     func speakGameStatus(_ occasion: String) {
@@ -413,9 +330,76 @@ class ScoreboardViewController: UIViewController {
         }
     }
     
+    //MARK: Core Data Functions
+    
+    //This function adds a game to core data
+    @available(iOS 10.0, *)
+    func addGameToCoreData() {
+        let context = appDelegate.persistentContainer.viewContext
+        let newGame = NSEntityDescription.insertNewObject(forEntityName: "Games", into: context)
+        newGame.setValue(player1TitleLabel.text, forKey: "player1")
+        newGame.setValue(player2TitleLabel.text, forKey: "player2")
+        newGame.setValue(player1Score, forKey: "player1Score")
+        newGame.setValue(player2Score, forKey: "player2Score")
+        newGame.setValue(self.getCurrentDate(), forKey: "date")
+        do {
+            try context.save()
+            print("Saved game to CoreData")
+        } catch let error as NSError {
+            fatalError("Failed to add game to Core Data: \(error)")
+        }
+    }
+    
+    //This functions gets the games from core data and saves them in the array games
+    @available(iOS 10.0, *)
+    func retrieveFromCoreData() {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Games")
+        request.returnsObjectsAsFaults = false
+        do {
+            let results = try context.fetch(request)
+            if results.count > 0 {
+                for result in results as! [NSManagedObject] {
+                    self.games.append((result as? Games)!)
+                }
+            }
+        } catch let error as NSError {
+            fatalError("Failed to retrieve movie: \(error)")
+        }
+    }
+    
+    //MARK: Helper Functions
+    
+    //This function updates the timer label as the time is changed on the watch's picker view
+    func changeTimerLabel(_ dataDict: [String : AnyObject]) {
+        startingGameTimeString = (dataDict["ChosenTime"]! as? String)!
+        timerLabel.text = startingGameTimeString
+    }
+    
+    //This function changes the actual objects on the screen based on what sport was selected
+    func changeScoreboard(boardR: CGFloat, boardG: CGFloat, boardB: CGFloat, elseR: CGFloat, elseG: CGFloat, elseB: CGFloat) {
+        scoreboardContainer.backgroundColor = UIColor.init(red: boardR/255, green: boardG/255, blue: boardB/255, alpha: 1)
+        timerLabel.textColor = UIColor.init(red: elseR/255, green: elseG/255, blue: elseB/255, alpha: 1)
+        player1TitleLabel.textColor = UIColor.init(red: elseR/255, green: elseG/255, blue: elseB/255, alpha: 1)
+        player1ScoreButton.setTitleColor(UIColor.init(red: elseR/255, green: elseG/255, blue: elseB/255, alpha: 1), for: .normal)
+        player2TitleLabel.textColor = UIColor.init(red: elseR/255, green: elseG/255, blue: elseB/255, alpha: 1)
+        player2ScoreButton.setTitleColor(UIColor.init(red: elseR/255, green: elseG/255, blue: elseB/255, alpha: 1), for: .normal)
+    }
+    
+    //This functions gets the current date in the MM/DD/YYYY formate
+    func getCurrentDate() -> String {
+        let date = Date()
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.year, .month, .day,], from: date)
+        return String(describing: components.month!) + "/" + String(describing: components.day!) + "/" + String(describing: components.year!)
+    }
+    
+    //This function toggles between the play and pause buttons
     func updatePlayPauseButton(title: String, color: UIColor) {
         self.playPauseButton.backgroundColor = color
         self.playPauseButton.setTitle(title, for: .normal)
+        
     }
     
 }
