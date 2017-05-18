@@ -24,6 +24,10 @@ class ScoreboardViewController: UIViewController {
     @IBOutlet weak var scoreboardContainer: UIView!
     @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var settingsIcon: UIButton!
+    @IBOutlet weak var pageController: UIPageControl!
+    @IBOutlet weak var leftArrowButton: UIButton!
+    @IBOutlet weak var rightArrowButton: UIButton!
+    @IBOutlet weak var tableView: UITableView!
     
     //MARK: Variables
     
@@ -46,10 +50,14 @@ class ScoreboardViewController: UIViewController {
         scoreboardContainer.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
         scoreboardContainer.layer.shadowOpacity = 1.0
         scoreboardContainer.layer.shadowRadius = 30
+        leftArrowButton.alpha = 0
+        leftArrowButton.isEnabled = false
+        tableView.alpha = 0
+        tableView.isEditing = false
 //        PhoneSession.sharedInstance.startSession()
 //        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToBeTheControllerNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneToBeTheController"), object: nil)
 //        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToBeTheScoreboardNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneToBeTheScoreboard"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhonePickedTimeNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneTimeFromPicker"), object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhonePickedTimeNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneTimeFromPicker"), object: nil)
 //        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToStartGameNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneToStartGame"), object: nil)
 //        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToStopGameNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneToStopGame"), object: nil)
 //        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneScoreDataNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneScoreData"), object: nil)
@@ -136,7 +144,7 @@ class ScoreboardViewController: UIViewController {
     
 //MARK: Actions
     
-    //This function 
+    //This function
     @IBAction func playPauseButtonTapped(_ sender: Any) {
         if currentTime == -2 {
             self.restartGame()
@@ -169,6 +177,26 @@ class ScoreboardViewController: UIViewController {
             player2Score = player2Score + 1
             player2ScoreButton.setTitle(String(player2Score), for: UIControlState())
         }
+    }
+    
+    @IBAction func leftArrowButtonIsTapped(_ sender: Any) {
+        leftArrowButton.alpha = 0
+        leftArrowButton.isEnabled = false
+        rightArrowButton.alpha = 1
+        rightArrowButton.isEnabled = true
+        tableView.alpha = 0
+        tableView.isEditing = false
+        pageController.currentPage = 0
+    }
+    
+    @IBAction func rightArrowButtonIsTapped(_ sender: Any) {
+        rightArrowButton.alpha = 0
+        rightArrowButton.isEnabled = false
+        leftArrowButton.alpha = 1
+        leftArrowButton.isEnabled = true
+        tableView.alpha = 1
+        tableView.isEditing = true
+        pageController.currentPage = 1
     }
     
     //MARK: Label Functions
