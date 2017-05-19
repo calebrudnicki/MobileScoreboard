@@ -11,7 +11,7 @@ import AudioToolbox
 import AVFoundation
 import CoreData
 
-class ScoreboardViewController: UIViewController {
+class ScoreboardViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     //MARK: Outlets
     
@@ -54,6 +54,8 @@ class ScoreboardViewController: UIViewController {
         leftArrowButton.isEnabled = false
         tableView.alpha = 0
         tableView.isEditing = false
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
 //        PhoneSession.sharedInstance.startSession()
 //        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToBeTheControllerNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneToBeTheController"), object: nil)
 //        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToBeTheScoreboardNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneToBeTheScoreboard"), object: nil)
@@ -179,6 +181,7 @@ class ScoreboardViewController: UIViewController {
         }
     }
     
+    //This function changes the scoreboard into a table view full of past scores when the left arrow is tapped
     @IBAction func leftArrowButtonIsTapped(_ sender: Any) {
         leftArrowButton.alpha = 0
         leftArrowButton.isEnabled = false
@@ -189,6 +192,7 @@ class ScoreboardViewController: UIViewController {
         pageController.currentPage = 0
     }
     
+    //This function changes the scoreboard back into a scoreboard when the right arrow is tapped
     @IBAction func rightArrowButtonIsTapped(_ sender: Any) {
         rightArrowButton.alpha = 0
         rightArrowButton.isEnabled = false
@@ -427,7 +431,18 @@ class ScoreboardViewController: UIViewController {
     func updatePlayPauseButton(title: String, color: UIColor) {
         self.playPauseButton.backgroundColor = color
         self.playPauseButton.setTitle(title, for: .normal)
-        
+    }
+    
+    //This delegate function sets the amount of rows in the table view to 25
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    //This delegate functions sets data in each cell to the appropriate movie rank, name, date, and price
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ViewControllerTableViewCell
+        cell.rankLabel.text = String(indexPath.row + 1)
+        return cell
     }
     
 }
