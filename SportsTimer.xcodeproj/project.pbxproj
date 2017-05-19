@@ -27,6 +27,7 @@
 		825140F11EC897C7005E6F2D /* SportsTimer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 825140EF1EC897C7005E6F2D /* SportsTimer.xcdatamodeld */; };
 		8284C9831D2EE70600A08EEF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8284C9821D2EE70600A08EEF /* Main.storyboard */; };
 		82A3D67B1EAAAE3A009D7EBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 822191F71D1C2AA600309328 /* Assets.xcassets */; };
+		82D544C21ECF6F7900ADCF64 /* GamesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D544C11ECF6F7900ADCF64 /* GamesTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +98,7 @@
 		825140ED1EC3BB06005E6F2D /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		825140F01EC897C7005E6F2D /* SportsTimer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SportsTimer.xcdatamodel; sourceTree = "<group>"; };
 		8284C9821D2EE70600A08EEF /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		82D544C11ECF6F7900ADCF64 /* GamesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamesTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +148,7 @@
 				822B6E0B1D57AA0A002566AA /* PhoneSession.swift */,
 				825140ED1EC3BB06005E6F2D /* WelcomeViewController.swift */,
 				824435321D2D6FA200383452 /* ScoreboardViewController.swift */,
+				82D544C11ECF6F7900ADCF64 /* GamesTableViewCell.swift */,
 				8284C9821D2EE70600A08EEF /* Main.storyboard */,
 				822191E71D1C2AA500309328 /* Assets.xcassets */,
 				822191E91D1C2AA500309328 /* LaunchScreen.storyboard */,
@@ -347,6 +350,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				822191E11D1C2AA500309328 /* AppDelegate.swift in Sources */,
+				82D544C21ECF6F7900ADCF64 /* GamesTableViewCell.swift in Sources */,
 				825140EE1EC3BB06005E6F2D /* WelcomeViewController.swift in Sources */,
 				824435331D2D6FA200383452 /* ScoreboardViewController.swift in Sources */,
 				825140F11EC897C7005E6F2D /* SportsTimer.xcdatamodeld in Sources */,

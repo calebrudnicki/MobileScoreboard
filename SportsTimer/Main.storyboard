@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -39,7 +40,7 @@
                                 <color key="tintColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                             </segmentedControl>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="SS1-19-nnA" userLabel="Text Field Stack View">
-                                <rect key="frame" x="66.5" y="233" width="534" height="56.5"/>
+                                <rect key="frame" x="66.5" y="232.5" width="534" height="56.5"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Player 1" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xk0-g1-MVB">
                                         <rect key="frame" x="0.0" y="0.0" width="254.5" height="56.5"/>
@@ -133,10 +134,6 @@
                             <view alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TQm-oj-9SQ">
                                 <rect key="frame" x="50" y="28" width="567" height="319"/>
                                 <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zZ1-ed-bM6">
-                                        <rect key="frame" x="0.0" y="0.0" width="567" height="319"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </tableView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:10" textAlignment="center" lineBreakMode="tailTruncation" minimumScaleFactor="0.01" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hf8-bn-hDm">
                                         <rect key="frame" x="0.5" y="17.5" width="567" height="95.5"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="100"/>
@@ -170,10 +167,10 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="I5w-Pf-lJY" userLabel="Score Stack View">
-                                        <rect key="frame" x="42.5" y="194" width="482" height="63.5"/>
+                                        <rect key="frame" x="42.5" y="194" width="482" height="63"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0us-qn-Q0Z" userLabel="Player1 Score Button">
-                                                <rect key="frame" x="0.0" y="0.0" width="216" height="63.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="216" height="63"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="50"/>
                                                 <state key="normal" title="0">
                                                     <color key="titleColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -186,7 +183,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6dp-LB-k7J" userLabel="Player2 Score Button">
-                                                <rect key="frame" x="266" y="0.0" width="216" height="63.5"/>
+                                                <rect key="frame" x="266" y="0.0" width="216" height="63"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="50"/>
                                                 <state key="normal" title="0">
                                                     <color key="titleColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -201,7 +198,7 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cfI-tx-IqB">
-                                        <rect key="frame" x="0.0" y="271.5" width="567" height="47.5"/>
+                                        <rect key="frame" x="0.0" y="271" width="567" height="48"/>
                                         <color key="backgroundColor" red="0.054901961239999998" green="0.63137257099999999" blue="0.34117648010000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="20"/>
                                         <state key="normal" title="Start Game">
@@ -220,7 +217,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uWy-Y7-csq">
-                                        <rect key="frame" x="4" y="4" width="38" height="37.5"/>
+                                        <rect key="frame" x="4" y="4" width="37.5" height="37.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="uWy-Y7-csq" secondAttribute="height" multiplier="1:1" id="eTC-tB-e5b"/>
                                         </constraints>
@@ -231,6 +228,71 @@
                                             <segue destination="GaW-RK-Sbz" kind="show" id="cbp-5L-EGw"/>
                                         </connections>
                                     </button>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zZ1-ed-bM6">
+                                        <rect key="frame" x="0.0" y="0.0" width="567" height="319"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="75" id="JZx-3f-Nw9" customClass="GamesTableViewCell" customModule="SportsTimer" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="28" width="567" height="75"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JZx-3f-Nw9" id="g5W-uX-5wL">
+                                                    <rect key="frame" x="0.0" y="0.0" width="567" height="74"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MKJ-bn-AJ6">
+                                                            <rect key="frame" x="8" y="8" width="59" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GQe-dh-KrG">
+                                                            <rect key="frame" x="8" y="45" width="62" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lQz-kq-eyE">
+                                                            <rect key="frame" x="111" y="8" width="11" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nNh-Uc-ZEk">
+                                                            <rect key="frame" x="112" y="45" width="11" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MM/DD/YY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t1a-EY-sTN">
+                                                            <rect key="frame" x="474" y="27" width="85" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="GQe-dh-KrG" firstAttribute="leading" secondItem="g5W-uX-5wL" secondAttribute="leadingMargin" id="51X-f3-C4m"/>
+                                                        <constraint firstAttribute="topMargin" secondItem="MKJ-bn-AJ6" secondAttribute="top" id="FE3-ZK-sc9"/>
+                                                        <constraint firstItem="lQz-kq-eyE" firstAttribute="top" secondItem="MKJ-bn-AJ6" secondAttribute="top" id="Out-0p-oix"/>
+                                                        <constraint firstItem="lQz-kq-eyE" firstAttribute="leading" secondItem="MKJ-bn-AJ6" secondAttribute="trailing" constant="44" id="RsK-Ti-3ct"/>
+                                                        <constraint firstItem="t1a-EY-sTN" firstAttribute="centerY" secondItem="g5W-uX-5wL" secondAttribute="centerY" id="gBk-cU-ijS"/>
+                                                        <constraint firstAttribute="bottomMargin" secondItem="GQe-dh-KrG" secondAttribute="bottom" id="hzk-Qs-Lsm"/>
+                                                        <constraint firstItem="MKJ-bn-AJ6" firstAttribute="leading" secondItem="g5W-uX-5wL" secondAttribute="leadingMargin" id="owV-7I-o3U"/>
+                                                        <constraint firstItem="nNh-Uc-ZEk" firstAttribute="leading" secondItem="GQe-dh-KrG" secondAttribute="trailing" constant="41.5" id="swu-xi-DAZ"/>
+                                                        <constraint firstItem="nNh-Uc-ZEk" firstAttribute="bottom" secondItem="GQe-dh-KrG" secondAttribute="bottom" id="uur-ET-ry5"/>
+                                                        <constraint firstItem="t1a-EY-sTN" firstAttribute="trailing" secondItem="g5W-uX-5wL" secondAttribute="trailingMargin" id="yK6-3Q-lgL"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="dateLabel" destination="t1a-EY-sTN" id="Qve-e2-piQ"/>
+                                                    <outlet property="player1Label" destination="MKJ-bn-AJ6" id="0L0-jB-bqd"/>
+                                                    <outlet property="player1ScoreLabel" destination="lQz-kq-eyE" id="pAk-iq-hiO"/>
+                                                    <outlet property="player2Label" destination="GQe-dh-KrG" id="KVN-T4-EC4"/>
+                                                    <outlet property="player2ScoreLabel" destination="nNh-Uc-ZEk" id="jK3-11-FLH"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
+                                    </tableView>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -263,7 +325,7 @@
                                 <rect key="frame" x="322" y="338" width="23" height="37"/>
                             </pageControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hJg-oW-ztp">
-                                <rect key="frame" x="637" y="172" width="30" height="30"/>
+                                <rect key="frame" x="637" y="172.5" width="30" height="30"/>
                                 <state key="normal" title="&gt;">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -272,7 +334,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PsJ-pR-SFr">
-                                <rect key="frame" x="0.0" y="172" width="30" height="30"/>
+                                <rect key="frame" x="0.0" y="172.5" width="30" height="30"/>
                                 <state key="normal" title="&lt;">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -317,7 +379,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dRr-zq-zVm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="865.7393850658857" y="1350"/>
+            <point key="canvasLocation" x="864.91754122938539" y="1349.5999999999999"/>
         </scene>
     </scenes>
     <resources>

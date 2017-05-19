@@ -201,6 +201,15 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
         tableView.alpha = 1
         tableView.isEditing = true
         pageController.currentPage = 1
+        if #available(iOS 10.0, *) {
+            self.games = []
+            self.retrieveFromCoreData()
+            self.tableView.reloadData()
+        } else {
+            // Fallback on earlier versions
+        }
+        print(games.count)
+        print(games[0].date!)
     }
     
     //MARK: Label Functions
@@ -300,15 +309,6 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
         //This is where all the Core Data stuff currently is
         if #available(iOS 10.0, *) {
             self.addGameToCoreData()
-            self.retrieveFromCoreData()
-            for i in 0...games.count - 1 {
-                print(i)
-                print(games[i].player1!)
-                print(games[i].player1Score!)
-                print(games[i].player2!)
-                print(games[i].player2Score!)
-                print(games[i].date!)
-            }
         } else {
             print("Can't save to core data")
         }
@@ -433,15 +433,21 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
         self.playPauseButton.setTitle(title, for: .normal)
     }
     
+    //MARK: TableView Delegate Functions
+    
     //This delegate function sets the amount of rows in the table view to 25
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return games.count
     }
     
     //This delegate functions sets data in each cell to the appropriate movie rank, name, date, and price
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ViewControllerTableViewCell
-        cell.rankLabel.text = String(indexPath.row + 1)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! GamesTableViewCell
+        cell.player1Label.text = self.games[indexPath.row].player1
+        cell.player1ScoreLabel.text = String(describing: self.games[indexPath.row].player1Score!)
+        cell.player2Label.text = self.games[indexPath.row].player2
+        cell.player2ScoreLabel.text = String(describing: self.games[indexPath.row].player2Score!)
+        cell.dateLabel.text = games[indexPath.row].date
         return cell
     }
     
