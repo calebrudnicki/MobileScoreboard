@@ -401,6 +401,20 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
         }
     }
     
+    //This function deletes a specific game from CoreData
+    @available(iOS 10.0, *)
+    func deleteFromCoreData(_ indexPath: IndexPath) {
+        let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
+        let context = appDelegate.persistentContainer.viewContext
+        let gameToBeDeleted = games[(indexPath as NSIndexPath).row]
+        context.delete(gameToBeDeleted)
+        do {
+            try context.save()
+        } catch let error as NSError {
+            fatalError("Failed to fetch movie: \(error)")
+        }
+    }
+    
     //MARK: Helper Functions
     
     //This function updates the timer label as the time is changed on the watch's picker view
@@ -449,6 +463,20 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
         cell.player2ScoreLabel.text = String(describing: self.games[indexPath.row].player2Score!)
         cell.dateLabel.text = games[indexPath.row].date
         return cell
+    }
+    
+    //This delegate function allows the user to delete a cell
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            if #available(iOS 10.0, *) {
+                self.deleteFromCoreData(indexPath)
+            } else {
+                // Fallback on earlier versions
+            }
+            self.games.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            self.tableView.reloadData()
+        }
     }
     
 }

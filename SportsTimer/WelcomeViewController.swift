@@ -42,6 +42,10 @@ class WelcomeViewController: UIViewController {
                 sportsSegmentedController.selectedSegmentIndex = 4
             }
         }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(WelcomeViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(WelcomeViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -81,6 +85,26 @@ class WelcomeViewController: UIViewController {
             performSegue(withIdentifier: "showScoreboardSegue", sender: nil)
         } else {
             dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    //MARK: Keyboard Functions
+    
+    //This function shows the keyboard when the text field is tapped
+    func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0{
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
+    
+    //This function hides the keyboard when anything but the text field is tapped
+    func keyboardWillHide(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y != 0{
+                self.view.frame.origin.y += keyboardSize.height
+            }
         }
     }
     
