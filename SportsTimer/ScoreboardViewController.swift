@@ -53,7 +53,6 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
         leftArrowButton.alpha = 0
         leftArrowButton.isEnabled = false
         tableView.alpha = 0
-        tableView.isEditing = false
         self.tableView.delegate = self
         self.tableView.dataSource = self
 //        PhoneSession.sharedInstance.startSession()
@@ -188,7 +187,6 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
         rightArrowButton.alpha = 1
         rightArrowButton.isEnabled = true
         tableView.alpha = 0
-        tableView.isEditing = false
         pageController.currentPage = 0
     }
     
@@ -199,7 +197,6 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
         leftArrowButton.alpha = 1
         leftArrowButton.isEnabled = true
         tableView.alpha = 1
-        tableView.isEditing = true
         pageController.currentPage = 1
         if #available(iOS 10.0, *) {
             self.games = []
@@ -208,8 +205,6 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
         } else {
             // Fallback on earlier versions
         }
-        print(games.count)
-        print(games[0].date!)
     }
     
     //MARK: Label Functions
@@ -227,8 +222,21 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
         player2Score = 0
         player1ScoreButton.setTitle("0", for: UIControlState())
         player2ScoreButton.setTitle("0", for: UIControlState())
-        player1ScoreButton.setTitleColor(UIColor.white, for: .normal)
-        player2ScoreButton.setTitleColor(UIColor.white, for: .normal)
+        
+        if let selectedSport = UserDefaults.standard.object(forKey: "selectedSport") as? String {
+            if selectedSport == "Basketball" {
+                self.changeScoreboard(boardR: 101, boardG: 0, boardB: 0, elseR: 245, elseG: 245, elseB: 245)
+            } else if selectedSport == "Hockey" {
+                self.changeScoreboard(boardR: 11, boardG: 34, boardB: 15, elseR: 245, elseG: 245, elseB: 245)
+            } else if selectedSport == "Soccer" {
+                self.changeScoreboard(boardR: 0, boardG: 9, boardB: 69, elseR: 245, elseG: 245, elseB: 245)
+            } else if selectedSport == "Baseball" {
+                self.changeScoreboard(boardR: 47, boardG: 48, boardB: 48, elseR: 169, elseG: 124, elseB: 80)
+            } else {
+                self.changeScoreboard(boardR: 183, boardG: 175, boardB: 174, elseR: 10, elseG: 10, elseB: 10)
+            }
+        }
+        
         self.player1ScoreButton.isEnabled = true
         self.player2ScoreButton.isEnabled = true
         UIApplication.shared.isIdleTimerDisabled = false
@@ -342,10 +350,10 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
                 let statusNotice = AVSpeechUtterance(string: "One minute remaining. Both sides are tied at \(player1Score!) a peice")
                 self.speechSynthesizer.speak(statusNotice)
             } else if player1Score > player2Score {
-                let statusNotice = AVSpeechUtterance(string: "One minute remaining. Player 2 is down by \(player1Score! - player2Score!) goals")
+                let statusNotice = AVSpeechUtterance(string: "One minute remaining. \(player2TitleLabel.text!) is down by \(player1Score! - player2Score!) goals")
                 self.speechSynthesizer.speak(statusNotice)
             } else {
-                let statusNotice = AVSpeechUtterance(string: "One minute remaining. Player 1 is down by \(player2Score! - player1Score!) goals")
+                let statusNotice = AVSpeechUtterance(string: "One minute remaining. \(player1TitleLabel.text!) is down by \(player2Score! - player1Score!) goals")
                 self.speechSynthesizer.speak(statusNotice)
             }
         } else if occasion == "TimesUp" {
@@ -353,10 +361,10 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
                 let statusNotice = AVSpeechUtterance(string: "Game over. Both sides tied the game with \(player1Score) points")
                 self.speechSynthesizer.speak(statusNotice)
             } else if player1Score > player2Score {
-                let statusNotice = AVSpeechUtterance(string: "Game over. Player 1 wins \(player1Score!) to \(player2Score!)")
+                let statusNotice = AVSpeechUtterance(string: "Game over. \(player1TitleLabel.text!) wins \(player1Score!) to \(player2Score!)")
                 self.speechSynthesizer.speak(statusNotice)
             } else {
-                let statusNotice = AVSpeechUtterance(string: "Game over. Player 2 wins \(player2Score!) to \(player1Score!)")
+                let statusNotice = AVSpeechUtterance(string: "Game over. \(player2TitleLabel.text!) wins \(player2Score!) to \(player1Score!)")
                 self.speechSynthesizer.speak(statusNotice)
             }
         }
@@ -476,6 +484,9 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
             self.games.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
             self.tableView.reloadData()
+            if (self.games.count < 1) {
+                
+            }
         }
     }
     
