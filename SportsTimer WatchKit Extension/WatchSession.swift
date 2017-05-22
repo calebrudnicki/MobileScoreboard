@@ -40,6 +40,23 @@ class WatchSession: NSObject, WCSessionDelegate {
     
 //MARK: Data Senders
     
+    func askPhoneForUserDefaults() {
+        let actionDictFromWatch = ["Action": "askPhoneForUserDefaults"]
+        session.sendMessage(actionDictFromWatch, replyHandler: nil)
+    }
+    
+    
+    
+    
+    
+ ////////////////////////////////////////////////////////////////////////////////
+    
+    
+    
+    
+    
+    
+    
     //This function sends a message to PhoneSession with the key tellPhoneToBeTheController
     func tellPhoneToBeTheController() {
         let actionDictFromWatch = ["Action": "tellPhoneToBeTheController"]

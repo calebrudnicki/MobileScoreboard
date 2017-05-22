@@ -46,10 +46,16 @@ class WelcomeViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(WelcomeViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(WelcomeViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
+        PhoneSession.sharedInstance.startSession()
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
     }
     
     //MARK: Actions
@@ -86,6 +92,8 @@ class WelcomeViewController: UIViewController {
         } else {
             dismiss(animated: true, completion: nil)
         }
+        
+        PhoneSession.sharedInstance.tellWatchPlayerNames(player1TextField.text!, player2Name: player2TextField.text!)
     }
     
     //MARK: Keyboard Functions

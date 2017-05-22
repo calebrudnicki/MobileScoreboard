@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3KW-jg-8WF">
-    <device id="watch42" orientation="portrait">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+    <device id="watch38" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -28,13 +28,12 @@
                                     <variation key="device=watch42mm" height="78"/>
                                 </timer>
                                 <separator width="1" alignment="left" id="TSF-1R-qY4"/>
-                                <group width="1" alignment="left" spacing="5" id="IO1-14-nL3">
+                                <group width="1" alignment="center" spacing="4" id="IO1-14-nL3">
                                     <items>
-                                        <label alignment="left" verticalAlignment="center" text="Player 1" id="hzh-yl-PR1">
+                                        <label alignment="left" verticalAlignment="center" text="Player 1" textAlignment="center" id="hzh-yl-PR1">
                                             <fontDescription key="font" type="system" weight="ultraLight" pointSize="18"/>
-                                            <variation key="device=watch42mm" textAlignment="natural"/>
                                         </label>
-                                        <label alignment="right" verticalAlignment="center" text="Player 2" id="Bf5-i6-tPh">
+                                        <label alignment="right" verticalAlignment="center" text="Player 2" textAlignment="center" id="Bf5-i6-tPh">
                                             <fontDescription key="font" type="system" weight="ultraLight" pointSize="18"/>
                                         </label>
                                     </items>
@@ -89,7 +88,9 @@
                     </menu>
                     <color key="backgroundColor" red="0.086274512112140656" green="0.62745100259780884" blue="0.5215686559677124" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <connections>
+                        <outlet property="player1Name" destination="hzh-yl-PR1" id="XJy-ma-U2M"/>
                         <outlet property="player1Score" destination="tqc-Bv-34b" id="8RD-te-8hK"/>
+                        <outlet property="player2Name" destination="Bf5-i6-tPh" id="m4b-4d-cQO"/>
                         <outlet property="player2Score" destination="8Nz-vZ-9Lx" id="vlJ-LL-Yro"/>
                         <outlet property="timer" destination="sGL-Lu-aeW" id="e86-nq-Yde"/>
                     </connections>

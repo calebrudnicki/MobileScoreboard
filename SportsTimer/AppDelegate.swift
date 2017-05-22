@@ -13,8 +13,7 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         //Play with storyboards for user onboarding
@@ -33,7 +32,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = vc
         self.window?.makeKeyAndVisible()
         
+        PhoneSession.sharedInstance.startSession()
+        NotificationCenter.default.addObserver(self, selector: #selector(AppDelegate.receivedAskPhoneForUserDefaultsNotification(_:)), name:NSNotification.Name(rawValue: "askPhoneForUserDefaults"), object: nil)
+        
         return true
+    }
+    
+    func receivedAskPhoneForUserDefaultsNotification(_ notification: NSNotification) {
+        if let player1Name = UserDefaults.standard.object(forKey: "player1") as? String, let player2Name = UserDefaults.standard.object(forKey: "player2") as? String {
+            PhoneSession.sharedInstance.tellWatchPlayerNames(player1Name, player2Name: player2Name)
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

@@ -21,6 +21,8 @@ class ScoreboardInterfaceController: WKInterfaceController, WCSessionDelegate {
 //MARK: Outlets
     
     @IBOutlet var timer: WKInterfaceTimer!
+    @IBOutlet var player1Name: WKInterfaceLabel!
+    @IBOutlet var player2Name: WKInterfaceLabel!
     @IBOutlet var player1Score: WKInterfaceButton!
     @IBOutlet var player2Score: WKInterfaceButton!
     
@@ -42,20 +44,25 @@ class ScoreboardInterfaceController: WKInterfaceController, WCSessionDelegate {
         if let val: String = context as? String {
             self.convertClockFormatToSeconds(val)
         }
-        self.newGame()
+        //self.newGame()
         player1Score.setTitle(String(score1))
         player2Score.setTitle(String(score2))
+        
+        WatchSession.sharedInstance.startSession()
+        WatchSession.sharedInstance.askPhoneForUserDefaults()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardInterfaceController.receivedTellWatchPlayerNamesNotification(_:)), name:NSNotification.Name(rawValue: "tellWatchPlayerNames"), object: nil)
     }
     
     //This function creates a shared instance of a session
     override func willActivate() {
         super.willActivate()
-        if (WCSession.default().isReachable) {
+        /*if (WCSession.default().isReachable) {
             WatchSession.sharedInstance.startSession()
         } else {
             //WatchSession.sharedInstance.startSession()
             print("not reachable")
-        }
+        }*/
     }
     
     //This function invalidates the backing timer when the end game button is tapped
@@ -74,6 +81,12 @@ class ScoreboardInterfaceController: WKInterfaceController, WCSessionDelegate {
         super.init ()
         self.setTitle("End Game")
     }
+    
+    func receivedTellWatchPlayerNamesNotification(_ notification: Notification) {
+        let dataDict = notification.object as? [String : AnyObject]
+        player1Name.setText((dataDict?["Player1Name"]!)! as? String)
+        player2Name.setText((dataDict?["Player2Name"]!)! as? String)
+    }
 
 //MARK: Starting a New Game
     
@@ -82,7 +95,7 @@ class ScoreboardInterfaceController: WKInterfaceController, WCSessionDelegate {
         let date = Date(timeIntervalSinceNow: countdown)
         timer.setDate(date)
         timer.start()
-        WatchSession.sharedInstance.tellPhoneToStartGame(countdown)
+        //WatchSession.sharedInstance.tellPhoneToStartGame(countdown)
         //This is a one second timer that calls the secondTimerFired() function everytime it ends, then it repeats
         backingTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ScoreboardInterfaceController.secondTimerFired), userInfo: nil, repeats: true)
     }
