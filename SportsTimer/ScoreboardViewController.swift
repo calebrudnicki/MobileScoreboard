@@ -24,6 +24,7 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
     @IBOutlet weak var scoreboardContainer: UIView!
     @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var settingsIcon: UIButton!
+    @IBOutlet weak var watchIcon: UIButton!
     @IBOutlet weak var pageController: UIPageControl!
     @IBOutlet weak var leftArrowButton: UIButton!
     @IBOutlet weak var rightArrowButton: UIButton!
@@ -53,6 +54,7 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
         leftArrowButton.alpha = 0
         leftArrowButton.isEnabled = false
         tableView.alpha = 0
+        watchIcon.alpha = 0
         self.tableView.delegate = self
         self.tableView.dataSource = self
 //        PhoneSession.sharedInstance.startSession()
@@ -62,6 +64,19 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
 //        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToStartGameNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneToStartGame"), object: nil)
 //        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToStopGameNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneToStopGame"), object: nil)
 //        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneScoreDataNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneScoreData"), object: nil)
+        
+        
+    NotificationCenter.default.addObserver(self, selector: #selector(AppDelegate.receivedTellPhoneWatchIsOnNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneWatchIsOn"), object: nil)
+        
+    }
+    
+    func receivedTellPhoneWatchIsOnNotification(_ notification: NSNotification) {
+        let dataDict = notification.object as? [String : AnyObject]
+        if (dataDict?["WatchIsOn"]! as? Bool)! {
+            watchIcon.alpha = 1
+        } else {
+            watchIcon.alpha = 0
+        }
     }
     
     //This function updates the scoreboard based on the selected sport when the view appears
@@ -77,22 +92,27 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
                 backgroundImage.image = #imageLiteral(resourceName: "BasketballBackground")
                 self.changeScoreboard(boardR: 101, boardG: 0, boardB: 0, elseR: 245, elseG: 245, elseB: 245)
                 settingsIcon.setImage(#imageLiteral(resourceName: "SettingsIconWhite"), for: .normal)
+                watchIcon.setImage(#imageLiteral(resourceName: "WatchIconWhite"), for: .normal)
             } else if selectedSport == "Hockey" {
                 backgroundImage.image = #imageLiteral(resourceName: "HockeyBackground")
                 self.changeScoreboard(boardR: 11, boardG: 34, boardB: 15, elseR: 245, elseG: 245, elseB: 245)
                 settingsIcon.setImage(#imageLiteral(resourceName: "SettingsIconWhite"), for: .normal)
+                watchIcon.setImage(#imageLiteral(resourceName: "WatchIconWhite"), for: .normal)
             } else if selectedSport == "Soccer" {
                 backgroundImage.image = #imageLiteral(resourceName: "SoccerBackground")
                 self.changeScoreboard(boardR: 0, boardG: 9, boardB: 69, elseR: 245, elseG: 245, elseB: 245)
                 settingsIcon.setImage(#imageLiteral(resourceName: "SettingsIconWhite"), for: .normal)
+                watchIcon.setImage(#imageLiteral(resourceName: "WatchIconWhite"), for: .normal)
             } else if selectedSport == "Baseball" {
                 backgroundImage.image = #imageLiteral(resourceName: "BaseballBackground")
                 self.changeScoreboard(boardR: 47, boardG: 48, boardB: 48, elseR: 169, elseG: 124, elseB: 80)
                 settingsIcon.setImage(#imageLiteral(resourceName: "SettingsIconWhite"), for: .normal)
+                watchIcon.setImage(#imageLiteral(resourceName: "WatchIconWhite"), for: .normal)
             } else {
                 backgroundImage.image = #imageLiteral(resourceName: "FootballBackground")
                 self.changeScoreboard(boardR: 183, boardG: 175, boardB: 174, elseR: 10, elseG: 10, elseB: 10)
                 settingsIcon.setImage(#imageLiteral(resourceName: "SettingsIconBlack"), for: .normal)
+                watchIcon.setImage(#imageLiteral(resourceName: "WatchIconBlack"), for: .normal)
             }
         }
     }

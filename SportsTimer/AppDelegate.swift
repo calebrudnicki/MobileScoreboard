@@ -13,6 +13,7 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var watchAppIsOn: Bool? = false
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -34,6 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         PhoneSession.sharedInstance.startSession()
         NotificationCenter.default.addObserver(self, selector: #selector(AppDelegate.receivedAskPhoneForUserDefaultsNotification(_:)), name:NSNotification.Name(rawValue: "askPhoneForUserDefaults"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(AppDelegate.receivedTellPhoneWatchIsOnNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneWatchIsOn"), object: nil)
         
         return true
     }
@@ -42,6 +44,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let player1Name = UserDefaults.standard.object(forKey: "player1") as? String, let player2Name = UserDefaults.standard.object(forKey: "player2") as? String {
             PhoneSession.sharedInstance.tellWatchPlayerNames(player1Name, player2Name: player2Name)
         }
+    }
+    
+    func receivedTellPhoneWatchIsOnNotification(_ notification: NSNotification) {
+        let dataDict = notification.object as? [String : AnyObject]
+        watchAppIsOn = dataDict?["WatchIsOn"]! as? Bool
+        print(watchAppIsOn!)
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

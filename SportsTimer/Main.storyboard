@@ -134,100 +134,6 @@
                             <view alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TQm-oj-9SQ">
                                 <rect key="frame" x="50" y="28" width="567" height="319"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:10" textAlignment="center" lineBreakMode="tailTruncation" minimumScaleFactor="0.01" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hf8-bn-hDm">
-                                        <rect key="frame" x="0.5" y="15.5" width="567" height="96"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="100"/>
-                                        <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                        <variation key="heightClass=regular-widthClass=regular">
-                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="300"/>
-                                        </variation>
-                                    </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="50" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="idP-fH-lzj" userLabel="Team Stack View">
-                                        <rect key="frame" x="42.5" y="119" width="482" height="64"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player 1" textAlignment="center" lineBreakMode="tailTruncation" minimumScaleFactor="0.10000000000000001" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OL8-ZT-5dJ">
-                                                <rect key="frame" x="0.0" y="3" width="216" height="57.5"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="50"/>
-                                                <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                                <variation key="heightClass=regular-widthClass=regular">
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="85"/>
-                                                </variation>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="255" verticalCompressionResistancePriority="751" text="Player 2" textAlignment="center" lineBreakMode="tailTruncation" minimumScaleFactor="0.10000000000000001" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Ar-o9-RtG">
-                                                <rect key="frame" x="266" y="3" width="216" height="57.5"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="50"/>
-                                                <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                                <variation key="heightClass=regular-widthClass=regular">
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="85"/>
-                                                </variation>
-                                            </label>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="I5w-Pf-lJY" userLabel="Score Stack View">
-                                        <rect key="frame" x="42.5" y="192.5" width="482" height="64"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0us-qn-Q0Z" userLabel="Player1 Score Button">
-                                                <rect key="frame" x="0.0" y="0.0" width="216" height="64"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="50"/>
-                                                <state key="normal" title="0">
-                                                    <color key="titleColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                </state>
-                                                <variation key="heightClass=regular-widthClass=regular">
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="125"/>
-                                                </variation>
-                                                <connections>
-                                                    <action selector="player1ButtonTapped:" destination="1Jk-Jm-xvm" eventType="touchUpInside" id="lat-i9-FEz"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6dp-LB-k7J" userLabel="Player2 Score Button">
-                                                <rect key="frame" x="266" y="0.0" width="216" height="64"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="50"/>
-                                                <state key="normal" title="0">
-                                                    <color key="titleColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                </state>
-                                                <variation key="heightClass=regular-widthClass=regular">
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="125"/>
-                                                </variation>
-                                                <connections>
-                                                    <action selector="player2ButtonTapped:" destination="1Jk-Jm-xvm" eventType="touchUpInside" id="eLR-KU-Go7"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cfI-tx-IqB">
-                                        <rect key="frame" x="0.0" y="271" width="567" height="48"/>
-                                        <color key="backgroundColor" red="0.054901961239999998" green="0.63137257099999999" blue="0.34117648010000001" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="20"/>
-                                        <state key="normal" title="Start Game">
-                                            <color key="titleColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.CornerRadius">
-                                                <integer key="value" value="10"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <variation key="heightClass=regular-widthClass=regular">
-                                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="80"/>
-                                        </variation>
-                                        <connections>
-                                            <action selector="playPauseButtonTapped:" destination="1Jk-Jm-xvm" eventType="touchUpInside" id="Sl8-kG-gBV"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uWy-Y7-csq">
-                                        <rect key="frame" x="4" y="4" width="38" height="37.5"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="uWy-Y7-csq" secondAttribute="height" multiplier="1:1" id="eTC-tB-e5b"/>
-                                        </constraints>
-                                        <state key="normal" image="SettingsIconBlack">
-                                            <color key="titleColor" red="0.9410743117" green="0.94123536350000003" blue="0.94106405969999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="GaW-RK-Sbz" kind="show" id="cbp-5L-EGw"/>
-                                        </connections>
-                                    </button>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="99" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zZ1-ed-bM6">
                                         <rect key="frame" x="0.0" y="0.0" width="567" height="319"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -307,6 +213,107 @@
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:10" textAlignment="center" lineBreakMode="tailTruncation" minimumScaleFactor="0.01" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hf8-bn-hDm">
+                                        <rect key="frame" x="0.5" y="15.5" width="567" height="96"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="100"/>
+                                        <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="300"/>
+                                        </variation>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="50" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="idP-fH-lzj" userLabel="Team Stack View">
+                                        <rect key="frame" x="42.5" y="119" width="482" height="64"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player 1" textAlignment="center" lineBreakMode="tailTruncation" minimumScaleFactor="0.10000000000000001" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OL8-ZT-5dJ">
+                                                <rect key="frame" x="0.0" y="3.5" width="216" height="57.5"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="50"/>
+                                                <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                                <variation key="heightClass=regular-widthClass=regular">
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="85"/>
+                                                </variation>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="255" verticalCompressionResistancePriority="751" text="Player 2" textAlignment="center" lineBreakMode="tailTruncation" minimumScaleFactor="0.10000000000000001" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Ar-o9-RtG">
+                                                <rect key="frame" x="266" y="3.5" width="216" height="57.5"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="50"/>
+                                                <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                                <variation key="heightClass=regular-widthClass=regular">
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="85"/>
+                                                </variation>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="I5w-Pf-lJY" userLabel="Score Stack View">
+                                        <rect key="frame" x="42.5" y="192.5" width="482" height="64"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0us-qn-Q0Z" userLabel="Player1 Score Button">
+                                                <rect key="frame" x="0.0" y="0.0" width="216" height="64"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="50"/>
+                                                <state key="normal" title="0">
+                                                    <color key="titleColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <variation key="heightClass=regular-widthClass=regular">
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="125"/>
+                                                </variation>
+                                                <connections>
+                                                    <action selector="player1ButtonTapped:" destination="1Jk-Jm-xvm" eventType="touchUpInside" id="lat-i9-FEz"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6dp-LB-k7J" userLabel="Player2 Score Button">
+                                                <rect key="frame" x="266" y="0.0" width="216" height="64"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="50"/>
+                                                <state key="normal" title="0">
+                                                    <color key="titleColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <variation key="heightClass=regular-widthClass=regular">
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="125"/>
+                                                </variation>
+                                                <connections>
+                                                    <action selector="player2ButtonTapped:" destination="1Jk-Jm-xvm" eventType="touchUpInside" id="eLR-KU-Go7"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cfI-tx-IqB">
+                                        <rect key="frame" x="0.0" y="271" width="567" height="48"/>
+                                        <color key="backgroundColor" red="0.054901961239999998" green="0.63137257099999999" blue="0.34117648010000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="20"/>
+                                        <state key="normal" title="Start Game">
+                                            <color key="titleColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.CornerRadius">
+                                                <integer key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="80"/>
+                                        </variation>
+                                        <connections>
+                                            <action selector="playPauseButtonTapped:" destination="1Jk-Jm-xvm" eventType="touchUpInside" id="Sl8-kG-gBV"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uWy-Y7-csq">
+                                        <rect key="frame" x="4" y="4" width="38" height="37.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="uWy-Y7-csq" secondAttribute="height" multiplier="1:1" id="eTC-tB-e5b"/>
+                                        </constraints>
+                                        <state key="normal" image="SettingsIconBlack">
+                                            <color key="titleColor" red="0.9410743117" green="0.94123536350000003" blue="0.94106405969999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="GaW-RK-Sbz" kind="show" id="cbp-5L-EGw"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JAv-7N-DfU" userLabel="Watch Icon">
+                                        <rect key="frame" x="553.5" y="4" width="9.5" height="16"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="JAv-7N-DfU" secondAttribute="height" multiplier="13:22" id="jUT-yn-zmc"/>
+                                        </constraints>
+                                        <state key="normal" image="WatchIconBlack"/>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -318,6 +325,7 @@
                                     <constraint firstItem="hf8-bn-hDm" firstAttribute="centerX" secondItem="TQm-oj-9SQ" secondAttribute="centerX" id="7Bz-Z4-Tc6"/>
                                     <constraint firstItem="idP-fH-lzj" firstAttribute="width" secondItem="TQm-oj-9SQ" secondAttribute="width" multiplier="0.85" id="8dS-bi-V30"/>
                                     <constraint firstItem="cfI-tx-IqB" firstAttribute="top" secondItem="I5w-Pf-lJY" secondAttribute="bottom" multiplier="1.05" constant="1" id="BK1-lB-PMb"/>
+                                    <constraint firstItem="JAv-7N-DfU" firstAttribute="top" secondItem="TQm-oj-9SQ" secondAttribute="top" constant="4" id="EvU-mx-FuN"/>
                                     <constraint firstItem="idP-fH-lzj" firstAttribute="centerX" secondItem="TQm-oj-9SQ" secondAttribute="centerX" id="Hmg-9u-7wm"/>
                                     <constraint firstItem="zZ1-ed-bM6" firstAttribute="width" secondItem="TQm-oj-9SQ" secondAttribute="width" id="NeI-4f-RsK"/>
                                     <constraint firstAttribute="bottom" secondItem="cfI-tx-IqB" secondAttribute="bottom" id="PiU-27-8p7"/>
@@ -325,7 +333,9 @@
                                     <constraint firstItem="hf8-bn-hDm" firstAttribute="height" secondItem="TQm-oj-9SQ" secondAttribute="height" multiplier="0.3" id="UKL-Kg-qpj"/>
                                     <constraint firstItem="cfI-tx-IqB" firstAttribute="height" secondItem="TQm-oj-9SQ" secondAttribute="height" multiplier="0.15" id="V7T-bI-lBr"/>
                                     <constraint firstItem="hf8-bn-hDm" firstAttribute="centerX" secondItem="TQm-oj-9SQ" secondAttribute="centerX" id="cE9-Ve-jRI"/>
+                                    <constraint firstAttribute="trailing" secondItem="JAv-7N-DfU" secondAttribute="trailing" constant="4" id="fhP-2b-WZa"/>
                                     <constraint firstItem="uWy-Y7-csq" firstAttribute="leading" secondItem="TQm-oj-9SQ" secondAttribute="leading" constant="4" id="ib5-Ty-qLe"/>
+                                    <constraint firstItem="JAv-7N-DfU" firstAttribute="height" secondItem="zZ1-ed-bM6" secondAttribute="height" multiplier="0.05" id="k9H-cn-OoX"/>
                                     <constraint firstItem="cfI-tx-IqB" firstAttribute="width" secondItem="TQm-oj-9SQ" secondAttribute="width" id="qC5-6d-aGK"/>
                                     <constraint firstItem="hf8-bn-hDm" firstAttribute="width" secondItem="TQm-oj-9SQ" secondAttribute="width" id="s3y-oe-Z7p"/>
                                     <constraint firstItem="zZ1-ed-bM6" firstAttribute="centerY" secondItem="TQm-oj-9SQ" secondAttribute="centerY" id="tSN-4m-F7v"/>
@@ -394,6 +404,7 @@
                         <outlet property="settingsIcon" destination="uWy-Y7-csq" id="Ffp-gy-KdJ"/>
                         <outlet property="tableView" destination="zZ1-ed-bM6" id="WYa-UR-sUU"/>
                         <outlet property="timerLabel" destination="hf8-bn-hDm" id="QXA-PC-myq"/>
+                        <outlet property="watchIcon" destination="JAv-7N-DfU" id="STn-OA-Aix"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dRr-zq-zVm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -405,6 +416,7 @@
         <image name="ArrowLeft" width="33" height="44"/>
         <image name="ArrowRight" width="33" height="44"/>
         <image name="SettingsIconBlack" width="88" height="89"/>
+        <image name="WatchIconBlack" width="52" height="88"/>
         <image name="field" width="1725" height="1159"/>
     </resources>
 </document>

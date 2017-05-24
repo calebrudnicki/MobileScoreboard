@@ -35,6 +35,12 @@ class WatchSession: NSObject, WCSessionDelegate {
             session.delegate = self
             session.activate()
         }
+        
+        if session.isReachable == true {
+            print("Its reachable")
+        } else {
+            print("Its not reachable")
+        }
     }
     
     
@@ -43,6 +49,13 @@ class WatchSession: NSObject, WCSessionDelegate {
     func askPhoneForUserDefaults() {
         let actionDictFromWatch = ["Action": "askPhoneForUserDefaults"]
         session.sendMessage(actionDictFromWatch, replyHandler: nil)
+    }
+    
+    func tellPhoneWatchIsOn(_ watchIsOn: Bool) {
+        let payloadDictFromWatch = ["WatchIsOn": watchIsOn]
+        print(watchIsOn)
+        let actionDictFromWatch = ["Action": "tellPhoneWatchIsOn", "Payload": payloadDictFromWatch] as [String : Any]
+        session.sendMessage(actionDictFromWatch as [String : AnyObject], replyHandler: nil)
     }
     
     

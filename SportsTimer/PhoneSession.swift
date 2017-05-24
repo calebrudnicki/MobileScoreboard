@@ -65,9 +65,9 @@ class PhoneSession: NSObject, WCSessionDelegate {
 //    }
     
     func tellWatchPlayerNames(_ player1Name: String, player2Name: String) {
-        let payloadDictFromWatch = ["Player1Name": player1Name, "Player2Name": player2Name]
-        let actionDictFromWatch = ["Action": "tellWatchPlayerNames", "Payload": payloadDictFromWatch] as [String : Any]
-        session.sendMessage(actionDictFromWatch as [String : AnyObject], replyHandler: nil)
+        let payloadDictFromPhone = ["Player1Name": player1Name, "Player2Name": player2Name]
+        let actionDictFromPhone = ["Action": "tellWatchPlayerNames", "Payload": payloadDictFromPhone] as [String : Any]
+        session.sendMessage(actionDictFromPhone as [String : AnyObject], replyHandler: nil)
     }
     
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3KW-jg-8WF">
     <device id="watch38" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -25,32 +25,46 @@
                                     <fontDescription key="font" type="system" pointSize="55"/>
                                     <calendarUnit key="units" minute="YES" second="YES"/>
                                     <variation key="device=watch38mm" height="65"/>
-                                    <variation key="device=watch42mm" height="78"/>
+                                    <variation key="device=watch42mm" height="78">
+                                        <fontDescription key="font" type="system" pointSize="62"/>
+                                    </variation>
                                 </timer>
                                 <separator width="1" alignment="left" id="TSF-1R-qY4"/>
-                                <group width="1" alignment="center" spacing="4" id="IO1-14-nL3">
+                                <group width="1" alignment="center" spacing="12" id="IO1-14-nL3">
                                     <items>
-                                        <label alignment="left" verticalAlignment="center" text="Player 1" textAlignment="center" id="hzh-yl-PR1">
+                                        <label alignment="center" verticalAlignment="center" text="Player 1" textAlignment="center" id="hzh-yl-PR1">
                                             <fontDescription key="font" type="system" weight="ultraLight" pointSize="18"/>
+                                            <variation key="device=watch38mm">
+                                                <fontDescription key="font" type="system" weight="ultraLight" pointSize="16"/>
+                                            </variation>
                                         </label>
-                                        <label alignment="right" verticalAlignment="center" text="Player 2" textAlignment="center" id="Bf5-i6-tPh">
-                                            <fontDescription key="font" type="system" weight="ultraLight" pointSize="18"/>
+                                        <label alignment="center" verticalAlignment="center" text="Player 2" textAlignment="center" id="Bf5-i6-tPh">
+                                            <fontDescription key="font" type="system" weight="ultraLight" pointSize="16"/>
+                                            <variation key="device=watch42mm">
+                                                <fontDescription key="font" type="system" weight="ultraLight" pointSize="18"/>
+                                            </variation>
                                         </label>
                                     </items>
                                     <edgeInsets key="margins" left="4" right="4" top="0.0" bottom="0.0"/>
+                                    <variation key="device=watch42mm" spacing="19"/>
                                 </group>
                                 <group width="1" alignment="center" id="hl7-yr-5yp">
                                     <items>
                                         <button width="0.45000000000000001" height="50" alignment="left" verticalAlignment="center" title="0" id="tqc-Bv-34b">
                                             <fontDescription key="font" type="system" pointSize="30"/>
                                             <variation key="device=watch38mm" height="45"/>
-                                            <variation key="device=watch42mm" height="57"/>
+                                            <variation key="device=watch42mm" height="57">
+                                                <fontDescription key="font" type="system" pointSize="40"/>
+                                            </variation>
                                             <connections>
                                                 <action selector="goalButton1" destination="AgC-eL-Hgc" id="bzc-Js-xdX"/>
                                             </connections>
                                         </button>
                                         <button width="0.45000000000000001" height="1" alignment="right" verticalAlignment="center" title="0" id="8Nz-vZ-9Lx">
-                                            <fontDescription key="font" type="system" pointSize="30"/>
+                                            <fontDescription key="font" type="system" pointSize="40"/>
+                                            <variation key="device=watch38mm">
+                                                <fontDescription key="font" type="system" pointSize="30"/>
+                                            </variation>
                                             <connections>
                                                 <action selector="goalButton2" destination="AgC-eL-Hgc" id="RM7-7j-Fxb"/>
                                             </connections>
@@ -105,7 +119,7 @@
                     <items>
                         <group width="1" height="1" alignment="center" verticalAlignment="center" contentMode="scaleAspectFill" layout="vertical" id="Bnz-b5-mkC">
                             <items>
-                                <label width="1" alignment="center" verticalAlignment="center" text="Mobile Scoreboard" textAlignment="center" id="u9r-Kh-XZ8">
+                                <label width="1" alignment="center" verticalAlignment="center" text="MobileBoard" textAlignment="center" id="u9r-Kh-XZ8">
                                     <color key="textColor" red="0.22322182357311249" green="0.74810665845870972" blue="0.59697610139846802" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="font" name="SFUIDisplay-Semibold" family="SF UI Display" pointSize="19"/>
                                 </label>
