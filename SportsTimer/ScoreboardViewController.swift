@@ -57,7 +57,7 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
         watchIcon.alpha = 0
         self.tableView.delegate = self
         self.tableView.dataSource = self
-//        PhoneSession.sharedInstance.startSession()
+        PhoneSession.sharedInstance.startSession()
 //        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToBeTheControllerNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneToBeTheController"), object: nil)
 //        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToBeTheScoreboardNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneToBeTheScoreboard"), object: nil)
 //        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhonePickedTimeNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneTimeFromPicker"), object: nil)
@@ -66,8 +66,8 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
 //        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneScoreDataNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneScoreData"), object: nil)
         
         
-    NotificationCenter.default.addObserver(self, selector: #selector(AppDelegate.receivedTellPhoneWatchIsOnNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneWatchIsOn"), object: nil)
-        
+    NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneWatchIsOnNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneWatchIsTiming"), object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToStartGameNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneToStartGame"), object: nil)
     }
     
     func receivedTellPhoneWatchIsOnNotification(_ notification: NSNotification) {
@@ -77,6 +77,12 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
         } else {
             watchIcon.alpha = 0
         }
+    }
+    
+    func receivedTellPhoneToStartGameNotification(_ notification: NSNotification) {
+        let dataDict = notification.object as? [String : AnyObject]
+        //print(dataDict?["WatchIsOn"]! as? Int!)
+        self.startTimer(dataDict?["Time"]! as! [String : AnyObject])
     }
     
     //This function updates the scoreboard based on the selected sport when the view appears
@@ -314,6 +320,8 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
     
     //This function starts the clock
     func beginClock() {
+        //startingGameTimeString = "60"
+        //startingGameTime = 60
         self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ScoreboardViewController.eachSecond(_:)), userInfo: nil, repeats: true)
         self.timerIsOn = true
     }

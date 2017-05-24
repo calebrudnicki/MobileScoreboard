@@ -11,18 +11,16 @@ import Foundation
 
 class HomeInterfaceController: WKInterfaceController {
   
-//MARK: Outlets
+    //MARK: Outlets
     
     @IBOutlet var picker: WKInterfacePicker!
     
-    
-//MARK: Variables
+    //MARK: Variables
     
     var overallTime: String = ""
     var timesArray: [WKPickerItem] = []
     
-    
-//MARK: Boilerplate Functions
+    //MARK: Boilerplate Functions
     
     //This functions assigns all the following times to be part of the picker
     override func awake(withContext context: Any?) {
@@ -61,7 +59,6 @@ class HomeInterfaceController: WKInterfaceController {
     //This function makes a shared instance of watch session and stops any game if one is taking place
     override func willActivate() {
         super.willActivate()
-        //WatchSession.sharedInstance.tellPhoneToStopGame()
     }
     
     override func didDeactivate() {
@@ -73,14 +70,12 @@ class HomeInterfaceController: WKInterfaceController {
     
     //This function segues to the ScoreboardInterfaceController when the start run button is tapped
     @IBAction func startGameButtonTapped() {
-        WatchSession.sharedInstance.tellPhoneToBeTheScoreboard()
         self.pushController(withName: "Scoreboard Interface Controller", context: overallTime)
     }
 
     //This functions changes the variable of overallTime to the current item in the picker
     @IBAction func pickerChanged(_ value: Int) {
         self.overallTime = timesArray[value].title!
-        WatchSession.sharedInstance.tellPhoneTimeFromPicker(overallTime)
     }
     
     

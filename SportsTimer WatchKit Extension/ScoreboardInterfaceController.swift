@@ -58,14 +58,14 @@ class ScoreboardInterfaceController: WKInterfaceController, WCSessionDelegate {
     //This function creates a shared instance of a session
     override func willActivate() {
         super.willActivate()
-        WatchSession.sharedInstance.tellPhoneWatchIsOn(true)
+        WatchSession.sharedInstance.tellPhoneWatchIsTiming(true)
     }
     
     //This function invalidates the backing timer when the end game button is tapped
     override func didDeactivate() {
         super.didDeactivate()
         backingTimer?.invalidate()
-        WatchSession.sharedInstance.tellPhoneWatchIsOn(false)
+        WatchSession.sharedInstance.tellPhoneWatchIsTiming(false)
     }
     
     //This function calls a shared instance of tellPhoneToStopGame() when the end game button is tapped
@@ -90,7 +90,7 @@ class ScoreboardInterfaceController: WKInterfaceController, WCSessionDelegate {
     
     //This function that is called when the start game button is chosen
     func newGame() {
-        //WatchSession.sharedInstance.tellPhoneWatchIsOn(true)
+        WatchSession.sharedInstance.tellPhoneToStartGame(Int(countdown))
         let date = Date(timeIntervalSinceNow: countdown)
         timer.setDate(date)
         timer.start()

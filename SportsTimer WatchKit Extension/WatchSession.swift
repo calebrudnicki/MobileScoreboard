@@ -51,13 +51,18 @@ class WatchSession: NSObject, WCSessionDelegate {
         session.sendMessage(actionDictFromWatch, replyHandler: nil)
     }
     
-    func tellPhoneWatchIsOn(_ watchIsOn: Bool) {
+    func tellPhoneWatchIsTiming(_ watchIsOn: Bool) {
         let payloadDictFromWatch = ["WatchIsOn": watchIsOn]
-        print(watchIsOn)
-        let actionDictFromWatch = ["Action": "tellPhoneWatchIsOn", "Payload": payloadDictFromWatch] as [String : Any]
+        let actionDictFromWatch = ["Action": "tellPhoneWatchIsTiming", "Payload": payloadDictFromWatch] as [String : Any]
         session.sendMessage(actionDictFromWatch as [String : AnyObject], replyHandler: nil)
     }
     
+    func tellPhoneToStartGame(_ time: Int) {
+        let payloadDictFromWatch = ["Time": time]
+        print(time)
+        let actionDictFromWatch = ["Action": "tellPhoneToStartGame", "Payload": payloadDictFromWatch] as [String : Any]
+        session.sendMessage(actionDictFromWatch as [String : AnyObject], replyHandler: nil)
+    }
     
     
     
@@ -90,11 +95,11 @@ class WatchSession: NSObject, WCSessionDelegate {
     }
     
     //This function sends a message to PhoneSession with a dictionary containing a tellPhoneToStartGame value
-    func tellPhoneToStartGame(_ time: TimeInterval) {
+    /*func tellPhoneToStartGame(_ time: TimeInterval) {
         let payloadDictFromWatch = ["Time": time]
         let actionDictFromWatch = ["Action": "tellPhoneToStartGame", "Payload": payloadDictFromWatch] as [String : Any]
         session.sendMessage(actionDictFromWatch as [String : AnyObject], replyHandler: nil)
-    }
+    }*/
     
     //This function sends a message to PhoneSession with the key tellPhoneToStopGame
     func tellPhoneToStopGame() {
