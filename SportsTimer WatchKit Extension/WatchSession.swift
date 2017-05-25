@@ -64,6 +64,17 @@ class WatchSession: NSObject, WCSessionDelegate {
         session.sendMessage(actionDictFromWatch as [String : AnyObject], replyHandler: nil)
     }
     
+    func tellPhoneToStopGame() {
+        let actionDictFromWatch = ["Action": "tellPhoneToStopGame"]
+        session.sendMessage(actionDictFromWatch, replyHandler: nil)
+    }
+    
+    func tellPhoneScoreData(_ score1: Int, score2: Int) {
+        let payloadDictFromWatch = ["Score1": score1, "Score2": score2]
+        let actionDictFromWatch = ["Action": "tellPhoneScoreData", "Payload": payloadDictFromWatch] as [String : Any]
+        session.sendMessage(actionDictFromWatch as [String : AnyObject], replyHandler: nil)
+    }
+    
     
     
     
@@ -102,17 +113,9 @@ class WatchSession: NSObject, WCSessionDelegate {
     }*/
     
     //This function sends a message to PhoneSession with the key tellPhoneToStopGame
-    func tellPhoneToStopGame() {
-        let actionDictFromWatch = ["Action": "tellPhoneToStopGame"]
-        session.sendMessage(actionDictFromWatch, replyHandler: nil)
-    }
+
     
     //This function sends a message to PhoneSession with a dictionary containing a startRunToPhone value
-    func tellPhoneScoreData(_ score1: Int, score2: Int) {
-        let payloadDictFromWatch = ["Score1": score1, "Score2": score2]
-        let actionDictFromWatch = ["Action": "tellPhoneScoreData", "Payload": payloadDictFromWatch] as [String : Any]
-        session.sendMessage(actionDictFromWatch as [String : AnyObject], replyHandler: nil)
-    }
     
     
 //MARK: Data Getters

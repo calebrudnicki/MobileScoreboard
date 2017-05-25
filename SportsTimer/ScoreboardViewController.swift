@@ -61,13 +61,12 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
 //        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToBeTheControllerNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneToBeTheController"), object: nil)
 //        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToBeTheScoreboardNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneToBeTheScoreboard"), object: nil)
 //        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhonePickedTimeNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneTimeFromPicker"), object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToStartGameNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneToStartGame"), object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToStopGameNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneToStopGame"), object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneScoreDataNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneScoreData"), object: nil)
-        
-        
-    NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneWatchIsOnNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneWatchIsTiming"), object: nil)
-    NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToStartGameNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneToStartGame"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneWatchIsOnNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneWatchIsTiming"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToStartGameNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneToStartGame"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneScoreDataNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneScoreData"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToStopGameNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneToStopGame"), object: nil)
+
+
     }
     
     func receivedTellPhoneWatchIsOnNotification(_ notification: NSNotification) {
@@ -79,11 +78,20 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
         }
     }
     
-    func receivedTellPhoneToStartGameNotification(_ notification: NSNotification) {
+    func receivedTellPhoneToStartGameNotification(_ notification: Notification) {
         let dataDict = notification.object as? [String : AnyObject]
-        //print(dataDict?["WatchIsOn"]! as? Int!)
-        self.startTimer(dataDict?["Time"]! as! [String : AnyObject])
+        self.startTimer(dataDict!)
     }
+    
+    func receivedTellPhoneScoreDataNotification(_ notification: Notification) {
+        let dataDict = notification.object as? [String : AnyObject]
+        self.displayLabels(dataDict!)
+    }
+    
+    func receivedTellPhoneToStopGameNotification(_ notification: Notification) {
+        self.restartGame()
+    }
+    
     
     //This function updates the scoreboard based on the selected sport when the view appears
     override func viewDidAppear(_ animated: Bool) {
@@ -151,23 +159,10 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
 //        self.changeTimerLabel(dataDict!)
 //    }
 //
-//    //This function that gets called everytime a tellPhoneToStartGame notification is posted calls startTimer()
-//    func receivedTellPhoneToStartGameNotification(_ notification: Notification) {
-//        let dataDict = notification.object as? [String : AnyObject]
-//        
-//        self.startTimer(dataDict!)
-//    }
 //    
-//    //This function that gets called everytime the tellPhoneToStopGame notification is posted calls restartGame()
-//    func receivedTellPhoneToStopGameNotification(_ notification: Notification) {
-//        self.restartGame()
-//    }
+//    //This function that gets called everytime the tellPhoneToStopGame notification is posted calls restartGame(
 //    
 //    //This function that gets called everytime a tellPhoneScoreData notification is posted calls displayLabels()
-//    func receivedTellPhoneScoreDataNotification(_ notification: Notification) {
-//        let dataDict = notification.object as? [String : AnyObject]
-//        self.displayLabels(dataDict!)
-//    }
     
 //MARK: Actions
     

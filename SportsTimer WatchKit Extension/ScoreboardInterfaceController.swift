@@ -42,6 +42,7 @@ class ScoreboardInterfaceController: WKInterfaceController, WCSessionDelegate {
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         if let val: String = context as? String {
+            print(val)
             self.convertClockFormatToSeconds(val)
         }
         self.newGame()
@@ -71,13 +72,14 @@ class ScoreboardInterfaceController: WKInterfaceController, WCSessionDelegate {
     //This function calls a shared instance of tellPhoneToStopGame() when the end game button is tapped
     override func willDisappear() {
         //Put code in here for when the app goes into the "all apps" screen or the screen goes to sleep
+        WatchSession.sharedInstance.tellPhoneToStopGame()
         NotificationCenter.default.removeObserver(self)
     }
     
     //This functions sets the back button's text
     override init () {
         super.init ()
-        self.setTitle("Tap Timer")
+        self.setTitle("End Game")
     }
     
     func receivedTellWatchPlayerNamesNotification(_ notification: Notification) {
@@ -165,7 +167,6 @@ class ScoreboardInterfaceController: WKInterfaceController, WCSessionDelegate {
     
     //This function adds a goal to Player 1's score and sends that info to the phone
     @IBAction func goalButton1() {
-        self.setTitle("Goal 1")
         if gameIsPaused == false {
             score1 += 1
             player1Score.setTitle(String(score1))
@@ -175,7 +176,6 @@ class ScoreboardInterfaceController: WKInterfaceController, WCSessionDelegate {
     
     //This functions adds a goal to Player 2's score and sends that info to the phone
     @IBAction func goalButton2() {
-        self.setTitle("Goal 2")
         if gameIsPaused == false {
             score2 += 1
             player2Score.setTitle(String(score2))
