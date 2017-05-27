@@ -29,7 +29,8 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     }
     
     func applicationDidEnterBackground() {
-        //print("In background")
+        print("In background")
+        WatchSession.sharedInstance.tellPhoneWatchIsInBackground()
     }
 
 }

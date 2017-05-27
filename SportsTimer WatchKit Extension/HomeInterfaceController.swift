@@ -27,12 +27,12 @@ class HomeInterfaceController: WKInterfaceController {
         super.awake(withContext: context)
         let time1 = WKPickerItem()
         time1.title = "1:00"
-        let time2 = WKPickerItem()
+        /*let time2 = WKPickerItem()
         time2.title = "2:00"
         let time3 = WKPickerItem()
         time3.title = "3:00"
         let time4 = WKPickerItem()
-        time4.title = "4:00"
+        time4.title = "4:00"*/
         let time5 = WKPickerItem()
         time5.title = "5:00"
         let time6 = WKPickerItem()
@@ -51,7 +51,7 @@ class HomeInterfaceController: WKInterfaceController {
         time12.title = "50:00"
         let time13 = WKPickerItem()
         time13.title = "60:00"
-        timesArray = [time1, time2, time3, time4, time5, time6, time7, time8, time9, time10, time11, time12, time13]
+        timesArray = [time1, /*time2, time3, time4*/ time5, time6, time7, time8, time9, time10, time11, time12, time13]
         picker.setItems(timesArray)
         picker.setSelectedItemIndex(5)
     }
@@ -76,6 +76,7 @@ class HomeInterfaceController: WKInterfaceController {
     //This functions changes the variable of overallTime to the current item in the picker
     @IBAction func pickerChanged(_ value: Int) {
         self.overallTime = timesArray[value].title!
+        print(overallTime)
     }
     
     

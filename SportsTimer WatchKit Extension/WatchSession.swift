@@ -75,6 +75,12 @@ class WatchSession: NSObject, WCSessionDelegate {
         session.sendMessage(actionDictFromWatch as [String : AnyObject], replyHandler: nil)
     }
     
+    func tellPhoneWatchIsInBackground() {
+        let actionDictFromWatch = ["Action": "tellPhoneWatchIsInBackground"]
+        session.sendMessage(actionDictFromWatch, replyHandler: nil)
+    }
+    
+    
     
     
     

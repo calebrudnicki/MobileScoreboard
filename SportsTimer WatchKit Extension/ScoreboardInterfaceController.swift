@@ -45,6 +45,7 @@ class ScoreboardInterfaceController: WKInterfaceController, WCSessionDelegate {
             print(val)
             self.convertClockFormatToSeconds(val)
         }
+        print(countdown)
         self.newGame()
         player1Score.setTitle(String(score1))
         player2Score.setTitle(String(score2))
@@ -93,6 +94,7 @@ class ScoreboardInterfaceController: WKInterfaceController, WCSessionDelegate {
     //This function that is called when the start game button is chosen
     func newGame() {
         WatchSession.sharedInstance.tellPhoneToStartGame(Int(countdown))
+        print(countdown)
         let date = Date(timeIntervalSinceNow: countdown)
         timer.setDate(date)
         timer.start()

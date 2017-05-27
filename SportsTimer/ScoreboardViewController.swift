@@ -65,6 +65,7 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
         NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToStartGameNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneToStartGame"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneScoreDataNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneScoreData"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToStopGameNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneToStopGame"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneWatchIsInBackgroundNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneWatchIsInBackground"), object: nil)
 
 
     }
@@ -73,8 +74,16 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
         let dataDict = notification.object as? [String : AnyObject]
         if (dataDict?["WatchIsOn"]! as? Bool)! {
             watchIcon.alpha = 1
+            playPauseButton.isEnabled = false
+            player1ScoreButton.isEnabled = false
+            player2ScoreButton.isEnabled = false
+            settingsIcon.isEnabled = false
         } else {
             watchIcon.alpha = 0
+            playPauseButton.isEnabled = true
+            player1ScoreButton.isEnabled = true
+            player2ScoreButton.isEnabled = true
+            settingsIcon.isEnabled = true
         }
     }
     
@@ -92,9 +101,20 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
         self.restartGame()
     }
     
+    func receivedTellPhoneWatchIsInBackgroundNotification(_ notification: Notification) {
+        startingGameTime = currentTime
+        beginClock()
+        watchIcon.alpha = 1
+        playPauseButton.isEnabled = false
+        player1ScoreButton.isEnabled = false
+        player2ScoreButton.isEnabled = false
+        settingsIcon.isEnabled = false
+    }
+    
     
     //This function updates the scoreboard based on the selected sport when the view appears
     override func viewDidAppear(_ animated: Bool) {
+        self.restartGame()
         if let player1Name = UserDefaults.standard.object(forKey: "player1") as? String {
             player1TitleLabel.text = player1Name
         }
@@ -315,8 +335,6 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
     
     //This function starts the clock
     func beginClock() {
-        //startingGameTimeString = "60"
-        //startingGameTime = 60
         self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ScoreboardViewController.eachSecond(_:)), userInfo: nil, repeats: true)
         self.timerIsOn = true
     }
