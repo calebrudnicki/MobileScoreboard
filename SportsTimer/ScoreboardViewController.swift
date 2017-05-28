@@ -443,6 +443,7 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
             if results.count > 0 {
                 for result in results as! [NSManagedObject] {
                     self.games.append((result as? Games)!)
+                    self.games = games.reversed()
                 }
             }
         } catch let error as NSError {
