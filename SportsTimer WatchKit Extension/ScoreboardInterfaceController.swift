@@ -11,7 +11,7 @@ import Foundation
 import WatchConnectivity
 
 class ScoreboardInterfaceController: WKInterfaceController, WCSessionDelegate {
-    /** Called when the session has completed activation. If session state is WCSessionActivationStateNotActivated there will be an error with more details. */
+    /**Called when the session has completed activation. If session state is WCSessionActivationStateNotActivated there will be an error with more details. */
     @available(watchOS 2.2, *)
     public func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         print("Session started")
@@ -42,18 +42,17 @@ class ScoreboardInterfaceController: WKInterfaceController, WCSessionDelegate {
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         if let val: String = context as? String {
-            print(val)
             self.convertClockFormatToSeconds(val)
         }
-        print(countdown)
         self.newGame()
         player1Score.setTitle(String(score1))
         player2Score.setTitle(String(score2))
         
         WatchSession.sharedInstance.startSession()
-        WatchSession.sharedInstance.askPhoneForUserDefaults()
+        WatchSession.sharedInstance.askPhoneForDefaults()
         
         NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardInterfaceController.receivedTellWatchPlayerNamesNotification(_:)), name:NSNotification.Name(rawValue: "tellWatchPlayerNames"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardInterfaceController.receivedTellWatchPlayerNamesNotification(_:)), name:NSNotification.Name(rawValue: "tellWatchSportsTheme"), object: nil)
         
     }
     
@@ -94,7 +93,6 @@ class ScoreboardInterfaceController: WKInterfaceController, WCSessionDelegate {
     //This function that is called when the start game button is chosen
     func newGame() {
         WatchSession.sharedInstance.tellPhoneToStartGame(Int(countdown))
-        print(countdown)
         let date = Date(timeIntervalSinceNow: countdown)
         timer.setDate(date)
         timer.start()
@@ -106,7 +104,6 @@ class ScoreboardInterfaceController: WKInterfaceController, WCSessionDelegate {
     
     //This function subtracts from the countdown variable every second when it is called and then calls the timesUp() function when countdown is less than 0
     func secondTimerFired() {
-        //print(countdown)
         countdown -= 1
         if countdown < 0 {
             self.timesUp()

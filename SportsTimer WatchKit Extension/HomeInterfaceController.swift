@@ -8,9 +8,16 @@
 
 import WatchKit
 import Foundation
+import WatchConnectivity
 
-class HomeInterfaceController: WKInterfaceController {
-  
+class HomeInterfaceController: WKInterfaceController, WCSessionDelegate {
+    /**Called when the session has completed activation. If session state is WCSessionActivationStateNotActivated there will be an error with more details. */
+    @available(watchOS 2.2, *)
+    public func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        print("Session started")
+    }
+    
+    
     //MARK: Outlets
     
     @IBOutlet var picker: WKInterfacePicker!
@@ -20,19 +27,11 @@ class HomeInterfaceController: WKInterfaceController {
     var overallTime: String = ""
     var timesArray: [WKPickerItem] = []
     
-    //MARK: Boilerplate Functions
-    
     //This functions assigns all the following times to be part of the picker
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         let time1 = WKPickerItem()
         time1.title = "1:00"
-        /*let time2 = WKPickerItem()
-        time2.title = "2:00"
-        let time3 = WKPickerItem()
-        time3.title = "3:00"
-        let time4 = WKPickerItem()
-        time4.title = "4:00"*/
         let time5 = WKPickerItem()
         time5.title = "5:00"
         let time6 = WKPickerItem()
@@ -51,20 +50,20 @@ class HomeInterfaceController: WKInterfaceController {
         time12.title = "50:00"
         let time13 = WKPickerItem()
         time13.title = "60:00"
-        timesArray = [time1, /*time2, time3, time4*/ time5, time6, time7, time8, time9, time10, time11, time12, time13]
+        timesArray = [time1, time5, time6, time7, time8, time9, time10, time11, time12, time13]
         picker.setItems(timesArray)
-        picker.setSelectedItemIndex(5)
+        picker.setSelectedItemIndex(2)
     }
     
     //This function makes a shared instance of watch session and stops any game if one is taking place
     override func willActivate() {
         super.willActivate()
+        WatchSession.sharedInstance.startSession()
     }
     
     override func didDeactivate() {
         super.didDeactivate()
     }
-    
     
 //MARK: Actions
     
@@ -76,9 +75,8 @@ class HomeInterfaceController: WKInterfaceController {
     //This functions changes the variable of overallTime to the current item in the picker
     @IBAction func pickerChanged(_ value: Int) {
         self.overallTime = timesArray[value].title!
-        print(overallTime)
+        WatchSession.sharedInstance.tellPhonePotentialStartTime(overallTime)
     }
-    
     
 //MARK: Segues
     

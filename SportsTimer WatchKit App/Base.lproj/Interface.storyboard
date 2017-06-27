@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3KW-jg-8WF">
-    <device id="watch38" orientation="portrait">
+    <device id="watch42" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -8,11 +8,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="11508"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="SF-UI-Display-Semibold.otf">
-            <string>SFUIDisplay-Semibold</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--Scoreboard Interface Controller-->
         <scene sceneID="aou-V4-d1y">
@@ -119,9 +114,12 @@
                     <items>
                         <group width="1" height="1" alignment="center" verticalAlignment="center" contentMode="scaleAspectFill" layout="vertical" id="Bnz-b5-mkC">
                             <items>
-                                <label width="1" alignment="center" verticalAlignment="center" text="MobileBoard" textAlignment="center" id="u9r-Kh-XZ8">
+                                <label width="1" alignment="left" verticalAlignment="center" text="Choose game length..." textAlignment="center" id="u9r-Kh-XZ8">
                                     <color key="textColor" red="0.22322182357311249" green="0.74810665845870972" blue="0.59697610139846802" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <fontDescription key="font" name="SFUIDisplay-Semibold" family="SF UI Display" pointSize="19"/>
+                                    <fontDescription key="font" type="system" weight="ultraLight" pointSize="14"/>
+                                    <variation key="device=watch38mm">
+                                        <fontDescription key="font" type="system" weight="ultraLight" pointSize="12"/>
+                                    </variation>
                                 </label>
                                 <picker height="82" alignment="center" verticalAlignment="center" indicatorMode="shownWhileFocused" id="Vtb-Cn-c0Q">
                                     <variation key="device=watch42mm" height="96"/>

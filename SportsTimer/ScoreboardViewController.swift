@@ -58,15 +58,12 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
         self.tableView.delegate = self
         self.tableView.dataSource = self
         PhoneSession.sharedInstance.startSession()
-//        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToBeTheControllerNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneToBeTheController"), object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToBeTheScoreboardNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneToBeTheScoreboard"), object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhonePickedTimeNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneTimeFromPicker"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneWatchIsOnNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneWatchIsTiming"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToStartGameNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneToStartGame"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneScoreDataNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneScoreData"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToStopGameNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneToStopGame"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneWatchIsInBackgroundNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneWatchIsInBackground"), object: nil)
-
+        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhonePotentialStartTimeNotification(_:)), name:NSNotification.Name(rawValue: "tellPhonePotentialStartTime"), object: nil)
 
     }
     
@@ -109,6 +106,11 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
         player1ScoreButton.isEnabled = false
         player2ScoreButton.isEnabled = false
         settingsIcon.isEnabled = false
+    }
+    
+    func receivedTellPhonePotentialStartTimeNotification(_ notification: Notification) {
+        let dataDict = notification.object as? [String : AnyObject]
+        timerLabel.text = dataDict?["Time"] as! String?
     }
     
     

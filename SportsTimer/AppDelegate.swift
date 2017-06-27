@@ -14,6 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var watchAppIsOn: Bool? = false
+    var sportTheme: String = ""
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -39,6 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func receivedAskPhoneForUserDefaultsNotification(_ notification: NSNotification) {
+        PhoneSession.sharedInstance.tellWatchSportsTheme(sportTheme)
         if let player1Name = UserDefaults.standard.object(forKey: "player1") as? String, let player2Name = UserDefaults.standard.object(forKey: "player2") as? String {
             PhoneSession.sharedInstance.tellWatchPlayerNames(player1Name, player2Name: player2Name)
         }

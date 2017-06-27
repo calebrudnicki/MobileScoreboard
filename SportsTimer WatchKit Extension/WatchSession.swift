@@ -19,12 +19,10 @@ class WatchSession: NSObject, WCSessionDelegate {
         print("Session started")
     }
   
-    
 //MARK: Variables
     
     static let sharedInstance = WatchSession()
     var session: WCSession!
-    
     
 //MARK: Session Creation
     
@@ -43,11 +41,10 @@ class WatchSession: NSObject, WCSessionDelegate {
         }
     }
     
-    
 //MARK: Data Senders
     
-    func askPhoneForUserDefaults() {
-        let actionDictFromWatch = ["Action": "askPhoneForUserDefaults"]
+    func askPhoneForDefaults() {
+        let actionDictFromWatch = ["Action": "askPhoneForDefaults"]
         session.sendMessage(actionDictFromWatch, replyHandler: nil)
     }
     
@@ -59,7 +56,6 @@ class WatchSession: NSObject, WCSessionDelegate {
     
     func tellPhoneToStartGame(_ time: Int) {
         let payloadDictFromWatch = ["Time": time]
-        print(time)
         let actionDictFromWatch = ["Action": "tellPhoneToStartGame", "Payload": payloadDictFromWatch] as [String : Any]
         session.sendMessage(actionDictFromWatch as [String : AnyObject], replyHandler: nil)
     }
@@ -80,49 +76,11 @@ class WatchSession: NSObject, WCSessionDelegate {
         session.sendMessage(actionDictFromWatch, replyHandler: nil)
     }
     
-    
-    
-    
-    
- ////////////////////////////////////////////////////////////////////////////////
-    
-    
-    
-    
-    
-    
-    
-    //This function sends a message to PhoneSession with the key tellPhoneToBeTheController
-    func tellPhoneToBeTheController() {
-        let actionDictFromWatch = ["Action": "tellPhoneToBeTheController"]
-        session.sendMessage(actionDictFromWatch, replyHandler: nil)
-    }
-    
-    //This function sends a message to PhoneSession with the key tellPhoneToBeTheScoreboard
-    func tellPhoneToBeTheScoreboard() {
-        let actionDictFromWatch = ["Action": "tellPhoneToBeTheScoreboard"]
-        session.sendMessage(actionDictFromWatch, replyHandler: nil)
-    }
-    
-    //This functions sends a message to PhoneSession with the current time picked out of the watch's pickerview
-    func tellPhoneTimeFromPicker(_ pickedTime: String) {
-        let payloadDictFromWatch = ["ChosenTime": pickedTime]
-        let actionDictFromWatch = ["Action": "tellPhoneTimeFromPicker", "Payload": payloadDictFromWatch] as [String : Any]
-        session.sendMessage(actionDictFromWatch as [String : AnyObject], replyHandler: nil)
-    }
-    
-    //This function sends a message to PhoneSession with a dictionary containing a tellPhoneToStartGame value
-    /*func tellPhoneToStartGame(_ time: TimeInterval) {
+    func tellPhonePotentialStartTime(_ time: String) {
         let payloadDictFromWatch = ["Time": time]
-        let actionDictFromWatch = ["Action": "tellPhoneToStartGame", "Payload": payloadDictFromWatch] as [String : Any]
+        let actionDictFromWatch = ["Action": "tellPhonePotentialStartTime", "Payload": payloadDictFromWatch] as [String : Any]
         session.sendMessage(actionDictFromWatch as [String : AnyObject], replyHandler: nil)
-    }*/
-    
-    //This function sends a message to PhoneSession with the key tellPhoneToStopGame
-
-    
-    //This function sends a message to PhoneSession with a dictionary containing a startRunToPhone value
-    
+    }
     
 //MARK: Data Getters
     

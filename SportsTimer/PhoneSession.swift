@@ -70,4 +70,10 @@ class PhoneSession: NSObject, WCSessionDelegate {
         session.sendMessage(actionDictFromPhone as [String : AnyObject], replyHandler: nil)
     }
     
+    func tellWatchSportsTheme(_ sport: String) {
+        let payloadDictFromPhone = ["Sport": sport]
+        let actionDictFromPhone = ["Action": "tellWatchPlayerNames", "Payload": payloadDictFromPhone] as [String : Any]
+        session.sendMessage(actionDictFromPhone as [String : AnyObject], replyHandler: nil)
+    }
+    
 }
