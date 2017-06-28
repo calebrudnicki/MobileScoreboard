@@ -95,7 +95,7 @@
                             </menuItem>
                         </items>
                     </menu>
-                    <color key="backgroundColor" red="0.086274512112140656" green="0.62745100259780884" blue="0.5215686559677124" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <outlet property="player1Name" destination="hzh-yl-PR1" id="XJy-ma-U2M"/>
                         <outlet property="player1Score" destination="tqc-Bv-34b" id="8RD-te-8hK"/>

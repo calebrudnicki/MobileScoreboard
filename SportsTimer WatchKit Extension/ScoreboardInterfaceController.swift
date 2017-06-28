@@ -34,8 +34,7 @@ class ScoreboardInterfaceController: WKInterfaceController, WCSessionDelegate {
     var score1 = 0
     var score2 = 0
     var gameIsPaused = false
-    
-    
+        
 //MARK: Boilerplate Functions
     
     //This function sets the amount of time based on what the user picked in the HomeInterfaceController, calls newGame(), and resets each players score to 0
@@ -52,7 +51,7 @@ class ScoreboardInterfaceController: WKInterfaceController, WCSessionDelegate {
         WatchSession.sharedInstance.askPhoneForDefaults()
         
         NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardInterfaceController.receivedTellWatchPlayerNamesNotification(_:)), name:NSNotification.Name(rawValue: "tellWatchPlayerNames"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardInterfaceController.receivedTellWatchPlayerNamesNotification(_:)), name:NSNotification.Name(rawValue: "tellWatchSportsTheme"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardInterfaceController.receivedTellWatchSportsThemeNotification(_:)), name:NSNotification.Name(rawValue: "tellWatchSportsTheme"), object: nil)
         
     }
     
@@ -65,14 +64,18 @@ class ScoreboardInterfaceController: WKInterfaceController, WCSessionDelegate {
     //This function invalidates the backing timer when the end game button is tapped
     override func didDeactivate() {
         super.didDeactivate()
-        backingTimer?.invalidate()
-        WatchSession.sharedInstance.tellPhoneWatchIsTiming(false)
+        print(WatchSession.sharedInstance.readyToStopTimer)
+        if WatchSession.sharedInstance.readyToStopTimer == true {
+            backingTimer?.invalidate()
+            WatchSession.sharedInstance.tellPhoneToStopGame()
+            WatchSession.sharedInstance.tellPhoneWatchIsTiming(false)
+            
+        }
     }
     
     //This function calls a shared instance of tellPhoneToStopGame() when the end game button is tapped
     override func willDisappear() {
-        //Put code in here for when the app goes into the "all apps" screen or the screen goes to sleep
-        WatchSession.sharedInstance.tellPhoneToStopGame()
+        WatchSession.sharedInstance.readyToStopTimer = false
         NotificationCenter.default.removeObserver(self)
     }
     
@@ -86,6 +89,30 @@ class ScoreboardInterfaceController: WKInterfaceController, WCSessionDelegate {
         let dataDict = notification.object as? [String : AnyObject]
         player1Name.setText((dataDict?["Player1Name"]!)! as? String)
         player2Name.setText((dataDict?["Player2Name"]!)! as? String)
+    }
+    
+    func receivedTellWatchSportsThemeNotification(_ notification: Notification) {
+        let dataDict = notification.object as? [String : AnyObject]
+        if dataDict?["Sport"]! as? String! == "Basketball" {
+            self.changeScoreboard(red: 101, green: 0, blue: 0)
+        } else if dataDict?["Sport"]! as? String! == "Hockey" {
+            self.changeScoreboard(red: 11, green: 34, blue: 15)
+        } else if dataDict?["Sport"]! as? String! == "Soccer" {
+            self.changeScoreboard(red: 0, green: 9, blue: 69)
+        } else if dataDict?["Sport"]! as? String! == "Baseball" {
+            self.changeScoreboard(red: 169, green: 124, blue: 80)
+        } else {
+            self.changeScoreboard(red: 183, green: 175, blue: 174)
+        }
+    }
+    
+    //This function changes the actual objects on the screen based on what sport was selected
+    func changeScoreboard(red: CGFloat, green: CGFloat, blue: CGFloat) {
+        timer.setTextColor(UIColor.init(red: red/255, green: green/255, blue: blue/255, alpha: 1))
+        player1Name.setTextColor(UIColor.init(red: red/255, green: green/255, blue: blue/255, alpha: 1))
+        player2Name.setTextColor(UIColor.init(red: red/255, green: green/255, blue: blue/255, alpha: 1))
+        player1Score.setBackgroundColor(UIColor.init(red: red/255, green: green/255, blue: blue/255, alpha: 1))
+        player2Score.setBackgroundColor(UIColor.init(red: red/255, green: green/255, blue: blue/255, alpha: 1))
     }
 
 //MARK: Starting a New Game
@@ -187,7 +214,6 @@ class ScoreboardInterfaceController: WKInterfaceController, WCSessionDelegate {
         if gameIsPaused == true {
             gameIsPaused = false
             countdown -= 2
-            //self.newGame()
         }
         self.newGame()
     }

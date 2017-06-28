@@ -57,13 +57,6 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
         watchIcon.alpha = 0
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        PhoneSession.sharedInstance.startSession()
-        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneWatchIsOnNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneWatchIsTiming"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToStartGameNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneToStartGame"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneScoreDataNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneScoreData"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToStopGameNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneToStopGame"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneWatchIsInBackgroundNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneWatchIsInBackground"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhonePotentialStartTimeNotification(_:)), name:NSNotification.Name(rawValue: "tellPhonePotentialStartTime"), object: nil)
 
     }
     
@@ -99,13 +92,7 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func receivedTellPhoneWatchIsInBackgroundNotification(_ notification: Notification) {
-        startingGameTime = currentTime
-        beginClock()
-        watchIcon.alpha = 1
-        playPauseButton.isEnabled = false
-        player1ScoreButton.isEnabled = false
-        player2ScoreButton.isEnabled = false
-        settingsIcon.isEnabled = false
+        print("Watch is in background")
     }
     
     func receivedTellPhonePotentialStartTimeNotification(_ notification: Notification) {
@@ -117,6 +104,18 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
     //This function updates the scoreboard based on the selected sport when the view appears
     override func viewDidAppear(_ animated: Bool) {
         self.restartGame()
+        
+        
+        PhoneSession.sharedInstance.startSession()
+        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneWatchIsOnNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneWatchIsTiming"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToStartGameNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneToStartGame"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneScoreDataNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneScoreData"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToStopGameNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneToStopGame"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneWatchIsInBackgroundNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneWatchIsInBackground"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhonePotentialStartTimeNotification(_:)), name:NSNotification.Name(rawValue: "tellPhonePotentialStartTime"), object: nil)
+        
+        
+        
         if let player1Name = UserDefaults.standard.object(forKey: "player1") as? String {
             player1TitleLabel.text = player1Name
         }

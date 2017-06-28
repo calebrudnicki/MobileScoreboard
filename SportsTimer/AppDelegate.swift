@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var watchAppIsOn: Bool? = false
-    var sportTheme: String = ""
+    //var sportsTheme: String? = ""
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -34,13 +34,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = vc
         self.window?.makeKeyAndVisible()
         
-        //PhoneSession.sharedInstance.startSession()
-        NotificationCenter.default.addObserver(self, selector: #selector(AppDelegate.receivedAskPhoneForUserDefaultsNotification(_:)), name:NSNotification.Name(rawValue: "askPhoneForUserDefaults"), object: nil)
+        PhoneSession.sharedInstance.startSession()
+        NotificationCenter.default.addObserver(self, selector: #selector(AppDelegate.receivedAskPhoneForDefaultsNotification(_:)), name:NSNotification.Name(rawValue: "askPhoneForDefaults"), object: nil)
         return true
     }
     
-    func receivedAskPhoneForUserDefaultsNotification(_ notification: NSNotification) {
-        PhoneSession.sharedInstance.tellWatchSportsTheme(sportTheme)
+    func receivedAskPhoneForDefaultsNotification(_ notification: NSNotification) {
+        PhoneSession.sharedInstance.tellWatchSportsTheme((UserDefaults.standard.value(forKey: "selectedSport") as? String)!)
         if let player1Name = UserDefaults.standard.object(forKey: "player1") as? String, let player2Name = UserDefaults.standard.object(forKey: "player2") as? String {
             PhoneSession.sharedInstance.tellWatchPlayerNames(player1Name, player2Name: player2Name)
         }

@@ -77,19 +77,14 @@ class WelcomeViewController: UIViewController {
 
         if sportsSegmentedController.selectedSegmentIndex == 0 {
             UserDefaults.standard.set("Basketball", forKey: "selectedSport")
-            appDelegate.sportTheme = "Basketball"
         } else if sportsSegmentedController.selectedSegmentIndex == 1 {
             UserDefaults.standard.set("Hockey", forKey: "selectedSport")
-            appDelegate.sportTheme = "Hockey"
         } else if sportsSegmentedController.selectedSegmentIndex == 2 {
             UserDefaults.standard.set("Soccer", forKey: "selectedSport")
-            appDelegate.sportTheme = "Soccer"
         } else if sportsSegmentedController.selectedSegmentIndex == 3 {
             UserDefaults.standard.set("Baseball", forKey: "selectedSport")
-            appDelegate.sportTheme = "Baseball"
         } else if sportsSegmentedController.selectedSegmentIndex == 4 {
             UserDefaults.standard.set("Football", forKey: "selectedSport")
-            appDelegate.sportTheme = "Footbal"
         }
         
         if (UserDefaults.standard.value(forKey: "name") as? String) == nil {

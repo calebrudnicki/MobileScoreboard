@@ -58,12 +58,6 @@ class PhoneSession: NSObject, WCSessionDelegate {
     
 //MARK: Data Senders
     
-//    func tellWatchSelectedSport(_ pickedTime: String) {
-//        let payloadDictFromPhone = ["ChosenTime": pickedTime]
-//        let actionDictFromPhone = ["Action": "tellWatchSelectedSport", "Payload": payloadDictFromPhone] as [String : Any]
-//        session.sendMessage(actionDictFromPhone as [String : AnyObject], replyHandler: nil)
-//    }
-    
     func tellWatchPlayerNames(_ player1Name: String, player2Name: String) {
         let payloadDictFromPhone = ["Player1Name": player1Name, "Player2Name": player2Name]
         let actionDictFromPhone = ["Action": "tellWatchPlayerNames", "Payload": payloadDictFromPhone] as [String : Any]
@@ -72,7 +66,7 @@ class PhoneSession: NSObject, WCSessionDelegate {
     
     func tellWatchSportsTheme(_ sport: String) {
         let payloadDictFromPhone = ["Sport": sport]
-        let actionDictFromPhone = ["Action": "tellWatchPlayerNames", "Payload": payloadDictFromPhone] as [String : Any]
+        let actionDictFromPhone = ["Action": "tellWatchSportsTheme", "Payload": payloadDictFromPhone] as [String : Any]
         session.sendMessage(actionDictFromPhone as [String : AnyObject], replyHandler: nil)
     }
     

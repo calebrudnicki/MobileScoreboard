@@ -23,6 +23,7 @@ class WatchSession: NSObject, WCSessionDelegate {
     
     static let sharedInstance = WatchSession()
     var session: WCSession!
+    var readyToStopTimer: Bool = false
     
 //MARK: Session Creation
     
@@ -36,9 +37,11 @@ class WatchSession: NSObject, WCSessionDelegate {
         
         if session.isReachable == true {
             print("Its reachable")
+            readyToStopTimer = true
         } else {
             print("Its not reachable")
         }
+        
     }
     
 //MARK: Data Senders
