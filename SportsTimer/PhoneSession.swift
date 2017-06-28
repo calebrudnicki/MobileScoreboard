@@ -11,7 +11,7 @@ import WatchConnectivity
 
 class PhoneSession: NSObject, WCSessionDelegate {
     
-//MARK: Session Functions
+    //MARK: Session Functions
 
     //This function is called when the phone session completes activation
     @available(iOS 9.3, *)
@@ -27,14 +27,12 @@ class PhoneSession: NSObject, WCSessionDelegate {
         print("Phone session did deactivate")
     }
     
-    
-//MARK: Variables
+    //MARK: Variables
     
     static let sharedInstance = PhoneSession()
     var session: WCSession!
     
-    
-//MARK: Session Creation
+    //MARK: Session Creation
     
     //This function creates a session
     func startSession() {
@@ -44,9 +42,8 @@ class PhoneSession: NSObject, WCSessionDelegate {
             session.activate()
         }
     }
-    
 
-//MARK: Data Getters
+    //MARK: Data Getters
     
     //This functions receives a message from the Watch
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
@@ -55,15 +52,16 @@ class PhoneSession: NSObject, WCSessionDelegate {
         }
     }
     
+    //MARK: Data Senders
     
-//MARK: Data Senders
-    
+    //This function tells the watch the current players names
     func tellWatchPlayerNames(_ player1Name: String, player2Name: String) {
         let payloadDictFromPhone = ["Player1Name": player1Name, "Player2Name": player2Name]
         let actionDictFromPhone = ["Action": "tellWatchPlayerNames", "Payload": payloadDictFromPhone] as [String : Any]
         session.sendMessage(actionDictFromPhone as [String : AnyObject], replyHandler: nil)
     }
     
+    //This function tells the watch the chosen sports theme
     func tellWatchSportsTheme(_ sport: String) {
         let payloadDictFromPhone = ["Sport": sport]
         let actionDictFromPhone = ["Action": "tellWatchSportsTheme", "Payload": payloadDictFromPhone] as [String : Any]

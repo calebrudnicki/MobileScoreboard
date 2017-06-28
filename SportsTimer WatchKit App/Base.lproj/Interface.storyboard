@@ -95,7 +95,7 @@
                             </menuItem>
                         </items>
                     </menu>
-                    <color key="backgroundColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.52941179279999995" green="0.52941179279999995" blue="0.52941179279999995" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <outlet property="player1Name" destination="hzh-yl-PR1" id="XJy-ma-U2M"/>
                         <outlet property="player1Score" destination="tqc-Bv-34b" id="8RD-te-8hK"/>
@@ -115,7 +115,7 @@
                         <group width="1" height="1" alignment="center" verticalAlignment="center" contentMode="scaleAspectFill" layout="vertical" id="Bnz-b5-mkC">
                             <items>
                                 <label width="1" alignment="left" verticalAlignment="center" text="Choose game length..." textAlignment="center" id="u9r-Kh-XZ8">
-                                    <color key="textColor" red="0.22322182357311249" green="0.74810665845870972" blue="0.59697610139846802" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="textColor" red="0.98854309320449829" green="0.99079138040542603" blue="0.83220988512039185" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="font" type="system" weight="ultraLight" pointSize="14"/>
                                     <variation key="device=watch38mm">
                                         <fontDescription key="font" type="system" weight="ultraLight" pointSize="12"/>
@@ -128,8 +128,8 @@
                                     </connections>
                                 </picker>
                                 <button width="1" height="38" alignment="center" verticalAlignment="center" title="Start" id="Zlo-kE-kx0">
-                                    <color key="titleColor" red="0.22322182357311249" green="0.74810665845870972" blue="0.59697610139846802" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" red="0.99638575315475464" green="0.99863702058792114" blue="0.84005898237228394" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" red="0.59993284940719604" green="0.60003870725631714" blue="0.5999261736869812" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="font" type="system" pointSize="30"/>
                                     <variation key="device=watch42mm" height="45"/>
                                     <connections>

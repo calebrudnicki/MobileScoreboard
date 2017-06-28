@@ -35,8 +35,8 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
     let speechSynthesizer = AVSpeechSynthesizer()
     var timer: Timer!
     var startingGameTimeString: String = ""
-    var startingGameTime: Int! = 10
-    var currentTime: Int! = 10
+    var startingGameTime: Int! = 600
+    var currentTime: Int! = 600
     var player1Score: Int! = 0
     var player2Score: Int! = 0
     var timerIsOn: Bool! = false
@@ -60,52 +60,8 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
 
     }
     
-    func receivedTellPhoneWatchIsOnNotification(_ notification: NSNotification) {
-        let dataDict = notification.object as? [String : AnyObject]
-        if (dataDict?["WatchIsOn"]! as? Bool)! {
-            watchIcon.alpha = 1
-            playPauseButton.isEnabled = false
-            player1ScoreButton.isEnabled = false
-            player2ScoreButton.isEnabled = false
-            settingsIcon.isEnabled = false
-        } else {
-            watchIcon.alpha = 0
-            playPauseButton.isEnabled = true
-            player1ScoreButton.isEnabled = true
-            player2ScoreButton.isEnabled = true
-            settingsIcon.isEnabled = true
-        }
-    }
-    
-    func receivedTellPhoneToStartGameNotification(_ notification: Notification) {
-        let dataDict = notification.object as? [String : AnyObject]
-        self.startTimer(dataDict!)
-    }
-    
-    func receivedTellPhoneScoreDataNotification(_ notification: Notification) {
-        let dataDict = notification.object as? [String : AnyObject]
-        self.displayLabels(dataDict!)
-    }
-    
-    func receivedTellPhoneToStopGameNotification(_ notification: Notification) {
-        self.restartGame()
-    }
-    
-    func receivedTellPhoneWatchIsInBackgroundNotification(_ notification: Notification) {
-        print("Watch is in background")
-    }
-    
-    func receivedTellPhonePotentialStartTimeNotification(_ notification: Notification) {
-        let dataDict = notification.object as? [String : AnyObject]
-        timerLabel.text = dataDict?["Time"] as! String?
-    }
-    
-    
-    //This function updates the scoreboard based on the selected sport when the view appears
     override func viewDidAppear(_ animated: Bool) {
         self.restartGame()
-        
-        
         PhoneSession.sharedInstance.startSession()
         NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneWatchIsOnNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneWatchIsTiming"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToStartGameNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneToStartGame"), object: nil)
@@ -113,8 +69,8 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
         NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToStopGameNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneToStopGame"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneWatchIsInBackgroundNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneWatchIsInBackground"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhonePotentialStartTimeNotification(_:)), name:NSNotification.Name(rawValue: "tellPhonePotentialStartTime"), object: nil)
-        
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToPlayGameNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneToPlayGame"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToPauseGameNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneToPauseGame"), object: nil)
         
         if let player1Name = UserDefaults.standard.object(forKey: "player1") as? String {
             player1TitleLabel.text = player1Name
@@ -156,38 +112,78 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
         super.didReceiveMemoryWarning()
     }
     
-    //This function removes itself as an observer when the view disappears
     override func viewDidDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self)
     }
     
     //MARK: Watch Communication Functions
     
-    //This function that gets called everytime a tellPhoneToBeTheController notification is posted calls activatePhone()
-//    func receivedTellPhoneToBeTheControllerNotification(_ notification: Notification) {
-//        self.activatePhone()
-//    }
-//    
-//    //This function that gets called everytime a tellPhoneToBeTheScoreboard notification is posted calls deactivatePhone()
-//    func receivedTellPhoneToBeTheScoreboardNotification(_ notification: Notification) {
-//        print("Scoring from watch now")
-//        changeScoreboard(boardR: 0, boardG: 0, boardB: 0, elseR: 0, elseG: 0, elseB: 0)
-//    }
-//    
-//    //This function that gets called everytime a receivedTellPhonePickedTime notification is posted calls changeTimerLabel()
-//    func receivedTellPhonePickedTimeNotification(_ notification: Notification) {
-//        let dataDict = notification.object as? [String : AnyObject]
-//        self.changeTimerLabel(dataDict!)
-//    }
-//
-//    
-//    //This function that gets called everytime the tellPhoneToStopGame notification is posted calls restartGame(
-//    
-//    //This function that gets called everytime a tellPhoneScoreData notification is posted calls displayLabels()
+    //This function runs when the watch has been turned on
+    func receivedTellPhoneWatchIsOnNotification(_ notification: NSNotification) {
+        let dataDict = notification.object as? [String : AnyObject]
+        if (dataDict?["WatchIsOn"]! as? Bool)! {
+            watchIcon.alpha = 1
+            playPauseButton.isEnabled = false
+            player1ScoreButton.isEnabled = false
+            player2ScoreButton.isEnabled = false
+            settingsIcon.isEnabled = false
+        } else {
+            watchIcon.alpha = 0
+            playPauseButton.isEnabled = true
+            player1ScoreButton.isEnabled = true
+            player2ScoreButton.isEnabled = true
+            settingsIcon.isEnabled = true
+        }
+    }
     
-//MARK: Actions
+    //This function runs when the watch starts a game
+    func receivedTellPhoneToStartGameNotification(_ notification: Notification) {
+        let dataDict = notification.object as? [String : AnyObject]
+        self.startTimer(dataDict!)
+        updatePlayPauseButton(title: "Playing game...", color: UIColor.init(red: 14/255, green: 161/255, blue: 87/255, alpha: 1))
+    }
     
-    //This function
+    //This function runs when the score is updated in anyway
+    func receivedTellPhoneScoreDataNotification(_ notification: Notification) {
+        let dataDict = notification.object as? [String : AnyObject]
+        self.displayLabels(dataDict!)
+    }
+    
+    //This function runs when the watch exits a game
+    func receivedTellPhoneToStopGameNotification(_ notification: Notification) {
+        self.restartGame()
+    }
+    
+    //This function tuns when the watch enters the background
+    func receivedTellPhoneWatchIsInBackgroundNotification(_ notification: Notification) {
+        print("Watch is in background")
+    }
+    
+    //This function runs when the watch scrolls thru the potential start times
+    func receivedTellPhonePotentialStartTimeNotification(_ notification: Notification) {
+        let dataDict = notification.object as? [String : AnyObject]
+        timerLabel.text = dataDict?["Time"] as! String?
+    }
+    
+    //This function runs when the play button on the watch is tapped
+    func receivedTellPhoneToPlayGameNotification(_ notification: Notification) {
+        self.beginClock()
+        updatePlayPauseButton(title: "Playing game...", color: UIColor.init(red: 14/255, green: 161/255, blue: 87/255, alpha: 1))
+    }
+    
+    //This function runs when the pause button on the watch is tapped
+    func receivedTellPhoneToPauseGameNotification(_ notification: Notification) {
+        if timer != nil {
+            timer.invalidate()
+        }
+        timerLabel.text = self.convertSeconds(currentTime)
+        timerIsOn = false
+        updatePlayPauseButton(title: "Game paused", color: UIColor.init(red: 158/255, green: 28/255, blue: 0/255, alpha: 1))
+    }
+    
+    //MARK: Actions
+    
+    //This function runs when the play / pause button is tapped
     @IBAction func playPauseButtonTapped(_ sender: Any) {
         if currentTime == -2 {
             self.restartGame()
@@ -257,13 +253,14 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
         if timer != nil {
            timer.invalidate()
         }
-        startingGameTimeString = convertSeconds(10)
-        currentTime = 10
+        startingGameTimeString = convertSeconds(600)
+        currentTime = 600
         timerLabel.text = startingGameTimeString
         player1Score = 0
         player2Score = 0
         player1ScoreButton.setTitle("0", for: UIControlState())
         player2ScoreButton.setTitle("0", for: UIControlState())
+        updatePlayPauseButton(title: "Start Game", color: UIColor.init(red: 14/255, green: 161/255, blue: 87/255, alpha: 1))
         
         if let selectedSport = UserDefaults.standard.object(forKey: "selectedSport") as? String {
             if selectedSport == "Basketball" {

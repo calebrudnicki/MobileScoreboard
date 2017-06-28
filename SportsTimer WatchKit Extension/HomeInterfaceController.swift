@@ -17,7 +17,6 @@ class HomeInterfaceController: WKInterfaceController, WCSessionDelegate {
         print("Session started")
     }
     
-    
     //MARK: Outlets
     
     @IBOutlet var picker: WKInterfacePicker!
@@ -27,7 +26,6 @@ class HomeInterfaceController: WKInterfaceController, WCSessionDelegate {
     var overallTime: String = ""
     var timesArray: [WKPickerItem] = []
     
-    //This functions assigns all the following times to be part of the picker
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         let time1 = WKPickerItem()
@@ -55,17 +53,20 @@ class HomeInterfaceController: WKInterfaceController, WCSessionDelegate {
         picker.setSelectedItemIndex(2)
     }
     
-    //This function makes a shared instance of watch session and stops any game if one is taking place
     override func willActivate() {
         super.willActivate()
         WatchSession.sharedInstance.startSession()
+    }
+    
+    override func didAppear() {
+        WatchSession.sharedInstance.tellPhonePotentialStartTime(overallTime)
     }
     
     override func didDeactivate() {
         super.didDeactivate()
     }
     
-//MARK: Actions
+    //MARK: Actions
     
     //This function segues to the ScoreboardInterfaceController when the start run button is tapped
     @IBAction func startGameButtonTapped() {
@@ -78,7 +79,7 @@ class HomeInterfaceController: WKInterfaceController, WCSessionDelegate {
         WatchSession.sharedInstance.tellPhonePotentialStartTime(overallTime)
     }
     
-//MARK: Segues
+    //MARK: Segues
     
     //This function sends the selected time from the picker to the ScoreboardInterfaceController
     override func contextForSegue(withIdentifier segueIdentifier: String) -> Any? {

@@ -17,8 +17,7 @@ class ScoreboardInterfaceController: WKInterfaceController, WCSessionDelegate {
         print("Session started")
     }
 
-    
-//MARK: Outlets
+    //MARK: Outlets
     
     @IBOutlet var timer: WKInterfaceTimer!
     @IBOutlet var player1Name: WKInterfaceLabel!
@@ -26,18 +25,14 @@ class ScoreboardInterfaceController: WKInterfaceController, WCSessionDelegate {
     @IBOutlet var player1Score: WKInterfaceButton!
     @IBOutlet var player2Score: WKInterfaceButton!
     
-    
-//MARK: Variables
+    //MARK: Variables
     
     var countdown: TimeInterval = 600
     var backingTimer: Timer?
     var score1 = 0
     var score2 = 0
     var gameIsPaused = false
-        
-//MARK: Boilerplate Functions
     
-    //This function sets the amount of time based on what the user picked in the HomeInterfaceController, calls newGame(), and resets each players score to 0
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         if let val: String = context as? String {
@@ -55,13 +50,11 @@ class ScoreboardInterfaceController: WKInterfaceController, WCSessionDelegate {
         
     }
     
-    //This function creates a shared instance of a session
     override func willActivate() {
         super.willActivate()
         WatchSession.sharedInstance.tellPhoneWatchIsTiming(true)
     }
     
-    //This function invalidates the backing timer when the end game button is tapped
     override func didDeactivate() {
         super.didDeactivate()
         print(WatchSession.sharedInstance.readyToStopTimer)
@@ -73,7 +66,6 @@ class ScoreboardInterfaceController: WKInterfaceController, WCSessionDelegate {
         }
     }
     
-    //This function calls a shared instance of tellPhoneToStopGame() when the end game button is tapped
     override func willDisappear() {
         WatchSession.sharedInstance.readyToStopTimer = false
         NotificationCenter.default.removeObserver(self)
@@ -85,12 +77,16 @@ class ScoreboardInterfaceController: WKInterfaceController, WCSessionDelegate {
         self.setTitle("End Game")
     }
     
+    //MARK: Phone Communication Functions
+    
+    //This function runs when the phone sends the names of the players
     func receivedTellWatchPlayerNamesNotification(_ notification: Notification) {
         let dataDict = notification.object as? [String : AnyObject]
         player1Name.setText((dataDict?["Player1Name"]!)! as? String)
         player2Name.setText((dataDict?["Player2Name"]!)! as? String)
     }
     
+    //This function runs when the phone sends the sports theme
     func receivedTellWatchSportsThemeNotification(_ notification: Notification) {
         let dataDict = notification.object as? [String : AnyObject]
         if dataDict?["Sport"]! as? String! == "Basketball" {
@@ -105,17 +101,8 @@ class ScoreboardInterfaceController: WKInterfaceController, WCSessionDelegate {
             self.changeScoreboard(red: 183, green: 175, blue: 174)
         }
     }
-    
-    //This function changes the actual objects on the screen based on what sport was selected
-    func changeScoreboard(red: CGFloat, green: CGFloat, blue: CGFloat) {
-        timer.setTextColor(UIColor.init(red: red/255, green: green/255, blue: blue/255, alpha: 1))
-        player1Name.setTextColor(UIColor.init(red: red/255, green: green/255, blue: blue/255, alpha: 1))
-        player2Name.setTextColor(UIColor.init(red: red/255, green: green/255, blue: blue/255, alpha: 1))
-        player1Score.setBackgroundColor(UIColor.init(red: red/255, green: green/255, blue: blue/255, alpha: 1))
-        player2Score.setBackgroundColor(UIColor.init(red: red/255, green: green/255, blue: blue/255, alpha: 1))
-    }
 
-//MARK: Starting a New Game
+    //MARK: Starting a New Game
     
     //This function that is called when the start game button is chosen
     func newGame() {
@@ -126,8 +113,7 @@ class ScoreboardInterfaceController: WKInterfaceController, WCSessionDelegate {
         backingTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ScoreboardInterfaceController.secondTimerFired), userInfo: nil, repeats: true)
     }
     
-    
-//MARK: Timer Functions
+    //MARK: Timer Functions
     
     //This function subtracts from the countdown variable every second when it is called and then calls the timesUp() function when countdown is less than 0
     func secondTimerFired() {
@@ -188,8 +174,7 @@ class ScoreboardInterfaceController: WKInterfaceController, WCSessionDelegate {
         }
     }
     
-    
-//MARK: Actions
+    //MARK: Actions
     
     //This function adds a goal to Player 1's score and sends that info to the phone
     @IBAction func goalButton1() {
@@ -212,6 +197,7 @@ class ScoreboardInterfaceController: WKInterfaceController, WCSessionDelegate {
     //This function starts the timer when the play button is tapped
     @IBAction func playButtonTapped() {
         if gameIsPaused == true {
+            WatchSession.sharedInstance.tellPhoneToPlayGame()
             gameIsPaused = false
             countdown -= 2
         }
@@ -221,8 +207,10 @@ class ScoreboardInterfaceController: WKInterfaceController, WCSessionDelegate {
     //This function pauses the timer when the pause button is tapped
     @IBAction func pauseButtonTapped() {
         if gameIsPaused == false {
+            WatchSession.sharedInstance.tellPhoneToPauseGame()
             gameIsPaused = true
             timer.stop()
+            backingTimer?.invalidate()
         }
     }
     
@@ -242,6 +230,17 @@ class ScoreboardInterfaceController: WKInterfaceController, WCSessionDelegate {
             player2Score.setTitle(String(score2))
             WatchSession.sharedInstance.tellPhoneScoreData(score1, score2: score2)
         }
+    }
+    
+    //MARK: Helper Functions
+    
+    //This function changes the actual objects on the screen based on what sport was selected
+    func changeScoreboard(red: CGFloat, green: CGFloat, blue: CGFloat) {
+        timer.setTextColor(UIColor.init(red: red/255, green: green/255, blue: blue/255, alpha: 1))
+        player1Name.setTextColor(UIColor.init(red: red/255, green: green/255, blue: blue/255, alpha: 1))
+        player2Name.setTextColor(UIColor.init(red: red/255, green: green/255, blue: blue/255, alpha: 1))
+        player1Score.setBackgroundColor(UIColor.init(red: red/255, green: green/255, blue: blue/255, alpha: 1))
+        player2Score.setBackgroundColor(UIColor.init(red: red/255, green: green/255, blue: blue/255, alpha: 1))
     }
     
 }

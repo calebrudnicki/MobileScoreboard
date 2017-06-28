@@ -10,15 +10,18 @@ import UIKit
 
 class WelcomeViewController: UIViewController {
 
+    //MARK: Outlets
+
     @IBOutlet weak var player1TextField: UITextField!
     @IBOutlet weak var player2TextField: UITextField!
     @IBOutlet weak var sportsSegmentedController: UISegmentedControl!
     @IBOutlet weak var imageView: UIImageView!
     
+    //MARK: Variables
+
     let imagesListArray = [#imageLiteral(resourceName: "SoccerBackground"), #imageLiteral(resourceName: "BasketballBackground"), #imageLiteral(resourceName: "BaseballBackground"), #imageLiteral(resourceName: "HockeyBackground"), #imageLiteral(resourceName: "FootballBackground")]
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
-    //This functions animates the background images and pulls info from the UserDefaults
     override func viewDidLoad() {
         super.viewDidLoad()
         self.imageView.animationImages = imagesListArray
@@ -43,12 +46,9 @@ class WelcomeViewController: UIViewController {
                 sportsSegmentedController.selectedSegmentIndex = 4
             }
         }
-        
         NotificationCenter.default.addObserver(self, selector: #selector(WelcomeViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(WelcomeViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-        
         PhoneSession.sharedInstance.startSession()
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -68,7 +68,7 @@ class WelcomeViewController: UIViewController {
         } else {
             UserDefaults.standard.set("Player 1", forKey: "player1")
         }
-
+        
         if player2TextField.text != "" {
             UserDefaults.standard.set(player2TextField.text, forKey: "player2")
         } else {
