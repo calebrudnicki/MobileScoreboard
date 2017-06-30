@@ -40,7 +40,7 @@
                                             </variation>
                                         </label>
                                     </items>
-                                    <edgeInsets key="margins" left="4" right="4" top="0.0" bottom="0.0"/>
+                                    <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
                                     <variation key="device=watch42mm" spacing="19"/>
                                 </group>
                                 <group width="1" alignment="center" id="hl7-yr-5yp">
