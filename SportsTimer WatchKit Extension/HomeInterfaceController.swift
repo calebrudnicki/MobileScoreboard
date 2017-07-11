@@ -51,6 +51,8 @@ class HomeInterfaceController: WKInterfaceController, WCSessionDelegate {
         timesArray = [time1, time5, time6, time7, time8, time9, time10, time11, time12, time13]
         picker.setItems(timesArray)
         picker.setSelectedItemIndex(2)
+        
+        //NotificationCenter.default.addObserver(self, selector: #selector(HomeInterfaceController.receivedTellWatchIfTimerIsOnNotification(_:)), name:NSNotification.Name(rawValue: "tellWatchIfTimerIsOn"), object: nil)
     }
     
     override func willActivate() {
@@ -59,6 +61,7 @@ class HomeInterfaceController: WKInterfaceController, WCSessionDelegate {
     }
     
     override func didAppear() {
+        WatchSession.sharedInstance.tellPhoneToStopGame()
         WatchSession.sharedInstance.tellPhonePotentialStartTime(overallTime)
     }
     

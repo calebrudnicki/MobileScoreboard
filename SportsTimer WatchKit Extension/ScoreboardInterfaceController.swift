@@ -57,17 +57,9 @@ class ScoreboardInterfaceController: WKInterfaceController, WCSessionDelegate {
     
     override func didDeactivate() {
         super.didDeactivate()
-        print(WatchSession.sharedInstance.readyToStopTimer)
-        if WatchSession.sharedInstance.readyToStopTimer == true {
-            backingTimer?.invalidate()
-            WatchSession.sharedInstance.tellPhoneToStopGame()
-            WatchSession.sharedInstance.tellPhoneWatchIsTiming(false)
-            
-        }
     }
     
     override func willDisappear() {
-        WatchSession.sharedInstance.readyToStopTimer = false
         NotificationCenter.default.removeObserver(self)
     }
     

@@ -37,7 +37,6 @@ class WatchSession: NSObject, WCSessionDelegate {
         
         if session.isReachable == true {
             print("Its reachable")
-            readyToStopTimer = true
         } else {
             print("Its not reachable")
         }
@@ -101,6 +100,12 @@ class WatchSession: NSObject, WCSessionDelegate {
     //This function tells the phone to pause the game when the pause button is tapped
     func tellPhoneToPauseGame() {
         let actionDictFromWatch = ["Action": "tellPhoneToPauseGame"]
+        session.sendMessage(actionDictFromWatch, replyHandler: nil)
+    }
+    
+    //This function asks the phone to see if the timer is currently on
+    func askPhoneIfTimerIsOn() {
+        let actionDictFromWatch = ["Action": "askPhoneIfTimerIsOn"]
         session.sendMessage(actionDictFromWatch, replyHandler: nil)
     }
     

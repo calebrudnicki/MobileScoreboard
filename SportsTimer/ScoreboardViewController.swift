@@ -151,7 +151,9 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
     
     //This function runs when the watch exits a game
     func receivedTellPhoneToStopGameNotification(_ notification: Notification) {
-        self.restartGame()
+        if timer.isValid {
+            self.restartGame()
+        }
     }
     
     //This function tuns when the watch enters the background
