@@ -39,6 +39,7 @@ class ScoreboardInterfaceController: WKInterfaceController, WCSessionDelegate {
             self.convertClockFormatToSeconds(val)
         }
         self.newGame()
+        self.addMenuItems(newButton: "Pause")
         player1Score.setTitle(String(score1))
         player2Score.setTitle(String(score2))
         
@@ -186,28 +187,25 @@ class ScoreboardInterfaceController: WKInterfaceController, WCSessionDelegate {
         }
     }
     
-    //This function starts the timer when the play button is tapped
-    @IBAction func playButtonTapped() {
+    //MARK: Menu Actions
+    
+    func playPauseButtonTapped() {
         if gameIsPaused == true {
             WatchSession.sharedInstance.tellPhoneToPlayGame()
             gameIsPaused = false
-            countdown -= 2
-        }
-        self.newGame()
-    }
-    
-    //This function pauses the timer when the pause button is tapped
-    @IBAction func pauseButtonTapped() {
-        if gameIsPaused == false {
+            self.newGame()
+            self.addMenuItems(newButton: "Pause")
+        } else if gameIsPaused == false {
             WatchSession.sharedInstance.tellPhoneToPauseGame()
             gameIsPaused = true
             timer.stop()
             backingTimer?.invalidate()
+            self.addMenuItems(newButton: "Play")
         }
     }
     
     //This function subtracts a goal from player 1 when tapped
-    @IBAction func trashPlayer1GoalButtonTapped() {
+    func trashPlayer1GoalButtonTapped() {
         if score1 > 0 {
             score1 -= 1
             player1Score.setTitle(String(score1))
@@ -216,7 +214,7 @@ class ScoreboardInterfaceController: WKInterfaceController, WCSessionDelegate {
     }
     
     //This function subtracts a goal from player 2 when tapped
-    @IBAction func trashPlayer2GoalButtonTapped() {
+    func trashPlayer2GoalButtonTapped() {
         if score2 > 0 {
             score2 -= 1
             player2Score.setTitle(String(score2))
@@ -233,6 +231,18 @@ class ScoreboardInterfaceController: WKInterfaceController, WCSessionDelegate {
         player2Name.setTextColor(UIColor.init(red: red/255, green: green/255, blue: blue/255, alpha: 1))
         player1Score.setBackgroundColor(UIColor.init(red: red/255, green: green/255, blue: blue/255, alpha: 1))
         player2Score.setBackgroundColor(UIColor.init(red: red/255, green: green/255, blue: blue/255, alpha: 1))
+    }
+    
+    //This functon refreshes the menu items
+    func addMenuItems(newButton: String) {
+        clearAllMenuItems()
+        addMenuItem(with: .trash, title: "-P1 Goal", action: #selector(ScoreboardInterfaceController.trashPlayer1GoalButtonTapped))
+        addMenuItem(with: .trash, title: "-P2 Goal", action: #selector(ScoreboardInterfaceController.trashPlayer2GoalButtonTapped))
+        if newButton == "Play" {
+            addMenuItem(with: .play, title: "Play", action: #selector(ScoreboardInterfaceController.playPauseButtonTapped))
+        } else {
+            addMenuItem(with: .pause, title: "Pause", action: #selector(ScoreboardInterfaceController.playPauseButtonTapped))
+        }
     }
     
 }

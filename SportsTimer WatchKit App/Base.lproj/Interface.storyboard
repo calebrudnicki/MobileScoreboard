@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3KW-jg-8WF">
-    <device id="watch42" orientation="portrait">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="11762" systemVersion="16F73" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3KW-jg-8WF">
+    <device id="watch38" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -25,23 +25,24 @@
                                     </variation>
                                 </timer>
                                 <separator width="1" alignment="left" id="TSF-1R-qY4"/>
-                                <group width="1" alignment="center" spacing="12" id="IO1-14-nL3">
+                                <group width="1" alignment="center" spacing="0.0" id="IO1-14-nL3">
                                     <items>
-                                        <label alignment="center" verticalAlignment="center" text="Player 1" textAlignment="center" id="hzh-yl-PR1">
+                                        <label width="70" alignment="left" verticalAlignment="center" text="Player 1" textAlignment="center" id="hzh-yl-PR1">
                                             <fontDescription key="font" type="system" weight="ultraLight" pointSize="18"/>
-                                            <variation key="device=watch38mm">
+                                            <variation key="device=watch38mm" width="65">
                                                 <fontDescription key="font" type="system" weight="ultraLight" pointSize="16"/>
                                             </variation>
                                         </label>
-                                        <label alignment="center" verticalAlignment="center" text="Player 2" textAlignment="center" id="Bf5-i6-tPh">
+                                        <label width="70" alignment="right" verticalAlignment="center" text="Player 2" textAlignment="center" id="Bf5-i6-tPh">
                                             <fontDescription key="font" type="system" weight="ultraLight" pointSize="16"/>
+                                            <variation key="device=watch38mm" width="65"/>
                                             <variation key="device=watch42mm">
                                                 <fontDescription key="font" type="system" weight="ultraLight" pointSize="18"/>
                                             </variation>
                                         </label>
                                     </items>
                                     <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
-                                    <variation key="device=watch42mm" spacing="19"/>
+                                    <variation key="device=watch42mm" spacing="0.0"/>
                                 </group>
                                 <group width="1" alignment="center" id="hl7-yr-5yp">
                                     <items>
@@ -71,30 +72,6 @@
                             <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
                         </group>
                     </items>
-                    <menu key="menu" id="HXm-R5-sfQ">
-                        <items>
-                            <menuItem title="Play" icon="play" id="CVY-2o-AYh">
-                                <connections>
-                                    <action selector="playButtonTapped" destination="AgC-eL-Hgc" id="Whd-bU-AgW"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Pause" icon="pause" id="Sid-qj-r3F">
-                                <connections>
-                                    <action selector="pauseButtonTapped" destination="AgC-eL-Hgc" id="6zd-7x-6Nk"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="-P1 Goal" icon="trash" id="BDz-N0-NlW">
-                                <connections>
-                                    <action selector="trashPlayer1GoalButtonTapped" destination="AgC-eL-Hgc" id="xxr-ax-93c"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="-P2 Goal" icon="trash" id="UO1-on-57o">
-                                <connections>
-                                    <action selector="trashPlayer2GoalButtonTapped" destination="AgC-eL-Hgc" id="zU2-LE-nZf"/>
-                                </connections>
-                            </menuItem>
-                        </items>
-                    </menu>
                     <color key="backgroundColor" red="0.52941179279999995" green="0.52941179279999995" blue="0.52941179279999995" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <outlet property="player1Name" destination="hzh-yl-PR1" id="XJy-ma-U2M"/>

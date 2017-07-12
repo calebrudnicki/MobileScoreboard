@@ -63,6 +63,7 @@ class HomeInterfaceController: WKInterfaceController, WCSessionDelegate {
     override func didAppear() {
         WatchSession.sharedInstance.tellPhoneToStopGame()
         WatchSession.sharedInstance.tellPhonePotentialStartTime(overallTime)
+        WatchSession.sharedInstance.tellPhoneWatchIsTiming(false)
     }
     
     override func didDeactivate() {

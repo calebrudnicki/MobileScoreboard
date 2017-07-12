@@ -103,12 +103,6 @@ class WatchSession: NSObject, WCSessionDelegate {
         session.sendMessage(actionDictFromWatch, replyHandler: nil)
     }
     
-    //This function asks the phone to see if the timer is currently on
-    func askPhoneIfTimerIsOn() {
-        let actionDictFromWatch = ["Action": "askPhoneIfTimerIsOn"]
-        session.sendMessage(actionDictFromWatch, replyHandler: nil)
-    }
-    
     //MARK: Data Getters
     
     //This functions receives a message from the phone

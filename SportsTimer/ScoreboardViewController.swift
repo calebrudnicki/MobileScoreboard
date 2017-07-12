@@ -67,7 +67,6 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
         NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToStartGameNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneToStartGame"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneScoreDataNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneScoreData"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToStopGameNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneToStopGame"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneWatchIsInBackgroundNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneWatchIsInBackground"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhonePotentialStartTimeNotification(_:)), name:NSNotification.Name(rawValue: "tellPhonePotentialStartTime"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToPlayGameNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneToPlayGame"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToPauseGameNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneToPauseGame"), object: nil)
@@ -154,11 +153,6 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
         if timer.isValid {
             self.restartGame()
         }
-    }
-    
-    //This function tuns when the watch enters the background
-    func receivedTellPhoneWatchIsInBackgroundNotification(_ notification: Notification) {
-        print("Watch is in background")
     }
     
     //This function runs when the watch scrolls thru the potential start times
