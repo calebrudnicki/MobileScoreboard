@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina4_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
@@ -21,9 +21,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iTunesArtwork" translatesAutoresizingMaskIntoConstraints="NO" id="WWK-Xy-z8Y">
-                                <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="a Caleb Rudnicki production" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tos-l3-dTP">
                                 <rect key="frame" x="544" y="358" width="118" height="12"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="10"/>
@@ -31,12 +28,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
+                        <color key="backgroundColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="WWK-Xy-z8Y" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" id="0rU-qD-Kkq"/>
                             <constraint firstAttribute="trailing" secondItem="tos-l3-dTP" secondAttribute="trailing" constant="5" id="0uS-j9-qr7"/>
-                            <constraint firstItem="WWK-Xy-z8Y" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" id="28K-LL-ASV"/>
-                            <constraint firstItem="WWK-Xy-z8Y" firstAttribute="bottom" secondItem="xb3-aO-Qok" secondAttribute="top" id="5wi-Nm-YR7"/>
-                            <constraint firstItem="WWK-Xy-z8Y" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="ODn-9s-LZE"/>
                             <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="tos-l3-dTP" secondAttribute="bottom" constant="5" id="i0J-ZQ-O2l"/>
                         </constraints>
                     </view>
@@ -46,7 +40,4 @@
             <point key="canvasLocation" x="52.623688155922046" y="373.60000000000002"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="iTunesArtwork" width="512" height="512"/>
-    </resources>
 </document>

@@ -77,6 +77,7 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
         if let player2Name = UserDefaults.standard.object(forKey: "player2") as? String {
             player2TitleLabel.text = player2Name
         }
+        
         if let selectedSport = UserDefaults.standard.object(forKey: "selectedSport") as? String {
             if selectedSport == "Basketball" {
                 backgroundImage.image = #imageLiteral(resourceName: "BasketballBackground")
@@ -139,7 +140,7 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
     func receivedTellPhoneToStartGameNotification(_ notification: Notification) {
         let dataDict = notification.object as? [String : AnyObject]
         self.startTimer(dataDict!)
-        updatePlayPauseButton(title: "Playing game...", color: UIColor.init(red: 14/255, green: 161/255, blue: 87/255, alpha: 1))
+        self.updatePlayPauseButton(title: "Playing game...", color: UIColor.init(red: 14/255, green: 161/255, blue: 87/255, alpha: 1))
     }
     
     //This function runs when the score is updated in anyway
@@ -157,6 +158,7 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
     
     //This function runs when the watch scrolls thru the potential start times
     func receivedTellPhonePotentialStartTimeNotification(_ notification: Notification) {
+        self.restartGame()
         let dataDict = notification.object as? [String : AnyObject]
         timerLabel.text = dataDict?["Time"] as! String?
     }
@@ -164,7 +166,8 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
     //This function runs when the play button on the watch is tapped
     func receivedTellPhoneToPlayGameNotification(_ notification: Notification) {
         self.beginClock()
-        updatePlayPauseButton(title: "Playing game...", color: UIColor.init(red: 14/255, green: 161/255, blue: 87/255, alpha: 1))
+        self.updatePlayPauseButton(title: "Playing game...", color: UIColor.init(red: 14/255, green: 161/255, blue: 87/255, alpha: 1))
+        self.speakGameStatus("Resume")
     }
     
     //This function runs when the pause button on the watch is tapped
@@ -174,7 +177,8 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
         }
         timerLabel.text = self.convertSeconds(currentTime)
         timerIsOn = false
-        updatePlayPauseButton(title: "Game paused", color: UIColor.init(red: 158/255, green: 28/255, blue: 0/255, alpha: 1))
+        self.updatePlayPauseButton(title: "Game paused", color: UIColor.init(red: 158/255, green: 28/255, blue: 0/255, alpha: 1))
+        self.speakGameStatus("Pause")
     }
     
     //MARK: Actions
@@ -187,14 +191,18 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
         
         if timerIsOn == false {
             self.beginClock()
-            updatePlayPauseButton(title: "Pause", color: UIColor.init(red: 158/255, green: 28/255, blue: 0/255, alpha: 1))
+            self.updatePlayPauseButton(title: "Pause", color: UIColor.init(red: 158/255, green: 28/255, blue: 0/255, alpha: 1))
+            if currentTime != 600 {
+                self.speakGameStatus("Resume")
+            }
         } else {
             if timer != nil {
                 timer.invalidate()
             }
             timerLabel.text = self.convertSeconds(currentTime)
             timerIsOn = false
-            updatePlayPauseButton(title: "Play", color: UIColor.init(red: 14/255, green: 161/255, blue: 87/255, alpha: 1))
+            self.updatePlayPauseButton(title: "Play", color: UIColor.init(red: 14/255, green: 161/255, blue: 87/255, alpha: 1))
+            self.speakGameStatus("Pause")
         }
     }
     
@@ -256,7 +264,7 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
         player2Score = 0
         player1ScoreButton.setTitle("0", for: UIControlState())
         player2ScoreButton.setTitle("0", for: UIControlState())
-        updatePlayPauseButton(title: "Start Game", color: UIColor.init(red: 14/255, green: 161/255, blue: 87/255, alpha: 1))
+        self.updatePlayPauseButton(title: "Start Game", color: UIColor.init(red: 14/255, green: 161/255, blue: 87/255, alpha: 1))
         
         if let selectedSport = UserDefaults.standard.object(forKey: "selectedSport") as? String {
             if selectedSport == "Basketball" {
@@ -337,7 +345,7 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
     func timesUp(_ winner: String) {
         self.player1ScoreButton.isEnabled = false
         self.player2ScoreButton.isEnabled = false
-        updatePlayPauseButton(title: "Start New Game", color: UIColor.init(red: 14/255, green: 161/255, blue: 87/255, alpha: 1))
+        self.updatePlayPauseButton(title: "Start New Game", color: UIColor.init(red: 14/255, green: 161/255, blue: 87/255, alpha: 1))
         AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
         if winner == "Player1" {
             player1ScoreButton.setTitleColor(UIColor.init(red: 14/255, green: 161/255, blue: 87/255, alpha: 1), for: UIControlState())
@@ -402,6 +410,12 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
                 let statusNotice = AVSpeechUtterance(string: "Game over. \(player2TitleLabel.text!) wins \(player2Score!) to \(player1Score!)")
                 self.speechSynthesizer.speak(statusNotice)
             }
+        } else if occasion == "Pause" {
+            let statusNotice = AVSpeechUtterance(string: "Game paused.")
+            self.speechSynthesizer.speak(statusNotice)
+        } else if occasion == "Resume" {
+            let statusNotice = AVSpeechUtterance(string: "Resuming game.")
+            self.speechSynthesizer.speak(statusNotice)
         }
     }
     
@@ -437,7 +451,7 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
             if results.count > 0 {
                 for result in results as! [NSManagedObject] {
                     self.games.append((result as? Games)!)
-                    self.games = games.reversed()
+                    //self.games = games.reversed()
                 }
             }
         } catch let error as NSError {
@@ -493,19 +507,21 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
     
     //MARK: TableView Delegate Functions
     
-    //This delegate function sets the amount of rows in the table view to 25
+    //This delegate function sets the amount of rows in the table view to the amount of games
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return games.count
     }
     
-    //This delegate functions sets data in each cell to the appropriate movie rank, name, date, and price
+    //This delegate functions sets data in each cell to the appropriate game information
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! GamesTableViewCell
+        self.games.reverse()
         cell.player1Label.text = self.games[indexPath.row].player1
         cell.player1ScoreLabel.text = String(describing: self.games[indexPath.row].player1Score!)
         cell.player2Label.text = self.games[indexPath.row].player2
         cell.player2ScoreLabel.text = String(describing: self.games[indexPath.row].player2Score!)
         cell.dateLabel.text = games[indexPath.row].date
+        self.games.reverse()
         return cell
     }
     
@@ -521,7 +537,7 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
             self.tableView.reloadData()
             if (self.games.count < 1) {
-                
+                //Show no games screen
             }
         }
     }
