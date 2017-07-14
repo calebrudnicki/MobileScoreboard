@@ -29,6 +29,7 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
     @IBOutlet weak var leftArrowButton: UIButton!
     @IBOutlet weak var rightArrowButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var noGamesLabel: UILabel!
     
     //MARK: Variables
     
@@ -55,6 +56,7 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
         leftArrowButton.isEnabled = false
         tableView.alpha = 0
         watchIcon.alpha = 0
+        noGamesLabel.isHidden = true
         self.tableView.delegate = self
         self.tableView.dataSource = self
 
@@ -105,6 +107,29 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
                 settingsIcon.setImage(#imageLiteral(resourceName: "SettingsIconBlack"), for: .normal)
                 watchIcon.setImage(#imageLiteral(resourceName: "WatchIconBlack"), for: .normal)
             }
+        }
+        
+        if ProcessInfo.processInfo.isLowPowerModeEnabled {
+            let alertController = UIAlertController(title: nil, message: "We noticed that you seem to be on Low Power Mode. Please disable this mode for the best experience with MobileBoard.", preferredStyle: .actionSheet)
+            let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
+                guard let settingsUrl = URL(string: UIApplicationOpenSettingsURLString) else {
+                    return
+                }
+                
+                if UIApplication.shared.canOpenURL(settingsUrl) {
+                    if #available(iOS 10.0, *) {
+                        UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                            print("Settings opened: \(success)") // Prints true
+                        })
+                    } else {
+                        // Fallback on earlier versions
+                    }
+                }
+            }
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            alertController.addAction(settingsAction)
+            alertController.addAction(cancelAction)
+            self.present(alertController, animated: true, completion: nil)
         }
     }
     
@@ -230,6 +255,7 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
         rightArrowButton.isEnabled = true
         tableView.alpha = 0
         pageController.currentPage = 0
+        noGamesLabel.isHidden = true
     }
     
     //This function changes the scoreboard back into a scoreboard when the right arrow is tapped
@@ -247,6 +273,7 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
         } else {
             // Fallback on earlier versions
         }
+        self.decideToShowNoGamesLabel()
     }
     
     //MARK: Label Functions
@@ -505,6 +532,15 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
         self.playPauseButton.setTitle(title, for: .normal)
     }
     
+    //This fucntion decides whether or not to show the no games label when the table view appears
+    func decideToShowNoGamesLabel() {
+        if games.count > 0 {
+            self.noGamesLabel.isHidden = true
+        } else {
+            self.noGamesLabel.isHidden = false
+        }
+    }
+    
     //MARK: TableView Delegate Functions
     
     //This delegate function sets the amount of rows in the table view to the amount of games
@@ -538,6 +574,7 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
             self.tableView.reloadData()
             if (self.games.count < 1) {
                 //Show no games screen
+                self.decideToShowNoGamesLabel()
             }
         }
     }
