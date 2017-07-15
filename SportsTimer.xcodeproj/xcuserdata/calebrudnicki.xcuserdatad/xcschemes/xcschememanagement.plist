@@ -4,13 +4,22 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>SportsTimer WatchKit App (Complication).xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>7</integer>
+		</dict>
 		<key>SportsTimer WatchKit App (Glance).xcscheme</key>
 		<dict>
+			<key>isShown</key>
+			<false/>
 			<key>orderHint</key>
 			<integer>3</integer>
 		</dict>
 		<key>SportsTimer WatchKit App (Notification).xcscheme</key>
 		<dict>
+			<key>isShown</key>
+			<false/>
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
@@ -33,6 +42,11 @@
 			<true/>
 		</dict>
 		<key>822191EE1D1C2AA600309328</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>82917C641F1A7062008C8508</key>
 		<dict>
 			<key>primary</key>
 			<true/>

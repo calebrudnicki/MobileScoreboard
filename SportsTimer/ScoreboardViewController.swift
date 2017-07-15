@@ -573,7 +573,6 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
             self.tableView.reloadData()
             if (self.games.count < 1) {
-                //Show no games screen
                 self.decideToShowNoGamesLabel()
             }
         }

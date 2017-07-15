@@ -1,6 +1,6 @@
 //
 //  HomeInterfaceController.swift
-//  SportsTimer
+//  SportsTimer WatchKit Extension
 //
 //  Created by Caleb Rudnicki on 8/8/16.
 //  Copyright © 2016 Caleb Rudnicki. All rights reserved.
