@@ -353,8 +353,8 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
         UIApplication.shared.isIdleTimerDisabled = true
         DispatchQueue.main.async {
             if self.timerIsOn == false {
-                self.currentTime = Int(String(describing: dataDict["Time"]!))!
-                self.startingGameTime = Int(String(describing: dataDict["Time"]!))!
+                self.currentTime = Int(String(describing: dataDict["Time"]!))! - 2
+                self.startingGameTime = Int(String(describing: dataDict["Time"]!))! - 2
                 self.beginClock()
                 self.player1ScoreButton.isEnabled = true
                 self.player2ScoreButton.isEnabled = true
@@ -478,7 +478,6 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
             if results.count > 0 {
                 for result in results as! [NSManagedObject] {
                     self.games.append((result as? Games)!)
-                    //self.games = games.reversed()
                 }
             }
         } catch let error as NSError {
@@ -565,12 +564,14 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             if #available(iOS 10.0, *) {
+                self.games.reverse()
                 self.deleteFromCoreData(indexPath)
             } else {
                 // Fallback on earlier versions
             }
             self.games.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            self.games.reverse()
             self.tableView.reloadData()
             if (self.games.count < 1) {
                 self.decideToShowNoGamesLabel()
