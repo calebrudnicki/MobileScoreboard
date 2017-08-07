@@ -25,8 +25,6 @@
 		825140EE1EC3BB06005E6F2D /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825140ED1EC3BB06005E6F2D /* WelcomeViewController.swift */; };
 		825140F11EC897C7005E6F2D /* SportsTimer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 825140EF1EC897C7005E6F2D /* SportsTimer.xcdatamodeld */; };
 		8284C9831D2EE70600A08EEF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8284C9821D2EE70600A08EEF /* Main.storyboard */; };
-		82917CD41F1A7B62008C8508 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82917CD21F1A7B62008C8508 /* ExtensionDelegate.swift */; };
-		82917CD51F1A7B62008C8508 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82917CD31F1A7B62008C8508 /* ComplicationController.swift */; };
 		82A3D67B1EAAAE3A009D7EBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 822191F71D1C2AA600309328 /* Assets.xcassets */; };
 		82D544C21ECF6F7900ADCF64 /* GamesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D544C11ECF6F7900ADCF64 /* GamesTableViewCell.swift */; };
 /* End PBXBuildFile section */
@@ -98,8 +96,6 @@
 		825140ED1EC3BB06005E6F2D /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		825140F01EC897C7005E6F2D /* SportsTimer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SportsTimer.xcdatamodel; sourceTree = "<group>"; };
 		8284C9821D2EE70600A08EEF /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		82917CD21F1A7B62008C8508 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExtensionDelegate.swift; path = "../../temp/temp WatchKit Extension/ExtensionDelegate.swift"; sourceTree = "<group>"; };
-		82917CD31F1A7B62008C8508 /* ComplicationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ComplicationController.swift; path = "../../temp/temp WatchKit Extension/ComplicationController.swift"; sourceTree = "<group>"; };
 		82D544C11ECF6F7900ADCF64 /* GamesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamesTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -176,8 +172,6 @@
 				822B6E091D57A86A002566AA /* WatchSession.swift */,
 				8235D42E1D5933BC00E6CC88 /* HomeInterfaceController.swift */,
 				822192051D1C2AA600309328 /* ScoreboardInterfaceController.swift */,
-				82917CD21F1A7B62008C8508 /* ExtensionDelegate.swift */,
-				82917CD31F1A7B62008C8508 /* ComplicationController.swift */,
 				822192091D1C2AA600309328 /* NotificationController.swift */,
 				8221920B1D1C2AA600309328 /* GlanceController.swift */,
 				8221920D1D1C2AA600309328 /* Assets.xcassets */,
@@ -366,10 +360,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8221920A1D1C2AA600309328 /* NotificationController.swift in Sources */,
-				82917CD41F1A7B62008C8508 /* ExtensionDelegate.swift in Sources */,
 				822B6E0A1D57A86A002566AA /* WatchSession.swift in Sources */,
 				823490A21EBECDEA00F118E4 /* ScoreboardInterfaceController.swift in Sources */,
-				82917CD51F1A7B62008C8508 /* ComplicationController.swift in Sources */,
 				8235D42F1D5933BC00E6CC88 /* HomeInterfaceController.swift in Sources */,
 				8221920C1D1C2AA600309328 /* GlanceController.swift in Sources */,
 			);

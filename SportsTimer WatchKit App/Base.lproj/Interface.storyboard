@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="11762" systemVersion="16F73" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3KW-jg-8WF">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3KW-jg-8WF">
     <device id="watch38" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="watchOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="11508"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="12029"/>
     </dependencies>
     <scenes>
         <!--Scoreboard Interface Controller-->
@@ -72,7 +72,7 @@
                             <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
                         </group>
                     </items>
-                    <color key="backgroundColor" red="0.52941179279999995" green="0.52941179279999995" blue="0.52941179279999995" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.82745098039215681" green="0.82745098039215681" blue="0.82745098039215681" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <outlet property="player1Name" destination="hzh-yl-PR1" id="XJy-ma-U2M"/>
                         <outlet property="player1Score" destination="tqc-Bv-34b" id="8RD-te-8hK"/>
@@ -92,7 +92,7 @@
                         <group width="1" height="1" alignment="center" verticalAlignment="center" contentMode="scaleAspectFill" layout="vertical" id="Bnz-b5-mkC">
                             <items>
                                 <label width="1" alignment="left" verticalAlignment="center" text="Choose game length..." textAlignment="center" id="u9r-Kh-XZ8">
-                                    <color key="textColor" red="0.98854309320449829" green="0.99079138040542603" blue="0.83220988512039185" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="textColor" red="0.82745098039215681" green="0.82745098039215681" blue="0.82745098039215681" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="font" type="system" weight="ultraLight" pointSize="14"/>
                                     <variation key="device=watch38mm">
                                         <fontDescription key="font" type="system" weight="ultraLight" pointSize="12"/>
@@ -105,8 +105,8 @@
                                     </connections>
                                 </picker>
                                 <button width="1" height="38" alignment="center" verticalAlignment="center" title="Start" id="Zlo-kE-kx0">
-                                    <color key="titleColor" red="0.99638575315475464" green="0.99863702058792114" blue="0.84005898237228394" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <color key="backgroundColor" red="0.59993284940719604" green="0.60003870725631714" blue="0.5999261736869812" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" red="0.19607843137254902" green="0.19607843137254902" blue="0.19607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" red="0.82745098039215681" green="0.82745098039215681" blue="0.82745098039215681" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="font" type="system" pointSize="30"/>
                                     <variation key="device=watch42mm" height="45"/>
                                     <connections>

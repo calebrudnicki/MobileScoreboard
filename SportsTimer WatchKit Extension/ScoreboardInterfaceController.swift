@@ -91,7 +91,7 @@ class ScoreboardInterfaceController: WKInterfaceController, WCSessionDelegate {
         } else if dataDict?["Sport"]! as? String! == "Baseball" {
             self.changeScoreboard(red: 169, green: 124, blue: 80)
         } else {
-            self.changeScoreboard(red: 183, green: 175, blue: 174)
+            self.changeScoreboard(red: 10, green: 10, blue: 10)
         }
     }
 
