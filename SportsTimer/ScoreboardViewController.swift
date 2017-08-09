@@ -59,7 +59,6 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
         noGamesLabel.isHidden = true
         self.tableView.delegate = self
         self.tableView.dataSource = self
-
     }
     
     override func viewDidAppear(_ animated: Bool) {

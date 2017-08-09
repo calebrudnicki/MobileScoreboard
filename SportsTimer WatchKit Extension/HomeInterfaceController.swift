@@ -52,7 +52,6 @@ class HomeInterfaceController: WKInterfaceController, WCSessionDelegate {
         picker.setItems(timesArray)
         picker.setSelectedItemIndex(2)
         
-        //NotificationCenter.default.addObserver(self, selector: #selector(HomeInterfaceController.receivedTellWatchIfTimerIsOnNotification(_:)), name:NSNotification.Name(rawValue: "tellWatchIfTimerIsOn"), object: nil)
     }
     
     override func willActivate() {

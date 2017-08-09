@@ -50,6 +50,10 @@ class WelcomeViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(WelcomeViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         PhoneSession.sharedInstance.startSession()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        PhoneSession.sharedInstance.startSession()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

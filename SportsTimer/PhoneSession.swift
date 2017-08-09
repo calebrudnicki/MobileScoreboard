@@ -58,7 +58,9 @@ class PhoneSession: NSObject, WCSessionDelegate {
     func tellWatchPlayerNames(_ player1Name: String, player2Name: String) {
         let payloadDictFromPhone = ["Player1Name": player1Name, "Player2Name": player2Name]
         let actionDictFromPhone = ["Action": "tellWatchPlayerNames", "Payload": payloadDictFromPhone] as [String : Any]
-        session.sendMessage(actionDictFromPhone as [String : AnyObject], replyHandler: nil)
+        if WCSession.isSupported() {
+            session.sendMessage(actionDictFromPhone as [String : AnyObject], replyHandler: nil)
+        }
     }
     
     //This function tells the watch the chosen sports theme
