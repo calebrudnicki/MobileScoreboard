@@ -69,7 +69,7 @@
       notificationPayloadFile = "SportsTimer WatchKit Extension/PushNotificationPayload.apns">
       <RemoteRunnable
          runnableDebuggingMode = "2"
-         BundleIdentifier = "com.apple.carousel"
+         BundleIdentifier = "com.apple.Carousel"
          RemotePath = "/MobileBoard">
          <BuildableReference
             BuildableIdentifier = "primary"

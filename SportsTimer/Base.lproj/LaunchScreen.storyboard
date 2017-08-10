@@ -6,6 +6,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,17 +23,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="a Caleb Rudnicki production" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tos-l3-dTP">
-                                <rect key="frame" x="544" y="358" width="118" height="12"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="10"/>
-                                <color key="textColor" red="0.19607843137254902" green="0.19607843137254902" blue="0.19607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MobileBoardIcon" translatesAutoresizingMaskIntoConstraints="NO" id="4Oq-Fv-omM">
+                                <rect key="frame" x="267" y="121" width="133" height="133"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="4Oq-Fv-omM" secondAttribute="height" multiplier="1:1" id="ojq-IQ-JYp"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.82745098039215681" green="0.82745098039215681" blue="0.82745098039215681" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="tos-l3-dTP" secondAttribute="trailing" constant="5" id="0uS-j9-qr7"/>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="tos-l3-dTP" secondAttribute="bottom" constant="5" id="i0J-ZQ-O2l"/>
+                            <constraint firstItem="4Oq-Fv-omM" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="AHL-b3-EhT"/>
+                            <constraint firstItem="4Oq-Fv-omM" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="0.2" id="Blz-YS-9Kb"/>
+                            <constraint firstItem="4Oq-Fv-omM" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="tgj-iq-qpT"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -40,4 +43,7 @@
             <point key="canvasLocation" x="52.623688155922046" y="373.60000000000002"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="MobileBoardIcon" width="915" height="851"/>
+    </resources>
 </document>
