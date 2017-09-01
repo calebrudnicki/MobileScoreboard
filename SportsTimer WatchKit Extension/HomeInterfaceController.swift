@@ -56,7 +56,9 @@ class HomeInterfaceController: WKInterfaceController, WCSessionDelegate {
     
     override func willActivate() {
         super.willActivate()
+        print("Activating")
         WatchSession.sharedInstance.startSession()
+        WatchSession.sharedInstance.tellPhoneToDisablePlayPauseButton(true)
     }
     
     override func didAppear() {
@@ -67,6 +69,7 @@ class HomeInterfaceController: WKInterfaceController, WCSessionDelegate {
     
     override func didDeactivate() {
         super.didDeactivate()
+        WatchSession.sharedInstance.tellPhoneToDisablePlayPauseButton(false)
     }
     
     //MARK: Actions

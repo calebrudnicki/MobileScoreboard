@@ -17,6 +17,7 @@ class WatchSession: NSObject, WCSessionDelegate {
     @available(watchOS 2.2, *)
     public func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         print("Session started")
+        WatchSession.sharedInstance.tellPhoneToDisablePlayPauseButton(true)
     }
   
     //MARK: Variables
@@ -55,6 +56,13 @@ class WatchSession: NSObject, WCSessionDelegate {
     func tellPhoneWatchIsTiming(_ watchIsOn: Bool) {
         let payloadDictFromWatch = ["WatchIsOn": watchIsOn]
         let actionDictFromWatch = ["Action": "tellPhoneWatchIsTiming", "Payload": payloadDictFromWatch] as [String : Any]
+        session.sendMessage(actionDictFromWatch as [String : AnyObject], replyHandler: nil)
+    }
+    
+    //This function tells the phone whether or not to disable the button to start a game from the phone
+    func tellPhoneToDisablePlayPauseButton(_ disableButton: Bool) {
+        let payloadDictFromWatch = ["DisableButton": disableButton]
+        let actionDictFromWatch = ["Action": "tellPhoneToDisablePlayPauseButton", "Payload": payloadDictFromWatch] as [String : Any]
         session.sendMessage(actionDictFromWatch as [String : AnyObject], replyHandler: nil)
     }
     

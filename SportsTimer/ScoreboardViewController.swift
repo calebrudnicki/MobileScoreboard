@@ -65,6 +65,7 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
         self.restartGame()
         PhoneSession.sharedInstance.startSession()
         NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneWatchIsOnNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneWatchIsTiming"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToDisablePlayPauseButton(_:)), name: NSNotification.Name(rawValue: "tellPhoneToDisablePlayPauseButton"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToStartGameNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneToStartGame"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneScoreDataNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneScoreData"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ScoreboardViewController.receivedTellPhoneToStopGameNotification(_:)), name:NSNotification.Name(rawValue: "tellPhoneToStopGame"), object: nil)
@@ -157,6 +158,17 @@ class ScoreboardViewController: UIViewController, UITableViewDataSource, UITable
             player1ScoreButton.isEnabled = true
             player2ScoreButton.isEnabled = true
             settingsIcon.isEnabled = true
+        }
+    }
+    
+    //This function toggles between enabling and disabling the play/pause button based on if the watch is on or off
+    func receivedTellPhoneToDisablePlayPauseButton(_ notification: NSNotification) {
+        let dataDict = notification.object as? [String : AnyObject]
+        if (dataDict?["DisableButton"]! as? Bool)! {
+            playPauseButton.isEnabled = false
+        } else {
+            playPauseButton.isEnabled = true
+            timerLabel.text = "10:00"
         }
     }
     
